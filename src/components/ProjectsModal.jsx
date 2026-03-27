@@ -45,15 +45,28 @@ export default function ProjectsModal({ onClose }) {
                 ))}
               </div>
               
-              <a 
-                href={project.link} 
-                className="project-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                View Project →
-              </a>
+              <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                <a 
+                  href={project.link} 
+                  className="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  View Project →
+                </a>
+                {project.githubRepo && (
+                  <a 
+                    href={project.githubRepo} 
+                    className="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    GitHub →
+                  </a>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>

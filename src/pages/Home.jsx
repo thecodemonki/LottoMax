@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Home.css';
-import { aboutData, projectsData } from '../data/content';
+import { aboutData, educationData, experienceData, projectsData, skillsData } from '../data/content';
 
 function Home() {
   return (
     <div className="portfolio-container">
       {/* Navigation */}
       <nav className="navbar">
-        <div className="nav-brand">Your Name</div>
+        <div className="nav-brand">Maxwell Peng</div>
         <div className="nav-links">
           <a href="#about">About</a>
+          <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
@@ -20,25 +21,29 @@ function Home() {
 
       {/* Hero Section */}
       <section className="hero" id="home">
-        <motion.div 
+        <motion.div
           className="hero-content"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <h1 className="hero-title">
-            Hi, I'm <span className="highlight">Your Name</span>
+            Hi, I'm <span className="highlight">Maxwell Peng</span>
           </h1>
           <p className="hero-subtitle">
-            Full Stack Developer & Creative Problem Solver
+            Full Stack Developer & Team Canada Athlete
           </p>
           <p className="hero-description">
-            I build elegant web experiences and solve complex problems through code.
-            When I'm not coding, you'll find me swimming, playing badminton, or analyzing markets.
+            Computer Science student at Western University building impactful software solutions.
+            When I'm not coding, you'll find me competing in badminton at the national level,
+            analyzing market patterns, or perfecting my chess strategy.
           </p>
-          
+
           <div className="hero-buttons">
             <a href="#projects" className="btn btn-primary">View My Work</a>
+            <a href="/Official.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary-alt">
+              📄 View Resume
+            </a>
             <Link to="/mansion" className="btn btn-secondary">
               🏛️ Explore My Mansion
             </Link>
@@ -58,57 +63,83 @@ function Home() {
           <div className="about-grid">
             <div className="about-text">
               <p>
-                I'm a passionate developer who loves building interactive experiences.
-                My journey in tech started with a curiosity for how things work, 
-                and evolved into a career creating elegant solutions to complex problems.
+                I'm a passionate developer studying Computer Science at Western University (GPA: 3.95/4.0).
+                My journey combines technical excellence with diverse experiences - from engineering Shopify
+                solutions at AtlasHaus Design to leading 700+ members as Projects Director at Western Founders Network.
               </p>
               <p>
-                Beyond coding, I'm an active person who believes in maintaining a balanced lifestyle.
-                Swimming keeps me disciplined, badminton sharpens my reflexes, 
-                chess trains my strategic thinking, cooking feeds my creativity, 
-                and trading teaches me patience.
+                Beyond academics, I compete as a member of Team Canada's Junior National Badminton Team
+                (ranked #2 Under 17 in Canada). This dual commitment to athletics and technology has
+                taught me discipline, time management, and the power of consistent effort toward ambitious goals.
+              </p>
+              <p>
+                I'm driven by curiosity - whether it's building real-time multiplayer platforms,
+                exploring market dynamics through trading, or mastering chess strategy. Each interest
+                strengthens different aspects of my problem-solving approach.
               </p>
             </div>
             <div className="about-stats">
               <div className="stat-card">
-                <div className="stat-number">500+</div>
-                <div className="stat-label">Km Swam Annually</div>
+                <div className="stat-number">3.95</div>
+                <div className="stat-label">GPA at Western</div>
               </div>
               <div className="stat-card">
-                <div className="stat-number">1850</div>
+                <div className="stat-number">#2</div>
+                <div className="stat-label">U17 Badminton Canada</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-number">1936</div>
                 <div className="stat-label">Chess ELO Rating</div>
               </div>
               <div className="stat-card">
-                <div className="stat-number">10+</div>
-                <div className="stat-label">Projects Built</div>
+                <div className="stat-number">700+</div>
+                <div className="stat-label">Students Led (WFN)</div>
               </div>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Skills Section */}
-      <section className="section section-alt" id="skills">
+      {/* Experience Section */}
+      <section className="section section-alt" id="experience">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title">Skills & Technologies</h2>
-          <div className="skills-grid-home">
-            {['React', 'Node.js', 'TypeScript', 'Python', 'MongoDB', 'PostgreSQL', 
-              'AWS', 'Docker', 'Git', 'UI/UX Design', 'TensorFlow', 'Next.js'].map((skill, index) => (
+          <h2 className="section-title">Experience</h2>
+          <div className="experience-timeline">
+            {experienceData.map((exp, index) => (
               <motion.div
-                key={skill}
-                className="skill-card"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                key={exp.id}
+                className="experience-card"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.05 }}
+                transition={{ delay: index * 0.1 }}
               >
-                {skill}
+                <div className="exp-header">
+                  <div>
+                    <h3 className="exp-role">{exp.role}</h3>
+                    <h4 className="exp-company">{exp.company}</h4>
+                  </div>
+                  <div className="exp-meta">
+                    <div className="exp-period">{exp.period}</div>
+                    <div className="exp-location">{exp.location}</div>
+                  </div>
+                </div>
+                <p className="exp-description">{exp.description}</p>
+                <ul className="exp-achievements">
+                  {exp.achievements.map((achievement, i) => (
+                    <li key={i}>{achievement}</li>
+                  ))}
+                </ul>
+                <div className="exp-tech">
+                  {exp.tech.map(tech => (
+                    <span key={tech} className="tech-badge">{tech}</span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -139,22 +170,100 @@ function Home() {
                   <h3>{project.title}</h3>
                 </div>
                 <p>{project.description}</p>
+                {project.highlights && (
+                  <ul className="project-highlights">
+                    {project.highlights.map((highlight, i) => (
+                      <li key={i}>{highlight}</li>
+                    ))}
+                  </ul>
+                )}
                 <div className="project-tech">
                   {project.tech.map(tech => (
                     <span key={tech} className="tech-badge">{tech}</span>
                   ))}
                 </div>
-                <a href={project.link} className="project-link-home" target="_blank" rel="noopener noreferrer">
-                  View Project →
-                </a>
+                {project.link !== '#' && (
+                  <a href={project.link} className="project-link-home" target="_blank" rel="noopener noreferrer">
+                    View Project →
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>
         </motion.div>
       </section>
 
+      {/* Skills Section */}
+      <section className="section section-alt" id="skills">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="section-title">Skills & Technologies</h2>
+
+          <div className="skills-category">
+            <h3 className="skills-category-title">Languages</h3>
+            <div className="skills-grid-home">
+              {skillsData.languages.map((skill, index) => (
+                <motion.div
+                  key={skill}
+                  className="skill-card"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {skill}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div className="skills-category">
+            <h3 className="skills-category-title">Frameworks & Libraries</h3>
+            <div className="skills-grid-home">
+              {skillsData.frameworks.map((skill, index) => (
+                <motion.div
+                  key={skill}
+                  className="skill-card"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {skill}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div className="skills-category">
+            <h3 className="skills-category-title">Tools & Deployment</h3>
+            <div className="skills-grid-home">
+              {[...skillsData.tools, ...skillsData.deployment].map((skill, index) => (
+                <motion.div
+                  key={skill}
+                  className="skill-card"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {skill}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Contact Section */}
-      <section className="section section-alt" id="contact">
+      <section className="section" id="contact">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -164,18 +273,22 @@ function Home() {
           <h2 className="section-title">Get In Touch</h2>
           <div className="contact-content">
             <p className="contact-text">
-              I'm always open to new opportunities and collaborations.
-              Whether you have a project in mind or just want to chat, feel free to reach out!
+              I'm always open to new opportunities, collaborations, and interesting conversations.
+              Whether you have a project in mind, want to discuss technology, or just chat about chess strategies,
+              feel free to reach out!
             </p>
             <div className="contact-links">
-              <a href="mailto:your.email@example.com" className="contact-btn">
-                📧 Email Me
+              <a href="mailto:mpeng57@uwo.ca" className="contact-btn">
+                📧 mpeng57@uwo.ca
               </a>
-              <a href="https://github.com/yourusername" className="contact-btn" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/maxwell" className="contact-btn" target="_blank" rel="noopener noreferrer">
                 💻 GitHub
               </a>
-              <a href="https://linkedin.com/in/yourname" className="contact-btn" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/in/maxwell" className="contact-btn" target="_blank" rel="noopener noreferrer">
                 💼 LinkedIn
+              </a>
+              <a href="tel:+16475622398" className="contact-btn">
+                📱 (647) 562-2398
               </a>
             </div>
           </div>
@@ -184,10 +297,15 @@ function Home() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>&copy; 2026 Your Name. Built with React & passion.</p>
-        <Link to="/mansion" className="footer-mansion">
-          Want something more interactive? Explore my mansion →
-        </Link>
+        <div className="footer-content">
+          <p>&copy; 2026 Maxwell Peng. Built with React, passion, and late-night coding sessions.</p>
+          <div className="footer-links">
+            <a href="/Official.pdf" target="_blank" rel="noopener noreferrer">📄 Resume</a>
+            <Link to="/mansion" className="footer-mansion">
+              🏛️ Explore My Mansion (Interactive Mode)
+            </Link>
+          </div>
+        </div>
       </footer>
     </div>
   );
