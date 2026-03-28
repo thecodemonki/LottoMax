@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Home.css';
 import { aboutData, educationData, experienceData, projectsData, skillsData } from '../data/content';
+import ScrollExpandMedia from '../components/ui/scroll-expansion-hero';
+import { GlowCard } from '../components/ui/spotlight-card';
 
 function Home() {
   return (
@@ -19,41 +21,14 @@ function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="hero" id="home">
-        <motion.div
-          className="hero-content"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="profile-image-container">
-            <img src="/profile.png" alt="Maxwell Peng" className="profile-image" />
-          </div>
-          <h1 className="hero-title">
-            Hi, I'm <span className="highlight">Maxwell Peng</span>
-          </h1>
-          <p className="hero-subtitle">
-            Full Stack Developer & Team Canada Athlete
-          </p>
-          <p className="hero-description">
-            Computer Science student at Western University building impactful software solutions.
-            When I'm not coding, you'll find me competing in badminton at the national level,
-            analyzing market patterns, or perfecting my chess strategy.
-          </p>
-
-          <div className="hero-buttons">
-            <a href="#projects" className="btn btn-primary">View My Work</a>
-            <a href="/Official.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary-alt">
-              📄 View Resume
-            </a>
-            <Link to="/mansion" className="btn btn-secondary">
-              🏛️ Explore My Mansion
-            </Link>
-          </div>
-        </motion.div>
-      </section>
-
+      <ScrollExpandMedia
+        mediaType="image"
+        mediaSrc="/profile.png"
+        bgImageSrc=""
+        title="Maxwell Peng"
+        date="Full Stack Developer & Team Canada Athlete"
+        scrollToExpand="Scroll to Expand Portfolio"
+      >
       {/* About Section */}
       <section className="section" id="about">
         <motion.div
@@ -160,37 +135,43 @@ function Home() {
           <h2 className="section-title">Featured Projects</h2>
           <div className="projects-grid-home">
             {projectsData.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className="project-card-home"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
+              <GlowCard 
+                key={project.id} 
+                glowColor="blue" 
+                customSize={true}
+                className="project-card-home-glow p-0 !bg-transparent !border-0"
               >
-                <div className="project-header" style={{ borderLeftColor: project.color }}>
-                  <h3>{project.title}</h3>
-                </div>
-                <p>{project.description}</p>
-                {project.highlights && (
-                  <ul className="project-highlights">
-                    {project.highlights.map((highlight, i) => (
-                      <li key={i}>{highlight}</li>
+                <motion.div
+                  className="project-card-home h-full relative z-10"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="project-header" style={{ borderLeftColor: project.color }}>
+                    <h3>{project.title}</h3>
+                  </div>
+                  <p>{project.description}</p>
+                  {project.highlights && (
+                    <ul className="project-highlights">
+                      {project.highlights.map((highlight, i) => (
+                        <li key={i}>{highlight}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <div className="project-tech">
+                    {project.tech.map(tech => (
+                      <span key={tech} className="tech-badge">{tech}</span>
                     ))}
-                  </ul>
-                )}
-                <div className="project-tech">
-                  {project.tech.map(tech => (
-                    <span key={tech} className="tech-badge">{tech}</span>
-                  ))}
-                </div>
-                {project.link !== '#' && (
-                  <a href={project.link} className="project-link-home" target="_blank" rel="noopener noreferrer">
-                    View Project →
-                  </a>
-                )}
-              </motion.div>
+                  </div>
+                  {project.link !== '#' && (
+                    <a href={project.link} className="project-link-home" target="_blank" rel="noopener noreferrer">
+                      View Project →
+                    </a>
+                  )}
+                </motion.div>
+              </GlowCard>
             ))}
           </div>
         </motion.div>
@@ -310,6 +291,7 @@ function Home() {
           </div>
         </div>
       </footer>
+      </ScrollExpandMedia>
     </div>
   );
 }
