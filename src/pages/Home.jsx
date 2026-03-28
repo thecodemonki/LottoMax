@@ -27,6 +27,9 @@ function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          <div className="profile-image-container">
+            <img src="/profile.png" alt="Maxwell Peng" className="profile-image" />
+          </div>
           <h1 className="hero-title">
             Hi, I'm <span className="highlight">Maxwell Peng</span>
           </h1>
