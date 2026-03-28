@@ -172,12 +172,12 @@ const ScrollExpandMedia = ({
         transition={{ duration: 0.7 }}
       >
         {/* Injecting the hero buttons at the very top of children */}
-        <div className="flex justify-center flex-wrap gap-4 w-full z-10 relative -mt-[15vh] mb-20 px-4" style={{ opacity: showContent ? 1 : 0 }}>
-          <a href="#projects" className="px-6 py-3 rounded-xl bg-blue-500 text-white font-semibold shadow-lg hover:bg-blue-600 transition-all hover:-translate-y-1">View My Work</a>
-          <a href="/Official.pdf" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl bg-white text-blue-500 border-2 border-blue-500 font-semibold shadow-lg hover:bg-blue-50 transition-all hover:-translate-y-1">
+        <div className="flex justify-center flex-wrap gap-6 w-full z-10 relative -mt-[12vh] mb-24 px-4" style={{ opacity: showContent ? 1 : 0 }}>
+          <a href="#projects" className="px-10 py-5 text-xl rounded-2xl bg-blue-500 text-white font-bold shadow-xl hover:bg-blue-600 transition-all hover:-translate-y-1">View My Work</a>
+          <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="px-10 py-5 text-xl rounded-2xl bg-white text-blue-500 border-2 border-blue-500 font-bold shadow-xl hover:bg-blue-50 transition-all hover:-translate-y-1">
             📄 View Resume
           </a>
-          <a href="/mansion" className="px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-semibold shadow-lg hover:shadow-yellow-500/30 transition-all hover:-translate-y-1">
+          <a href="/mansion" className="px-10 py-5 text-xl rounded-2xl bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold shadow-xl hover:shadow-yellow-500/30 transition-all hover:-translate-y-1">
             🏛️ Explore My Mansion
           </a>
         </div>
