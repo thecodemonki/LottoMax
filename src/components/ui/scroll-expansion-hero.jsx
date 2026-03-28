@@ -4,6 +4,7 @@ import {
   useState
 } from 'react';
 import { motion } from 'framer-motion';
+import { Briefcase, FileText, Building } from 'lucide-react';
 
 const ScrollExpandMedia = ({
   mediaType = 'image',
@@ -173,12 +174,14 @@ const ScrollExpandMedia = ({
       >
         {/* Injecting the hero buttons at the very top of children */}
         <div className="flex justify-center flex-wrap gap-6 w-full z-10 relative -mt-[12vh] mb-24 px-4" style={{ opacity: showContent ? 1 : 0 }}>
-          <a href="#projects" className="px-10 py-5 text-xl rounded-2xl bg-blue-500 text-white font-bold shadow-xl hover:bg-blue-600 transition-all hover:-translate-y-1">View My Work</a>
-          <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="px-10 py-5 text-xl rounded-2xl bg-white text-blue-500 border-2 border-blue-500 font-bold shadow-xl hover:bg-blue-50 transition-all hover:-translate-y-1">
-            📄 View Resume
+          <a href="#projects" className="flex items-center gap-2 px-10 py-5 text-xl rounded-full bg-blue-500 text-white font-bold shadow-xl hover:bg-blue-600 hover:shadow-blue-500/30 transition-all hover:-translate-y-1">
+            <Briefcase size={24} /> View My Work
           </a>
-          <a href="/mansion" className="px-10 py-5 text-xl rounded-2xl bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold shadow-xl hover:shadow-yellow-500/30 transition-all hover:-translate-y-1">
-            🏛️ Explore My Mansion
+          <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-10 py-5 text-xl rounded-full bg-white text-blue-500 border-2 border-blue-500 font-bold shadow-xl hover:bg-blue-50 transition-all hover:-translate-y-1">
+            <FileText size={24} /> View Resume
+          </a>
+          <a href="/mansion" className="flex items-center gap-2 px-10 py-5 text-xl rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold shadow-xl hover:shadow-yellow-500/40 transition-all hover:-translate-y-1">
+            <Building size={24} /> Explore My Mansion
           </a>
         </div>
 

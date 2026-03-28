@@ -42,7 +42,7 @@ export default function AudioPlayer() {
       <div className="ml-3 flex flex-col justify-center">
         <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1">
           <Music size={10} className={!muted ? "animate-pulse text-[#3498db]" : "text-slate-400"} />
-          {muted ? "Paused" : "Now Playing"}
+          {!muted ? "Now Playing" : "Ready to Play"}
         </span>
         <span className="text-sm font-medium text-slate-600 truncate max-w-[140px]">
           Style - Taylor Swift
