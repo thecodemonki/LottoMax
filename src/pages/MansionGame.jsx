@@ -3,29 +3,32 @@ import { Link } from 'react-router-dom';
 import Player from '../components/Player';
 import TileMap from '../components/TileMap';
 import PortfolioModal from '../components/PortfolioModal';
-import NPC from '../components/NPC';
+import ChessModal from '../components/ChessModal';
+import PoolModal from '../components/PoolModal';
+import KitchenModal from '../components/KitchenModal';
+import BadmintonModal from '../components/BadmintonModal';
+import TradingModal from '../components/TradingModal';
 import DialogueBox from '../components/DialogueBox';
 import AudioPlayer from '../components/AudioPlayer';
-import { outdoorMapDesc, indoorMapDesc, TILE_SIZE, ZONES, TILE_TYPES, getLocationTitle } from '../data/mapData';
+import DashboardOverlay from '../components/DashboardOverlay';
+import { outdoorMapDesc, TILE_SIZE, ZONES, TILE_TYPES, getLocationTitle } from '../data/mapData';
 import '../styles/MansionGame.css';
 
-
 function MansionGame() {
-  const [currentZone, setCurrentZone] = useState(ZONES.OUTDOOR);
   const [activeModal, setActiveModal] = useState(null);
   const [activeDialogue, setActiveDialogue] = useState(null);
-  const [locationTitle, setLocationTitle] = useState('The Garden');
+  const [activeDashboard, setActiveDashboard] = useState(null); 
+  const [locationTitle, setLocationTitle] = useState('Home');
   const [showLocationTitle, setShowLocationTitle] = useState(false);
   const [fadeScreen, setFadeScreen] = useState(false);
 
-  const mapDesc = currentZone === ZONES.OUTDOOR ? outdoorMapDesc : indoorMapDesc;
+  const mapDesc = outdoorMapDesc;
   const [playerPos, setPlayerPos] = useState({ x: mapDesc.spawnIn.x, y: mapDesc.spawnIn.y });
   
   const locationTitleTimer = useRef(null);
-  const lastLocationRef = useRef('The Garden');
+  const lastLocationRef = useRef('Home');
 
   useEffect(() => {
-    // Initial title on load
     setShowLocationTitle(true);
     locationTitleTimer.current = setTimeout(() => setShowLocationTitle(false), 3000);
     return () => clearTimeout(locationTitleTimer.current);
@@ -33,7 +36,7 @@ function MansionGame() {
 
   const handlePositionChange = (x, y) => {
     setPlayerPos({ x, y });
-    const newLocation = getLocationTitle(x, y, currentZone);
+    const newLocation = getLocationTitle(x, y);
     if (newLocation !== lastLocationRef.current) {
         lastLocationRef.current = newLocation;
         setLocationTitle(newLocation);
@@ -43,49 +46,63 @@ function MansionGame() {
     }
   };
 
-  const switchZone = (zone, spawnX, spawnY) => {
+  const handleInteract = (facingTile, standingTile, interactX, interactY) => {
+    if (fadeScreen || activeModal || activeDialogue || activeDashboard) return;
+
+    if (facingTile === TILE_TYPES.CABIN_DOOR_ENTER || standingTile === TILE_TYPES.CABIN_DOOR_ENTER) {
+      setFadeScreen(true);
+      setTimeout(() => {
+        setActiveDashboard('cabin');
+        setFadeScreen(false);
+      }, 500);
+      return;
+    }
+    
+    if (facingTile === TILE_TYPES.SHED_DOOR_ENTER || standingTile === TILE_TYPES.SHED_DOOR_ENTER) {
+      setFadeScreen(true);
+      setTimeout(() => {
+        setActiveDashboard('shed');
+        setFadeScreen(false);
+      }, 500);
+      return;
+    }
+  };
+
+  const handleDashboardInteract = (itemId) => {
+    setActiveModal(itemId);
+  };
+
+  const closeDashboard = () => {
     setFadeScreen(true);
     setTimeout(() => {
-      setCurrentZone(zone);
-      const newMap = zone === ZONES.OUTDOOR ? outdoorMapDesc : indoorMapDesc;
-      const x = spawnX !== undefined ? spawnX : newMap.spawnIn.x;
-      const y = spawnY !== undefined ? spawnY : newMap.spawnIn.y;
-      setPlayerPos({ x, y });
-      
-      const newLocation = getLocationTitle(x, y, zone);
-      lastLocationRef.current = newLocation;
-      setLocationTitle(newLocation);
-      setShowLocationTitle(true);
-      if (locationTitleTimer.current) clearTimeout(locationTitleTimer.current);
-      locationTitleTimer.current = setTimeout(() => setShowLocationTitle(false), 3000);
-      
-      setTimeout(() => setFadeScreen(false), 500);
+      setActiveDashboard(null);
+      setFadeScreen(false);
     }, 500);
   };
 
-  const handleInteract = (facingTile, standingTile, interactX, interactY) => {
-    if (fadeScreen || activeModal || activeDialogue) return;
-
-    // Check Portals
-    if (facingTile === TILE_TYPES.CABIN_DOOR_ENTER || standingTile === TILE_TYPES.CABIN_DOOR_ENTER) {
-      switchZone(ZONES.INDOOR, indoorMapDesc.spawnIn.x, indoorMapDesc.spawnIn.y);
-      return;
+  const renderModal = () => {
+    if (!activeModal) return null;
+    const closeModal = () => setActiveModal(null);
+    switch (activeModal) {
+      case 'projects':
+      case 'about':
+      case 'experience':
+      case 'skills':
+      case 'contact':
+        return <PortfolioModal type={activeModal} onClose={closeModal} />;
+      case 'pool':
+        return <PoolModal onClose={closeModal} />;
+      case 'chess':
+        return <ChessModal onClose={closeModal} />;
+      case 'kitchen':
+        return <KitchenModal onClose={closeModal} />;
+      case 'badminton':
+        return <BadmintonModal onClose={closeModal} />;
+      case 'trading':
+        return <TradingModal onClose={closeModal} />;
+      default:
+        return null;
     }
-    if (facingTile === TILE_TYPES.CABIN_DOOR_EXIT || standingTile === TILE_TYPES.CABIN_DOOR_EXIT) {
-      switchZone(ZONES.OUTDOOR, outdoorMapDesc.spawnIn.x, outdoorMapDesc.spawnIn.y);
-      return;
-    }
-
-    // Check Modals
-    const checkTile = (val) => {
-      if (val === TILE_TYPES.OBJ_COMPUTER) setActiveModal('projects');
-      if (val === TILE_TYPES.OBJ_DIARY) setActiveModal('about');
-      if (val === TILE_TYPES.OBJ_PHONE) setActiveModal('contact');
-      if (val === TILE_TYPES.OBJ_FILING) setActiveModal('experience');
-      if (val === TILE_TYPES.OBJ_BOOKSHELF) setActiveModal('skills');
-    };
-    checkTile(standingTile);
-    checkTile(facingTile);
   };
 
   return (
@@ -93,7 +110,6 @@ function MansionGame() {
       <Link to="/" className="back-button">← Back to Portfolio</Link>
       <AudioPlayer />
       
-      {/* Dynamic Camera following the Player */}
       <div className="game-camera">
         <div 
           className="game-world"
@@ -104,26 +120,29 @@ function MansionGame() {
           }}
         >
           <TileMap mapDesc={mapDesc} />
-          
 
           <Player 
             mapDesc={mapDesc} 
             initialPosition={playerPos} 
             onInteract={handleInteract} 
             onPositionChange={handlePositionChange}
-            canMove={!activeModal && !activeDialogue && !fadeScreen}
+            canMove={!activeModal && !activeDialogue && !fadeScreen && !activeDashboard}
           />
           
-
-          {/* Night Time & Fog Aesthetics */}
-          {currentZone === ZONES.OUTDOOR && <div className="night-overlay" />}
+          <div className="night-overlay" />
         </div>
       </div>
 
-      {/* Fade Transition Overlay */}
       <div className={`fade-overlay ${fadeScreen ? 'visible' : ''}`} />
 
-      {/* Location Title Card */}
+      {activeDashboard && !fadeScreen && (
+        <DashboardOverlay 
+          type={activeDashboard} 
+          onClose={closeDashboard} 
+          onInteract={handleDashboardInteract} 
+        />
+      )}
+
       <div className={`location-title-card ${showLocationTitle ? 'visible' : ''}`}>
         {locationTitle}
       </div>
@@ -140,12 +159,7 @@ function MansionGame() {
         />
       )}
 
-      {activeModal && (
-        <PortfolioModal 
-          type={activeModal} 
-          onClose={() => setActiveModal(null)} 
-        />
-      )}
+      {renderModal()}
     </div>
   );
 }
