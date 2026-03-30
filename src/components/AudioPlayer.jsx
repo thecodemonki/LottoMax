@@ -29,7 +29,7 @@ export default function AudioPlayer() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center bg-white/90 backdrop-blur-sm p-2 pr-4 rounded-full shadow-lg border border-slate-200 transition-all hover:scale-105">
-      <audio ref={audioRef} src="/style.mp3" loop />
+      <audio ref={audioRef} src="/Taylor Swift - Style.mp3" loop />
       
       <button 
         onClick={() => setMuted(!muted)}

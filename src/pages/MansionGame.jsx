@@ -9,17 +9,6 @@ import AudioPlayer from '../components/AudioPlayer';
 import { outdoorMapDesc, indoorMapDesc, TILE_SIZE, ZONES, TILE_TYPES, getLocationTitle } from '../data/mapData';
 import '../styles/MansionGame.css';
 
-const npcs = [
-  { id: 'alex', x: 23, y: 16, name: 'Alex', dialogue: "Hey Max! The village looks great today. Did you see the pool?", spriteClass: 'npc-alex' },
-  { id: 'prof', x: 14, y: 12, name: 'Prof. Smith', dialogue: "Keep working hard on those projects. Your algorithms are getting sharper.", spriteClass: 'npc-prof' }
-];
-
-const interactiveItems = [
-  { x: 5, y: 2, name: "Apple", dialogue: "Found in the garden. Gives +5 coding stamina." },
-  { x: 4, y: 4, name: "Apple", dialogue: "You love eating these before badminton games! Quick energy!" },
-  { x: 6, y: 3, name: "Orange", dialogue: "A citrus blast of Vitamin C. Essential for late-night hacking." },
-  { x: 5, y: 5, name: "Orange", dialogue: "Did you know? You buy these by the crate." }
-];
 
 function MansionGame() {
   const [currentZone, setCurrentZone] = useState(ZONES.OUTDOOR);
@@ -78,42 +67,25 @@ function MansionGame() {
     if (fadeScreen || activeModal || activeDialogue) return;
 
     // Check Portals
-    if (facingTile === TILE_TYPES.MANOR_DOOR_ENTER || standingTile === TILE_TYPES.MANOR_DOOR_ENTER) {
+    if (facingTile === TILE_TYPES.CABIN_DOOR_ENTER || standingTile === TILE_TYPES.CABIN_DOOR_ENTER) {
       switchZone(ZONES.INDOOR, indoorMapDesc.spawnIn.x, indoorMapDesc.spawnIn.y);
       return;
     }
-    if (facingTile === TILE_TYPES.MANOR_DOOR_EXIT || standingTile === TILE_TYPES.MANOR_DOOR_EXIT) {
+    if (facingTile === TILE_TYPES.CABIN_DOOR_EXIT || standingTile === TILE_TYPES.CABIN_DOOR_EXIT) {
       switchZone(ZONES.OUTDOOR, outdoorMapDesc.spawnIn.x, outdoorMapDesc.spawnIn.y);
       return;
     }
 
     // Check Modals
     const checkTile = (val) => {
-      if (val === TILE_TYPES.DOOR_PROJECTS) setActiveModal('projects');
-      if (val === TILE_TYPES.DOOR_ABOUT) setActiveModal('about');
-      if (val === TILE_TYPES.DOOR_CONTACT) setActiveModal('contact');
-      if (val === TILE_TYPES.DOOR_EXPERIENCE) setActiveModal('experience');
-      if (val === TILE_TYPES.DOOR_SKILLS) setActiveModal('skills');
+      if (val === TILE_TYPES.OBJ_COMPUTER) setActiveModal('projects');
+      if (val === TILE_TYPES.OBJ_DIARY) setActiveModal('about');
+      if (val === TILE_TYPES.OBJ_PHONE) setActiveModal('contact');
+      if (val === TILE_TYPES.OBJ_FILING) setActiveModal('experience');
+      if (val === TILE_TYPES.OBJ_BOOKSHELF) setActiveModal('skills');
     };
     checkTile(standingTile);
     checkTile(facingTile);
-
-    // Check NPCs/Items
-    const iCol = Math.floor(interactX / TILE_SIZE);
-    const iRow = Math.floor(interactY / TILE_SIZE);
-
-    if (currentZone === ZONES.OUTDOOR) {
-      const npc = npcs.find(n => n.x === iCol && n.y === iRow);
-      if (npc) {
-        setActiveDialogue({ name: npc.name, text: npc.dialogue });
-        return;
-      }
-      const item = interactiveItems.find(i => i.x === iCol && i.y === iRow);
-      if (item) {
-        setActiveDialogue({ name: item.name, text: item.dialogue });
-        return;
-      }
-    }
   };
 
   return (
@@ -133,9 +105,6 @@ function MansionGame() {
         >
           <TileMap mapDesc={mapDesc} />
           
-          {currentZone === ZONES.OUTDOOR && npcs.map(npc => (
-             <NPC key={npc.id} name={npc.name} initialX={npc.x} initialY={npc.y} spriteClass={npc.spriteClass} />
-          ))}
 
           <Player 
             mapDesc={mapDesc} 
@@ -145,16 +114,6 @@ function MansionGame() {
             canMove={!activeModal && !activeDialogue && !fadeScreen}
           />
           
-          {/* Room Labels for Indoor */}
-          {currentZone === ZONES.INDOOR && (
-            <>
-              <div className="room-label" style={{ top: 2.5 * TILE_SIZE, left: 3.5 * TILE_SIZE }}>Projects</div>
-              <div className="room-label" style={{ top: 2.5 * TILE_SIZE, left: 10 * TILE_SIZE }}>About Me</div>
-              <div className="room-label" style={{ top: 2.5 * TILE_SIZE, left: 16.5 * TILE_SIZE }}>Contact</div>
-              <div className="room-label" style={{ top: 12.5 * TILE_SIZE, left: 3.5 * TILE_SIZE }}>Experience</div>
-              <div className="room-label" style={{ top: 12.5 * TILE_SIZE, left: 10 * TILE_SIZE }}>Skills</div>
-            </>
-          )}
 
           {/* Night Time & Fog Aesthetics */}
           {currentZone === ZONES.OUTDOOR && <div className="night-overlay" />}
