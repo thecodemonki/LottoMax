@@ -200,7 +200,7 @@ function Home() {
         <div className="footer-content">
           <p>&copy; 2026 Maxwell Peng. Built with Larp</p>
           <div className="footer-links">
-            <a href="/Official.pdf" target="_blank" rel="noopener noreferrer">📄 Resume</a>
+            <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer">📄 Resume</a>
             <Link to="/mansion" className="footer-mansion">
               🏛️ Explore My Mansion (Interactive Mode)
             </Link>
