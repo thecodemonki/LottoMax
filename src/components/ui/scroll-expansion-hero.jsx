@@ -173,15 +173,15 @@ const ScrollExpandMedia = ({
         transition={{ duration: 0.7 }}
       >
         {/* Injecting the hero buttons at the very top of children */}
-        <div className="flex justify-center flex-wrap gap-6 w-full z-10 relative -mt-[12vh] mb-24 px-4" style={{ opacity: showContent ? 1 : 0 }}>
-          <a href="#projects" className="flex items-center gap-2 px-10 py-5 text-xl rounded-full bg-blue-500 text-white font-bold shadow-xl hover:bg-blue-600 hover:shadow-blue-500/30 transition-all hover:-translate-y-1">
-            <Briefcase size={24} /> View My Work
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full max-w-7xl mx-auto z-10 relative -mt-[12vh] mb-24 px-4 sm:px-6" style={{ opacity: showContent ? 1 : 0 }}>
+          <a href="#projects" className="flex items-center justify-center gap-2 w-full sm:w-[80%] md:w-auto px-6 md:px-10 py-4 md:py-5 text-lg md:text-xl rounded-full bg-blue-500 text-white font-bold shadow-xl hover:bg-blue-600 hover:shadow-blue-500/30 transition-all hover:-translate-y-1">
+            <Briefcase size={24} className="shrink-0" /> <span className="whitespace-nowrap">View My Work</span>
           </a>
-          <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-10 py-5 text-xl rounded-full bg-white text-blue-500 border-2 border-blue-500 font-bold shadow-xl hover:bg-blue-50 transition-all hover:-translate-y-1">
-            <FileText size={24} /> View Resume
+          <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full sm:w-[80%] md:w-auto px-6 md:px-10 py-4 md:py-5 text-lg md:text-xl rounded-full bg-white text-blue-500 border-2 border-blue-500 font-bold shadow-xl hover:bg-blue-50 transition-all hover:-translate-y-1">
+            <FileText size={24} className="shrink-0" /> <span className="whitespace-nowrap">View Resume</span>
           </a>
-          <a href="/mansion" className="flex items-center gap-2 px-10 py-5 text-xl rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold shadow-xl hover:shadow-yellow-500/40 transition-all hover:-translate-y-1">
-            <Building size={24} /> Explore My Mansion
+          <a href="/mansion" className="flex items-center justify-center gap-2 w-full sm:w-[80%] md:w-auto px-6 md:px-10 py-4 md:py-5 text-lg md:text-xl rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold shadow-xl hover:shadow-yellow-500/40 transition-all hover:-translate-y-1">
+            <Building size={24} className="shrink-0" /> <span className="whitespace-nowrap">Explore My Mansion</span>
           </a>
         </div>
 
