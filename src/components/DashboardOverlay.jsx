@@ -8,7 +8,6 @@ export default function DashboardOverlay({ type, onClose, onInteract }) {
     { id: 'projects', label: 'Projects (Computer)' },
     { id: 'about', label: 'About Me (Diary)' },
     { id: 'experience', label: 'Experience (Filing Cabinet)' },
-    { id: 'skills', label: 'Skills (Bookshelf)' },
     { id: 'contact', label: 'Contact (Telephone)' }
   ];
 

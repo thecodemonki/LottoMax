@@ -157,9 +157,8 @@ const ScrollExpandMedia = ({
             {date}
           </p>
           <p className="text-lg text-slate-500 text-center max-w-3xl mb-10 leading-relaxed">
-            Computer Science student at Western University building impactful software solutions.
-            When I'm not coding, you'll find me competing in badminton at the national level,
-            analyzing market patterns, or perfecting my chess strategy.
+            National-level badminton, chess rabbit holes, and trading charts for fun. Less résumé energy,
+            more court-and-board energy.
           </p>
         </div>
 

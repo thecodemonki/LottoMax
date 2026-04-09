@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { projectsData, aboutData, experienceData, skillsData } from '../data/content';
+import { projectsData, aboutData, experienceData } from '../data/content';
 
 export default function PortfolioModal({ onClose, type }) {
   // Determine title and content based on type
@@ -53,7 +53,7 @@ export default function PortfolioModal({ onClose, type }) {
         <p className="about-desc">{aboutData.description}</p>
         <div className="about-stats-modal">
           <p><strong>Location:</strong> {aboutData.location}</p>
-          <p><strong>Education:</strong> Western University, Bachelor of Arts in Computer Science (GPA: 3.95/4.0)</p>
+          <p><strong>Education:</strong> Western University, Bachelor of Arts in Computer Science</p>
           <p><strong>Interests:</strong> National Junior Badminton (Team Canada), Chess (1936 ELO), Trading.</p>
         </div>
       </motion.div>
@@ -94,25 +94,6 @@ export default function PortfolioModal({ onClose, type }) {
           </motion.div>
         ))}
       </div>
-    );
-  } else if (type === 'skills') {
-    title = "Skills & Technologies";
-    themeColor = "#9b59b6";
-    content = (
-      <motion.div className="skills-content-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
-        <div className="skills-section-modal">
-          <h4>Languages</h4>
-          <div className="tech-stack">{skillsData.languages.map(s => <span key={s} className="tech-tag">{s}</span>)}</div>
-        </div>
-        <div className="skills-section-modal">
-          <h4>Frameworks & Libraries</h4>
-          <div className="tech-stack">{skillsData.frameworks.map(s => <span key={s} className="tech-tag">{s}</span>)}</div>
-        </div>
-        <div className="skills-section-modal">
-          <h4>Tools & Deployment</h4>
-          <div className="tech-stack">{skillsData.tools.concat(skillsData.deployment).map(s => <span key={s} className="tech-tag">{s}</span>)}</div>
-        </div>
-      </motion.div>
     );
   }
 

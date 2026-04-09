@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Home.css';
-import { aboutData, educationData, experienceData, projectsData, skillsData } from '../data/content';
+import { experienceData, projectsData } from '../data/content';
 import ScrollExpandMedia from '../components/ui/scroll-expansion-hero';
 import { GlowCard } from '../components/ui/spotlight-card';
 
@@ -15,7 +15,6 @@ function Home() {
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
           <Link to="/mansion" className="nav-mansion">🏛️ Enter Mansion</Link>
         </div>
@@ -41,26 +40,15 @@ function Home() {
           <div className="about-grid">
             <div className="about-text">
               <p>
-                I'm a passionate developer studying Computer Science at Western University (GPA: 3.95/4.0).
-                My journey combines technical excellence with diverse experiences - from engineering Shopify
-                solutions at AtlasHaus Design to leading 700+ members as Projects Director at Western Founders Network.
+                I play badminton for Team Canada's junior national squad—#2 Under-17 in the country—so most days
+                are shuttlecocks, sweat, and trying not to lose my luggage at tournaments.
               </p>
               <p>
-                Beyond academics, I compete as a member of Team Canada's Junior National Badminton Team
-                (ranked #2 Under 17 in Canada). This dual commitment to athletics and technology has
-                taught me discipline, time management, and the power of consistent effort toward ambitious goals.
-              </p>
-              <p>
-                I'm driven by curiosity - whether it's building real-time multiplayer platforms,
-                exploring market dynamics through trading, or mastering chess strategy. Each interest
-                strengthens different aspects of my problem-solving approach.
+                Off the court I live on chess clocks: blitz, endgames, and the occasional tilt after a blunder.
+                I also geek out over markets, food, and whatever competitive thing catches my attention this week.
               </p>
             </div>
-            <div className="about-stats">
-              <div className="stat-card">
-                <div className="stat-number">3.95</div>
-                <div className="stat-label">GPA at Western</div>
-              </div>
+            <div className="about-stats about-stats--two">
               <div className="stat-card">
                 <div className="stat-number">#2</div>
                 <div className="stat-label">U17 Badminton Canada</div>
@@ -68,10 +56,6 @@ function Home() {
               <div className="stat-card">
                 <div className="stat-number">1936</div>
                 <div className="stat-label">Chess ELO Rating</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">700+</div>
-                <div className="stat-label">Students Led (WFN)</div>
               </div>
             </div>
           </div>
@@ -177,74 +161,6 @@ function Home() {
         </motion.div>
       </section>
 
-      {/* Skills Section */}
-      <section className="section section-alt" id="skills">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="section-title">Skills & Technologies</h2>
-
-          <div className="skills-category">
-            <h3 className="skills-category-title">Languages</h3>
-            <div className="skills-grid-home">
-              {skillsData.languages.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  className="skill-card"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {skill}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="skills-category">
-            <h3 className="skills-category-title">Frameworks & Libraries</h3>
-            <div className="skills-grid-home">
-              {skillsData.frameworks.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  className="skill-card"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {skill}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="skills-category">
-            <h3 className="skills-category-title">Tools & Deployment</h3>
-            <div className="skills-grid-home">
-              {[...skillsData.tools, ...skillsData.deployment].map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  className="skill-card"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {skill}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </section>
 
       {/* Contact Section */}
       <section className="section" id="contact">
@@ -282,7 +198,7 @@ function Home() {
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; 2026 Maxwell Peng. Built with React, passion, and late-night coding sessions.</p>
+          <p>&copy; 2026 Maxwell Peng. Built with Larp</p>
           <div className="footer-links">
             <a href="/Official.pdf" target="_blank" rel="noopener noreferrer">📄 Resume</a>
             <Link to="/mansion" className="footer-mansion">

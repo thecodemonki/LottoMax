@@ -59,7 +59,7 @@ export const mansionData = {
 export const aboutData = {
   name: "Maxwell Peng",
   title: "Full Stack Developer & Problem Solver",
-  description: "Welcome to my world! I'm a computer science student at Western University with a passion for building impactful software. Each room in my mansion represents a different facet of who I am.",
+  description: "Welcome to the mansion tour. If you're here for vibes: badminton, chess, and whatever rabbit hole I'm obsessed with this month. Each room is a different slice of my brain.",
   location: "London, ON | Originally from Oakville, ON",
   email: "mpeng57@uwo.ca",
   github: "https://github.com/maxwell",
@@ -227,14 +227,6 @@ export const projectsData = [
     ]
   }
 ];
-
-export const skillsData = {
-  languages: ["Java", "Python", "JavaScript", "TypeScript", "SQL"],
-  frameworks: ["React", "Node.js", "Spring Boot", "FastAPI", "Next.js"],
-  tools: ["Git", "GitHub", "Visual Studio", "PyCharm", "Pandas", "Spacy"],
-  apis: ["RESTful APIs", "WebSockets", "OAuth", "OpenAI API", "Shopify API", "Gemini AI"],
-  deployment: ["Railway", "Vercel", "AWS", "Google AI Studio", "Jira"]
-};
 
 export const interestsData = [
   "Penny Stocks & Trading",

@@ -9,7 +9,6 @@ import KitchenModal from '../components/KitchenModal';
 import BadmintonModal from '../components/BadmintonModal';
 import TradingModal from '../components/TradingModal';
 import DialogueBox from '../components/DialogueBox';
-import AudioPlayer from '../components/AudioPlayer';
 import DashboardOverlay from '../components/DashboardOverlay';
 import { outdoorMapDesc, TILE_SIZE, ZONES, TILE_TYPES, getLocationTitle } from '../data/mapData';
 import '../styles/MansionGame.css';
@@ -87,7 +86,6 @@ function MansionGame() {
       case 'projects':
       case 'about':
       case 'experience':
-      case 'skills':
       case 'contact':
         return <PortfolioModal type={activeModal} onClose={closeModal} />;
       case 'pool':
@@ -108,8 +106,6 @@ function MansionGame() {
   return (
     <div className="mansion-wrapper">
       <Link to="/" className="back-button">← Back to Portfolio</Link>
-      <AudioPlayer />
-      
       <div className="game-camera">
         <div 
           className="game-world"
