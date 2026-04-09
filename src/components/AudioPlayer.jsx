@@ -73,26 +73,26 @@ export default function AudioPlayer() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-[min(100vw-2rem,20rem)] select-none">
+    <div className="fixed bottom-6 right-6 z-50 w-[min(100vw-2rem,29rem)] select-none">
       <audio ref={audioRef} src={TRACK.src} loop preload="metadata" />
 
       <div
-        className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#121212] p-2.5 pl-2 shadow-[0_8px_32px_rgba(0,0,0,0.4)] ring-1 ring-white/5"
+        className="flex items-center gap-4 rounded-xl border border-white/10 bg-[#121212] px-4 pb-4 pt-5 shadow-[0_8px_32px_rgba(0,0,0,0.4)] ring-1 ring-white/5"
         role="region"
         aria-label="Music player"
       >
         <div
-          className="relative h-14 w-14 shrink-0 overflow-hidden rounded-md bg-gradient-to-br from-[#1db954]/30 via-[#191414] to-[#535353]"
+          className="relative h-14 w-14 shrink-0 self-center overflow-hidden rounded-md bg-gradient-to-br from-[#1db954]/30 via-[#191414] to-[#535353]"
           aria-hidden
         >
           <Music2 className="absolute left-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 text-white/90" strokeWidth={1.5} />
         </div>
 
-        <div className="min-w-0 flex-1 py-0.5">
-          <div className="flex items-start justify-between gap-2">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center gap-1.5">
+          <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
-              <p className="truncate text-[15px] font-semibold leading-tight text-white">{TRACK.title}</p>
-              <p className="truncate text-xs text-[#b3b3b3]">{TRACK.artist}</p>
+              <p className="truncate text-[15px] font-semibold leading-snug text-white">{TRACK.title}</p>
+              <p className="truncate text-xs leading-snug text-[#b3b3b3]">{TRACK.artist}</p>
             </div>
             <button
               type="button"
@@ -104,7 +104,7 @@ export default function AudioPlayer() {
             </button>
           </div>
 
-          <div className="mt-2">
+          <div className="flex flex-col gap-1">
             <button
               type="button"
               className="group relative h-1 w-full cursor-pointer rounded-full bg-[#4d4d4d]"
@@ -116,7 +116,7 @@ export default function AudioPlayer() {
                 style={{ width: `${progressPct}%` }}
               />
             </button>
-            <div className="mt-1 flex justify-between font-mono text-[10px] text-[#727272]">
+            <div className="flex justify-between px-2 font-mono text-[11px] tabular-nums leading-none text-[#727272]">
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(duration)}</span>
             </div>

@@ -173,14 +173,14 @@ const ScrollExpandMedia = ({
       >
         {/* Injecting the hero buttons at the very top of children */}
         <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 z-10 relative -mt-[12vh] mb-24" style={{ opacity: showContent ? 1 : 0 }}>
-          <a href="#projects" className="flex items-center justify-center whitespace-nowrap px-7 py-3 min-w-fit w-full max-w-[280px] mx-auto sm:w-auto sm:max-w-none text-lg md:text-xl rounded-full bg-blue-500 text-white font-bold shadow-xl hover:bg-blue-600 hover:shadow-blue-500/30 transition-all hover:-translate-y-1">
-            <Briefcase className="w-5 h-5 md:w-6 md:h-6 mr-2 shrink-0" /> <span>View My Work</span>
+          <a href="#projects" className="flex items-center justify-center whitespace-nowrap px-10 py-4 min-w-fit w-full max-w-[300px] mx-auto sm:w-auto sm:max-w-none text-lg md:text-xl rounded-full border-4 border-blue-700 bg-blue-500 text-white font-bold shadow-xl hover:bg-blue-600 hover:border-blue-800 hover:shadow-blue-500/30 transition-all hover:-translate-y-1">
+            <Briefcase className="w-5 h-5 md:w-6 md:h-6 mr-3 shrink-0" /> <span>View My Work</span>
           </a>
-          <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center whitespace-nowrap px-7 py-3 min-w-fit w-full max-w-[280px] mx-auto sm:w-auto sm:max-w-none text-lg md:text-xl rounded-full bg-white text-blue-500 border-2 border-blue-500 font-bold shadow-xl hover:bg-blue-50 transition-all hover:-translate-y-1">
-            <FileText className="w-5 h-5 md:w-6 md:h-6 mr-2 shrink-0" /> <span>View Resume</span>
+          <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center whitespace-nowrap px-10 py-4 min-w-fit w-full max-w-[300px] mx-auto sm:w-auto sm:max-w-none text-lg md:text-xl rounded-full bg-white text-blue-500 border-4 border-blue-500 font-bold shadow-xl hover:bg-blue-50 transition-all hover:-translate-y-1">
+            <FileText className="w-5 h-5 md:w-6 md:h-6 mr-3 shrink-0" /> <span>View Resume</span>
           </a>
-          <a href="/mansion" className="flex items-center justify-center whitespace-nowrap px-7 py-3 min-w-fit w-full max-w-[280px] mx-auto sm:w-auto sm:max-w-none text-lg md:text-xl rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold shadow-xl hover:shadow-yellow-500/40 transition-all hover:-translate-y-1">
-            <Building className="w-5 h-5 md:w-6 md:h-6 mr-2 shrink-0" /> <span>Explore My Mansion</span>
+          <a href="/mansion" className="flex items-center justify-center whitespace-nowrap px-10 py-4 min-w-fit w-full max-w-[300px] mx-auto sm:w-auto sm:max-w-none text-lg md:text-xl rounded-full border-4 border-yellow-700 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold shadow-xl hover:shadow-yellow-500/40 transition-all hover:-translate-y-1">
+            <Building className="w-5 h-5 md:w-6 md:h-6 mr-3 shrink-0" /> <span>Explore My Mansion</span>
           </a>
         </div>
 
