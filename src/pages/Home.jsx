@@ -24,7 +24,7 @@ function Home() {
         mediaSrc="/profile.png"
         bgImageSrc=""
         title="Maxwell Peng"
-        date="Risktaker Roadrunner Entrepreneur"
+        date="Risktaker. Roadrunner. Entrepreneur."
         scrollToExpand="Scroll to Expand Portfolio"
       >
       {/* Experience Section */}
