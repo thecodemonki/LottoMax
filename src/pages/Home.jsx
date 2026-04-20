@@ -12,7 +12,6 @@ function Home() {
       <nav className="navbar">
         <div className="nav-brand">Maxwell Peng</div>
         <div className="nav-links">
-          <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
@@ -28,40 +27,6 @@ function Home() {
         date="Full Stack Developer & Team Canada Athlete"
         scrollToExpand="Scroll to Expand Portfolio"
       >
-      {/* About Section */}
-      <section className="section" id="about">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="section-title">About Me</h2>
-          <div className="about-grid">
-            <div className="about-text">
-              <p>
-                I play badminton for Team Canada's junior national squad—#2 Under-17 in the country—so most days
-                are shuttlecocks, sweat, and trying not to lose my luggage at tournaments.
-              </p>
-              <p>
-                Off the court I live on chess clocks: blitz, endgames, and the occasional tilt after a blunder.
-                I also geek out over markets, food, and whatever competitive thing catches my attention this week.
-              </p>
-            </div>
-            <div className="about-stats about-stats--two">
-              <div className="stat-card">
-                <div className="stat-number">#2</div>
-                <div className="stat-label">U17 Badminton Canada</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">1936</div>
-                <div className="stat-label">Chess ELO Rating</div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
       {/* Experience Section */}
       <section className="section section-alt" id="experience">
         <motion.div
