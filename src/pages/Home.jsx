@@ -152,9 +152,6 @@ function Home() {
               <a href="https://linkedin.com/in/maxwell" className="contact-btn" target="_blank" rel="noopener noreferrer">
                 💼 LinkedIn
               </a>
-              <a href="tel:+16475622398" className="contact-btn">
-                📱 (647) 562-2398
-              </a>
             </div>
           </div>
         </motion.div>

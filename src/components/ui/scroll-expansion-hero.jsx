@@ -4,7 +4,6 @@ import {
   useState
 } from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, FileText, Building } from 'lucide-react';
 
 const ScrollExpandMedia = ({
   mediaType = 'image',
@@ -115,7 +114,7 @@ const ScrollExpandMedia = ({
   const topPosition = 50 - (scrollProgress * 25); 
 
   return (
-    <div ref={sectionRef} className='w-full bg-black'>
+    <div ref={sectionRef} className='w-full bg-transparent'>
       <section className='relative flex flex-col items-center justify-start min-h-[100dvh] w-full overflow-hidden'>
         
         {/* The persistent profile picture layer */}
@@ -160,15 +159,15 @@ const ScrollExpandMedia = ({
             I like to build cool stuff.
           </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 z-10 w-full px-4" style={{ pointerEvents: showContent ? 'auto' : 'none' }}>
-            <a href="#projects" className="flex items-center justify-center whitespace-nowrap px-8 py-3 w-full sm:w-auto text-base md:text-lg rounded-full border-2 border-blue-700 bg-blue-500 text-white font-bold shadow-lg hover:bg-blue-600 transition-all hover:-translate-y-1">
-              <Briefcase className="w-5 h-5 mr-3 shrink-0" /> <span>View My Work</span>
+          <div className="flex flex-row flex-wrap justify-center items-center gap-8 z-10 w-full px-4 mt-4" style={{ pointerEvents: showContent ? 'auto' : 'none' }}>
+            <a href="#projects" className="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 text-base md:text-lg rounded-full bg-gradient-to-br from-blue-400 to-indigo-900 border-4 border-blue-400/30 text-white font-bold shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:shadow-[0_0_35px_rgba(59,130,246,0.9)] hover:scale-110 transition-all duration-300">
+              <span>Work</span>
             </a>
-            <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center whitespace-nowrap px-8 py-3 w-full sm:w-auto text-base md:text-lg rounded-full bg-black text-blue-500 border-2 border-blue-500 font-bold shadow-lg hover:bg-zinc-900 transition-all hover:-translate-y-1">
-              <FileText className="w-5 h-5 mr-3 shrink-0" /> <span>View Resume</span>
+            <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 text-base md:text-lg rounded-full bg-gradient-to-br from-rose-400 to-red-900 border-4 border-rose-400/30 text-white font-bold shadow-[0_0_20px_rgba(244,63,94,0.6)] hover:shadow-[0_0_35px_rgba(244,63,94,0.9)] hover:scale-110 transition-all duration-300">
+              <span>Resume</span>
             </a>
-            <a href="/mansion" className="flex items-center justify-center whitespace-nowrap px-8 py-3 w-full sm:w-auto text-base md:text-lg rounded-full border-2 border-yellow-700 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold shadow-lg hover:shadow-yellow-500/40 transition-all hover:-translate-y-1">
-              <Building className="w-5 h-5 mr-3 shrink-0" /> <span>Explore My Mansion</span>
+            <a href="/mansion" className="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 text-base md:text-lg rounded-full bg-gradient-to-br from-emerald-400 to-teal-900 border-4 border-emerald-400/30 text-white font-bold shadow-[0_0_20px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:scale-110 transition-all duration-300">
+              <span>Mansion</span>
             </a>
           </div>
         </div>
