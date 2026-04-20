@@ -137,7 +137,7 @@ const ScrollExpandMedia = ({
 
         {/* Planet Orbit System (centered exactly on profile picture) */}
         <div
-          className='absolute z-10 transition-none'
+          className='absolute z-10 transition-opacity duration-700 delay-150'
           style={{
             top: `${topPosition}vh`,
             left: '50%',
@@ -188,9 +188,28 @@ const ScrollExpandMedia = ({
           <h1 className="text-5xl md:text-6xl font-extrabold text-white text-center mb-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">{title}</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-300 font-medium text-center max-w-2xl mb-6">
-            {date}
-          </p>
+          <div className="text-xl md:text-2xl text-slate-300 font-medium text-center max-w-2xl mb-6 flex flex-wrap justify-center gap-x-2">
+            {date.split(' ').map((word, i) => {
+              const start = 0.3 + (i * 0.2);
+              const end = start + 0.2;
+              let wordOpacity = 0;
+              if (scrollProgress >= end) wordOpacity = 1;
+              else if (scrollProgress > start) wordOpacity = (scrollProgress - start) / 0.2;
+
+              return (
+                <span 
+                  key={i} 
+                  style={{ 
+                    opacity: wordOpacity, 
+                    transform: `translateY(${wordOpacity < 1 ? 15 - wordOpacity * 15 : 0}px)`, 
+                    display: 'inline-block' 
+                  }}
+                >
+                  {word}
+                </span>
+              );
+            })}
+          </div>
           <p className="text-lg text-slate-400 text-center max-w-3xl mb-8 leading-relaxed">
             I like to build cool stuff.
           </p>
