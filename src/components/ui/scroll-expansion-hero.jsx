@@ -150,7 +150,7 @@ const ScrollExpandMedia = ({
           style={{ opacity: scrollProgress, transform: `translateY(${20 - (scrollProgress * 20)}px)` }}
         >
           <h1 className="text-5xl md:text-6xl font-extrabold text-white text-center mb-4">
-            Hi, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">{title}</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">{title}</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 font-medium text-center max-w-2xl mb-6">
             {date}
@@ -159,16 +159,50 @@ const ScrollExpandMedia = ({
             I like to build cool stuff.
           </p>
 
-          <div className="flex flex-row flex-wrap justify-center items-center gap-8 z-10 w-full px-4 mt-4" style={{ pointerEvents: showContent ? 'auto' : 'none' }}>
-            <a href="#projects" className="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 text-base md:text-lg rounded-full bg-gradient-to-br from-blue-400 to-indigo-900 border-4 border-blue-400/30 text-white font-bold shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:shadow-[0_0_35px_rgba(59,130,246,0.9)] hover:scale-110 transition-all duration-300">
-              <span>Work</span>
+          <div className="flex flex-row flex-wrap justify-center items-center gap-6 sm:gap-10 z-10 w-full px-4 mt-4" style={{ pointerEvents: showContent ? 'auto' : 'none' }}>
+            
+            {/* Planet 1 - Jupiter (Work) */}
+            <a href="#projects" className="group relative flex flex-col items-center justify-center w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-transform duration-500 hover:scale-110">
+              <div className="absolute inset-0 rounded-full shadow-[inset_-16px_-16px_25px_rgba(0,0,0,0.9),0_0_20px_rgba(217,119,6,0.3)] z-10 transition-all duration-500 group-hover:shadow-[inset_-16px_-16px_25px_rgba(0,0,0,0.9),0_0_45px_rgba(217,119,6,0.9)]"></div>
+              <div className="absolute top-[10%] left-[15%] w-10 h-10 bg-white/20 rounded-full blur-[8px] z-20"></div>
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <div className="absolute inset-0" style={{ 
+                  backgroundColor: '#d97706',
+                  backgroundImage: 'repeating-linear-gradient(5deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.15) 8%, transparent 8%, transparent 15%, rgba(0,0,0,0.05) 15%, rgba(0,0,0,0.05) 25%), radial-gradient(circle at 30% 30%, #fde68a 0%, #b45309 60%, #451a03 100%)'
+                }}></div>
+              </div>
+              <span className="z-30 relative text-white drop-shadow-[0_2px_4px_rgba(0,0,0,1)] tracking-widest uppercase text-sm font-black">Work</span>
             </a>
-            <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 text-base md:text-lg rounded-full bg-gradient-to-br from-rose-400 to-red-900 border-4 border-rose-400/30 text-white font-bold shadow-[0_0_20px_rgba(244,63,94,0.6)] hover:shadow-[0_0_35px_rgba(244,63,94,0.9)] hover:scale-110 transition-all duration-300">
-              <span>Resume</span>
+
+            {/* Planet 2 - Neptune / Ice Giant (Resume) */}
+            <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="group relative flex flex-col items-center justify-center w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-transform duration-500 hover:scale-110">
+              <div className="absolute inset-0 rounded-full shadow-[inset_-16px_-16px_25px_rgba(0,0,0,0.9),0_0_20px_rgba(14,165,233,0.3)] z-10 transition-all duration-500 group-hover:shadow-[inset_-16px_-16px_25px_rgba(0,0,0,0.9),0_0_45px_rgba(14,165,233,0.9)]"></div>
+              <div className="absolute top-[10%] left-[15%] w-10 h-10 bg-white/20 rounded-full blur-[8px] z-20"></div>
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <div className="absolute inset-0" style={{ 
+                  backgroundColor: '#0284c7',
+                  backgroundImage: 'repeating-linear-gradient(-10deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 5%, transparent 5%, transparent 12%, rgba(0,0,0,0.05) 12%, rgba(0,0,0,0.05) 20%), radial-gradient(circle at 30% 30%, #bae6fd 0%, #0369a1 60%, #082f49 100%)'
+                }}></div>
+              </div>
+              <span className="z-30 relative text-white drop-shadow-[0_2px_4px_rgba(0,0,0,1)] tracking-widest uppercase text-sm font-black">Resume</span>
             </a>
-            <a href="/mansion" className="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 text-base md:text-lg rounded-full bg-gradient-to-br from-emerald-400 to-teal-900 border-4 border-emerald-400/30 text-white font-bold shadow-[0_0_20px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:scale-110 transition-all duration-300">
-              <span>Mansion</span>
+
+            {/* Planet 3 - Rocky Crimson (Mansion) */}
+            <a href="/mansion" className="group relative flex flex-col items-center justify-center w-28 h-28 sm:w-36 sm:h-36 rounded-full transition-transform duration-500 hover:scale-110">
+              <div className="absolute inset-0 rounded-full shadow-[inset_-16px_-16px_25px_rgba(0,0,0,0.9),0_0_20px_rgba(225,29,72,0.3)] z-10 transition-all duration-500 group-hover:shadow-[inset_-16px_-16px_25px_rgba(0,0,0,0.9),0_0_45px_rgba(225,29,72,0.9)]"></div>
+              <div className="absolute top-[10%] left-[15%] w-10 h-10 bg-white/20 rounded-full blur-[8px] z-20"></div>
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <div className="absolute inset-0" style={{ 
+                  backgroundColor: '#be123c',
+                  backgroundImage: 'radial-gradient(circle at 30% 30%, #fecdd3 0%, #e11d48 50%, #4c0519 100%)'
+                }}></div>
+                <div className="absolute inset-0 opacity-40 mix-blend-multiply" style={{
+                  backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")'
+                }}></div>
+              </div>
+              <span className="z-30 relative text-white drop-shadow-[0_2px_4px_rgba(0,0,0,1)] tracking-widest uppercase text-sm font-black">Mansion</span>
             </a>
+
           </div>
         </div>
 

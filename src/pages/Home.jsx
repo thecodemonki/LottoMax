@@ -24,7 +24,7 @@ function Home() {
         mediaSrc="/profile.png"
         bgImageSrc=""
         title="Maxwell Peng"
-        date="Full Stack Developer & Team Canada Athlete"
+        date="Risktaker Roadrunner Entrepreneur"
         scrollToExpand="Scroll to Expand Portfolio"
       >
       {/* Experience Section */}
