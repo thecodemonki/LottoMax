@@ -110,8 +110,8 @@ const ScrollExpandMedia = ({
 
   // Image stays a constant size (profile picture size)
   const mediaSize = 200 + (scrollProgress * 40); // slightly grows from 200 to 240
-  // Image moves up from center (50vh) to top hero position (~25vh)
-  const topPosition = 50 - (scrollProgress * 25); 
+  // Image stays in the true center rather than moving to the top
+  const topPosition = 50; 
 
   return (
     <div ref={sectionRef} className='w-full bg-transparent'>
@@ -182,8 +182,8 @@ const ScrollExpandMedia = ({
 
         {/* Final Hero Text & Content (fades in) */}
         <div 
-          className="absolute top-[45vh] w-full flex flex-col items-center px-4 z-10"
-          style={{ opacity: scrollProgress, transform: `translateY(${20 - (scrollProgress * 20)}px)` }}
+          className="absolute w-full flex flex-col items-center px-4 z-10 pointer-events-none"
+          style={{ top: 'calc(50vh + 140px)', opacity: scrollProgress, transform: `translateY(${20 - (scrollProgress * 20)}px)` }}
         >
           <h1 className="text-5xl md:text-6xl font-extrabold text-white text-center mb-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">{title}</span>
