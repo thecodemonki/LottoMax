@@ -146,10 +146,10 @@ function Home() {
               <a href="mailto:mpeng57@uwo.ca" className="contact-btn">
                 📧 mpeng57@uwo.ca
               </a>
-              <a href="https://github.com/maxwell" className="contact-btn" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/thecodemonki" className="contact-btn" target="_blank" rel="noopener noreferrer">
                 💻 GitHub
               </a>
-              <a href="https://linkedin.com/in/maxwell" className="contact-btn" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/maxwell-peng-070116246/" className="contact-btn" target="_blank" rel="noopener noreferrer">
                 💼 LinkedIn
               </a>
             </div>

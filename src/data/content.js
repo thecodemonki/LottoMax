@@ -62,8 +62,8 @@ export const aboutData = {
   description: "Welcome to the mansion tour. If you're here for vibes: badminton, chess, and whatever rabbit hole I'm obsessed with this month. Each room is a different slice of my brain.",
   location: "London, ON | Originally from Oakville, ON",
   email: "mpeng57@uwo.ca",
-  github: "https://github.com/maxwell",
-  linkedin: "https://linkedin.com/in/maxwell",
+  github: "https://github.com/thecodemonki",
+  linkedin: "https://www.linkedin.com/in/maxwell-peng-070116246/",
   phone: "(647) 562-2398"
 };
 
