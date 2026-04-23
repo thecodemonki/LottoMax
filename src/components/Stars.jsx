@@ -21,17 +21,30 @@ const Stars = () => {
     window.addEventListener('resize', resize);
     resize();
 
+    // Soft radial orbs for gentle depth
+    const orbs = [
+      { x: Math.random() * width, y: Math.random() * height, r: Math.max(width, height) * 0.4 },
+      { x: Math.random() * width, y: Math.random() * height, r: Math.max(width, height) * 0.5 },
+      { x: Math.random() * width, y: Math.random() * height, r: Math.max(width, height) * 0.3 }
+    ];
+
     // Star Class
     class Star {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 1; // 1px to 3px
-        this.baseAlpha = Math.random() * 0.3 + 0.1;
-        this.alpha = this.baseAlpha;
-        this.blinkSpeed = (Math.random() * 0.015) + 0.005; // speed of fade (roughly 1s to 4s)
+        this.size = Math.random() * 2 + 0.5; // 0.5px to 2.5px
+        this.baseAlpha = 0.2;
+        this.alpha = Math.random() * 0.8 + 0.2; // initial random alpha between 0.2 and 1.0
+        // Duration between 1s and 5s (approx 60 to 300 frames)
+        // blinkSpeed controls how much alpha changes per frame
+        this.blinkSpeed = (1.0 - 0.2) / ((Math.random() * 240) + 60);
         this.direction = Math.random() > 0.5 ? 1 : -1;
-        this.maxAlpha = Math.random() * 0.5 + 0.5; // up to 1
+        this.maxAlpha = 1.0;
+        
+        // Randomly assign slight blue tint or pure white
+        const colorVal = Math.random() > 0.7 ? '200, 220, 255' : '255, 255, 255';
+        this.color = colorVal;
       }
 
       update() {
@@ -48,13 +61,8 @@ const Stars = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
-        // Expanding glow effect at peak brightness
-        const glowFactor = Math.max(0, this.alpha - 0.6) / 0.4; // 0 to 1 as alpha goes from 0.6 to 1.0
-        ctx.shadowBlur = glowFactor * 12; // Blur radius expands slightly
-        ctx.shadowColor = `rgba(255, 255, 255, ${glowFactor * 0.8})`;
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
       }
     }
 
@@ -63,18 +71,20 @@ const Stars = () => {
       constructor() {
         this.reset();
         this.active = false;
-        this.timer = Math.random() * 240 + 360; // 6-10 seconds at 60fps (360-600 frames)
+        this.timer = Math.random() * 240 + 480; // 8-12 seconds at 60fps (480-720 frames)
       }
 
       reset() {
         this.x = Math.random() * width;
         this.y = -50;
         this.length = Math.random() * 80 + 40;
-        // Diagonal streak
-        this.speedX = (Math.random() * 4 + 4) * (Math.random() > 0.5 ? 1 : -1);
-        this.speedY = Math.random() * 4 + 4;
+        this.speedX = (Math.random() * 5 + 5) * (Math.random() > 0.5 ? 1 : -1);
+        this.speedY = Math.random() * 5 + 5;
         this.opacity = 1;
         this.active = true;
+        
+        // Target fade out over ~0.8s (48 frames)
+        this.fadeRate = 1 / 48;
       }
 
       update() {
@@ -82,14 +92,14 @@ const Stars = () => {
           this.timer--;
           if (this.timer <= 0) {
             this.reset();
-            this.timer = Math.random() * 240 + 360; // Reset timer for next shooting star (6-10s)
+            this.timer = Math.random() * 240 + 480; // Reset timer for next shooting star (8-12s)
           }
           return;
         }
 
         this.x += this.speedX;
         this.y += this.speedY;
-        this.opacity -= 0.015;
+        this.opacity -= this.fadeRate;
 
         if (this.opacity <= 0 || this.x < -100 || this.x > width + 100 || this.y > height + 100) {
           this.active = false;
@@ -100,21 +110,29 @@ const Stars = () => {
         if (!this.active) return;
         ctx.beginPath();
         ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x - this.speedX * 5, this.y - this.speedY * 5); // Trailing effect
-        ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
-        ctx.lineWidth = 2;
-        ctx.shadowBlur = 5;
-        ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.lineTo(this.x - this.speedX * 4, this.y - this.speedY * 4); // Trailing effect
+        ctx.strokeStyle = `rgba(255, 255, 255, ${Math.max(0, this.opacity)})`;
+        ctx.lineWidth = 1.5;
         ctx.stroke();
-        ctx.shadowBlur = 0; // reset
       }
     }
 
-    const starsArray = Array.from({ length: 200 }, () => new Star());
+    const starsArray = Array.from({ length: 300 }, () => new Star());
     const shootingStar = new ShootingStar();
 
     const drawBackground = () => {
-      ctx.clearRect(0, 0, width, height);
+      // Base deep navy
+      ctx.fillStyle = '#050714';
+      ctx.fillRect(0, 0, width, height);
+
+      // Subtle radial orbs
+      orbs.forEach(orb => {
+        const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
+        gradient.addColorStop(0, 'rgba(26, 32, 128, 0.05)'); // #1a2080 at 5% opacity
+        gradient.addColorStop(1, 'rgba(26, 32, 128, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+      });
     };
 
     const render = () => {
@@ -149,7 +167,7 @@ const Stars = () => {
         width: '100vw',
         height: '100vh',
         zIndex: -1,
-        pointerEvents: 'none' // Ensure clicks pass through to content
+        pointerEvents: 'none'
       }}
     />
   );
