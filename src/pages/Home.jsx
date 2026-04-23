@@ -4,10 +4,12 @@ import '../styles/Home.css';
 import { experienceData, projectsData } from '../data/content';
 import ScrollExpandMedia from '../components/ui/scroll-expansion-hero';
 import { GlowCard } from '../components/ui/spotlight-card';
+import Stars from '../components/Stars';
 
 function Home() {
   return (
     <div className="portfolio-container">
+      <Stars />
       {/* Navigation */}
       <nav className="navbar">
         <div className="nav-brand">Maxwell Peng</div>
