@@ -20,7 +20,11 @@ export const TILE_TYPES = {
   MANSION_IN_FLOOR: 24,
   MANSION_IN_WALL: 25,
   MANSION_IN_EXIT: 26,
-  FRUIT_TREE: 27
+  FRUIT_TREE: 27,
+  FIREPLACE: 28,
+  BOOKSHELF: 29,
+  DESK: 30,
+  RUG: 31
 };
 
 export const ZONES = {
@@ -46,6 +50,10 @@ const FT = TILE_TYPES.FRUIT_TREE;
 const iF = TILE_TYPES.MANSION_IN_FLOOR;
 const iW = TILE_TYPES.MANSION_IN_WALL;
 const iE = TILE_TYPES.MANSION_IN_EXIT;
+const FP = TILE_TYPES.FIREPLACE;
+const BS = TILE_TYPES.BOOKSHELF;
+const DK = TILE_TYPES.DESK;
+const RG = TILE_TYPES.RUG;
 
 export const outdoorMapData = [
   // 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39
@@ -73,10 +81,10 @@ export const outdoorMapData = [
 
 export const mansionMapData = [
   [iW, iW, iW, iW, iW, iW, iW, iW, iW, iW],
+  [iW, iF, BS, BS, iF, iF, FP, iF, DK, iW],
   [iW, iF, iF, iF, iF, iF, iF, iF, iF, iW],
-  [iW, iF, iF, iF, iF, iF, iF, iF, iF, iW],
-  [iW, iF, iF, iF, iF, iF, iF, iF, iF, iW],
-  [iW, iF, iF, iF, iF, iF, iF, iF, iF, iW],
+  [iW, iF, iF, RG, RG, RG, iF, iF, iF, iW],
+  [iW, iF, iF, RG, RG, RG, iF, iF, iF, iW],
   [iW, iF, iF, iF, iF, iF, iF, iF, iF, iW],
   [iW, iF, iF, iF, iF, iF, iF, iF, iF, iW],
   [iW, iW, iW, iW, iE, iW, iW, iW, iW, iW]
@@ -107,7 +115,10 @@ export const isSolid = (val) => [
   TILE_TYPES.SHED_WALL,
   TILE_TYPES.SHED_ROOF,
   TILE_TYPES.MANSION_IN_WALL,
-  TILE_TYPES.FRUIT_TREE
+  TILE_TYPES.FRUIT_TREE,
+  TILE_TYPES.FIREPLACE,
+  TILE_TYPES.BOOKSHELF,
+  TILE_TYPES.DESK
 ].includes(val);
 
 export const isInteractable = (val) => [

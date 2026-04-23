@@ -10,7 +10,9 @@ import BadmintonModal from '../components/BadmintonModal';
 import TradingModal from '../components/TradingModal';
 import DialogueBox from '../components/DialogueBox';
 import DashboardOverlay from '../components/DashboardOverlay';
-import { outdoorMapDesc, TILE_SIZE, ZONES, TILE_TYPES, getLocationTitle } from '../data/mapData';
+import NPC from '../components/NPC';
+import Fireflies from '../components/Fireflies';
+import { outdoorMapDesc, mansionMapDesc, TILE_SIZE, ZONES, TILE_TYPES, getLocationTitle } from '../data/mapData';
 import '../styles/MansionGame.css';
 
 function MansionGame() {
@@ -20,8 +22,10 @@ function MansionGame() {
   const [locationTitle, setLocationTitle] = useState('Home');
   const [showLocationTitle, setShowLocationTitle] = useState(false);
   const [fadeScreen, setFadeScreen] = useState(false);
-
-  const mapDesc = outdoorMapDesc;
+  
+  const [currentZone, setCurrentZone] = useState(ZONES.OUTDOOR);
+  const mapDesc = currentZone === ZONES.OUTDOOR ? outdoorMapDesc : mansionMapDesc;
+  
   const [playerPos, setPlayerPos] = useState({ x: mapDesc.spawnIn.x, y: mapDesc.spawnIn.y });
   
   const locationTitleTimer = useRef(null);
@@ -35,7 +39,7 @@ function MansionGame() {
 
   const handlePositionChange = (x, y) => {
     setPlayerPos({ x, y });
-    const newLocation = getLocationTitle(x, y);
+    const newLocation = getLocationTitle(x, y, currentZone);
     if (newLocation !== lastLocationRef.current) {
         lastLocationRef.current = newLocation;
         setLocationTitle(newLocation);
@@ -45,24 +49,53 @@ function MansionGame() {
     }
   };
 
+  const npcs = currentZone === ZONES.OUTDOOR ? [
+    { id: 1, x: 32, y: 15, name: 'Elderly Man', spriteClass: 'npc-elderly', text: "Welcome to the village, young one. It's peaceful here." },
+    { id: 2, x: 26, y: 7, name: 'Young Woman', spriteClass: 'npc-woman', text: "The pool looks so refreshing today, doesn't it?" },
+    { id: 3, x: 17, y: 5, name: 'Child', spriteClass: 'npc-child', text: "I'm looking for bugs in the garden!" }
+  ] : [];
+
   const handleInteract = (facingTile, standingTile, interactX, interactY) => {
     if (fadeScreen || activeModal || activeDialogue || activeDashboard) return;
+
+    // Check NPC interaction
+    const col = Math.floor(interactX / TILE_SIZE);
+    const row = Math.floor(interactY / TILE_SIZE);
+    const npc = npcs.find(n => Math.abs(n.x - col) <= 1 && Math.abs(n.y - row) <= 1);
+    if (npc) {
+      setActiveDialogue({ name: npc.name, text: npc.text });
+      return;
+    }
 
     if (facingTile === TILE_TYPES.CABIN_DOOR_ENTER || standingTile === TILE_TYPES.CABIN_DOOR_ENTER) {
       setFadeScreen(true);
       setTimeout(() => {
-        setActiveDashboard('cabin');
+        setCurrentZone(ZONES.MANSION);
+        setPlayerPos({ x: mansionMapDesc.spawnIn.x, y: mansionMapDesc.spawnIn.y });
+        handlePositionChange(mansionMapDesc.spawnIn.x, mansionMapDesc.spawnIn.y);
         setFadeScreen(false);
       }, 500);
       return;
     }
     
-    if (facingTile === TILE_TYPES.SHED_DOOR_ENTER || standingTile === TILE_TYPES.SHED_DOOR_ENTER) {
+    if (facingTile === TILE_TYPES.MANSION_IN_EXIT || standingTile === TILE_TYPES.MANSION_IN_EXIT) {
       setFadeScreen(true);
       setTimeout(() => {
-        setActiveDashboard('shed');
+        setCurrentZone(ZONES.OUTDOOR);
+        setPlayerPos({ x: 4 * TILE_SIZE + TILE_SIZE / 2, y: 8 * TILE_SIZE + TILE_SIZE / 2 });
+        handlePositionChange(4 * TILE_SIZE + TILE_SIZE / 2, 8 * TILE_SIZE + TILE_SIZE / 2);
         setFadeScreen(false);
       }, 500);
+      return;
+    }
+
+    if (facingTile === TILE_TYPES.FRUIT_TREE) {
+      setActiveDialogue({ name: 'Fruit Tree', text: 'Fun fact: I love eating fresh mangoes while coding!' });
+      return;
+    }
+    
+    if (facingTile === TILE_TYPES.CROP_PUMPKIN) {
+      setActiveDialogue({ name: 'Pumpkin Patch', text: 'This patch reminds me of the hard work required to grow a startup.' });
       return;
     }
   };
@@ -117,6 +150,10 @@ function MansionGame() {
         >
           <TileMap mapDesc={mapDesc} />
 
+          {npcs.map(npc => (
+            <NPC key={npc.id} initialX={npc.x} initialY={npc.y} name={npc.name} spriteClass={npc.spriteClass} />
+          ))}
+
           <Player 
             mapDesc={mapDesc} 
             initialPosition={playerPos} 
@@ -125,9 +162,11 @@ function MansionGame() {
             canMove={!activeModal && !activeDialogue && !fadeScreen && !activeDashboard}
           />
           
-          <div className="night-overlay" />
+          {currentZone === ZONES.OUTDOOR && <div className="night-overlay" />}
         </div>
       </div>
+      
+      {currentZone === ZONES.OUTDOOR && <Fireflies />}
 
       <div className={`fade-overlay ${fadeScreen ? 'visible' : ''}`} />
 
