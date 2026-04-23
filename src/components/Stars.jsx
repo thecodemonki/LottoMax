@@ -114,19 +114,7 @@ const Stars = () => {
     const shootingStar = new ShootingStar();
 
     const drawBackground = () => {
-      // Create radial gradient for base layer
-      // #0a0a2e at edges fading to #1a1060 in the center with a soft warm #2d1b4e core glow
-      const cx = width / 2;
-      const cy = height / 2;
-      const maxRadius = Math.max(width, height) / 1.5;
-      
-      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxRadius);
-      gradient.addColorStop(0, '#2d1b4e');   // Core glow
-      gradient.addColorStop(0.3, '#1a1060'); // Inner mid
-      gradient.addColorStop(1, '#0a0a2e');   // Edges
-
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
+      ctx.clearRect(0, 0, width, height);
     };
 
     const render = () => {
