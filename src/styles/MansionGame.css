@@ -93,8 +93,6 @@
 
 .tile {
   box-sizing: border-box;
-  background-image: url('/world_sprites.png');
-  background-size: 512px; /* Example size, adjust based on sprite sheet */
   background-color: transparent;
 }
 
