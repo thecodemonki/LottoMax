@@ -145,7 +145,7 @@ function MansionGame() {
           style={{ 
             width: mapDesc.width * TILE_SIZE, 
             height: mapDesc.height * TILE_SIZE,
-            transform: `translate(calc(50vw - ${playerPos.x}px), calc(50vh - ${playerPos.y}px))`
+            transform: `translate(calc(50vw - ${playerPos.x + 20}px), calc(50vh - ${playerPos.y + 20}px))`
           }}
         >
           <TileMap mapDesc={mapDesc} />

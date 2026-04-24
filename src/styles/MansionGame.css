@@ -96,27 +96,36 @@
   background-color: transparent;
 }
 
-/* Fallback pure CSS logic kept for safety, but sprite sheet takes precedence if present */
+/* Explicit Sprite Sheet mappings */
 .tile-type-0 { background-color: #000; background-image: none; }
-.tile-type-9 { background-color: #4cd137; background-position: 0px 0px; } /* Grass */
-.tile-type-10 { background-color: #95a5a6; background-position: -40px 0px; } /* Stone path */
-.tile-type-11 { background-color: #2e8b57; background-position: -80px 0px; } /* Tree */
-.tile-type-12 { background-color: #3498db; background-position: -120px 0px; } /* Water */
-.tile-type-13 { background-color: #c08552; background-position: -160px 0px; } /* Farm Dirt */
-.tile-type-14 { background-color: #8b5a2b; background-position: -200px 0px; } /* Cabin Wall */
-.tile-type-15 { background-color: #3e2723; background-position: -240px 0px; } /* Cabin Door */
-.tile-type-17 { background-color: #c08552; background-position: -280px 0px; } /* Pumpkin */
-.tile-type-18 { background-color: #27ae60; background-position: -320px 0px; } /* Cabin Roof */
-.tile-type-19 { background-color: #4cd137; background-position: -360px 0px; } /* Wood Fence */
-.tile-type-20 { background-color: #4cd137; background-position: -400px 0px; } /* Stone Fence */
-.tile-type-24 { background-color: #a0522d; background-position: 0px -40px; } /* Mansion Floor */
-.tile-type-25 { background-color: #654321; background-position: -40px -40px; } /* Mansion Wall */
-.tile-type-26 { background-color: #deb887; background-position: -80px -40px; } /* Mansion Exit */
-.tile-type-27 { background-color: #2e8b57; background-position: -120px -40px; } /* Fruit Tree */
-.tile-type-28 { background-color: #d35400; background-position: -160px -40px; } /* Fireplace */
-.tile-type-29 { background-color: #8e44ad; background-position: -200px -40px; } /* Bookshelf */
-.tile-type-30 { background-color: #8b4513; background-position: -240px -40px; } /* Desk */
-.tile-type-31 { background-color: #c0392b; background-position: -280px -40px; } /* Rug */
+.tile-type-9 { 
+  background-image: url('/character_sprites.png'); background-size: 2816px 1536px; background-position: -966px -564px; background-color: #4cd137;
+} /* Grass */
+.tile-type-10 { 
+  background-image: url('/character_sprites.png'); background-size: 2816px 1536px; background-position: -966px -825px; background-color: #95a5a6; 
+} /* Stone path */
+.tile-type-11 { 
+  background-image: url('/character_sprites.png'); background-size: 2816px 1536px; background-position: -966px -1209px; background-color: #2e8b57;
+} /* Tree */
+.tile-type-12 { 
+  background-image: url('/character_sprites.png'); background-size: 2816px 1536px; background-position: -1549px -691px; background-color: #3498db;
+} /* Water */
+
+.tile-type-13 { background-image: url('/character_sprites.png'); background-size: 2816px 1536px; background-position: -966px -825px; background-color: #c08552; } /* Farm Dirt */
+.tile-type-14 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -200px 0px; } /* Cabin Wall */
+.tile-type-15 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -240px 0px; } /* Cabin Door */
+.tile-type-17 { background-image: url('/character_sprites.png'); background-size: 2816px 1536px; background-position: -966px -1209px; background-color: #c08552; } /* Pumpkin */
+.tile-type-18 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -320px 0px; } /* Cabin Roof */
+.tile-type-19 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -360px 0px; } /* Wood Fence */
+.tile-type-20 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -400px 0px; } /* Stone Fence */
+.tile-type-24 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -200px -200px; background-color: #a0522d; } /* Mansion Floor */
+.tile-type-25 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -240px -200px; background-color: #654321; } /* Mansion Wall */
+.tile-type-26 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -280px -200px; background-color: #deb887; } /* Mansion Exit */
+.tile-type-27 { background-image: url('/character_sprites.png'); background-size: 2816px 1536px; background-position: -966px -1209px; background-color: #2e8b57; } /* Fruit Tree */
+.tile-type-28 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -320px -200px; background-color: #d35400; } /* Fireplace */
+.tile-type-29 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -360px -200px; background-color: #8e44ad; } /* Bookshelf */
+.tile-type-30 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -400px -200px; background-color: #8b4513; } /* Desk */
+.tile-type-31 { background-image: url('/world_sprites.png'); background-size: 2816px 1536px; background-position: -440px -200px; background-color: #c0392b; } /* Rug */
 
 .tree {
   animation: sway 4s ease-in-out infinite alternate;
@@ -157,16 +166,14 @@
   width: 100%;
   height: 100%;
   background-image: url('/character_sprites.png');
-  background-size: 256px; /* Adjust based on sprite sheet */
+  background-size: 2816px 1536px;
   image-rendering: pixelated;
-  /* Fallbacks */
-  background-color: #5c4033;
-  border-radius: 4px;
+  background-color: transparent;
 }
-.dir-down .player-sprite { background-position: 0px 0px; }
-.dir-up .player-sprite { background-position: -40px 0px; }
-.dir-left .player-sprite { background-position: -80px 0px; }
-.dir-right .player-sprite { background-position: -120px 0px; transform: scaleX(-1); }
+.dir-down .player-sprite { background-position: -121px -210px; }
+.dir-up .player-sprite { background-position: -121px -210px; }
+.dir-left .player-sprite { background-position: -966px -364px; }
+.dir-right .player-sprite { background-position: -966px -364px; transform: scaleX(-1); }
 
 .moving .player-sprite {
   animation: walkBounce 0.25s infinite alternate ease-in-out;
@@ -199,14 +206,13 @@
   width: 100%;
   height: 100%;
   background-image: url('/character_sprites.png');
-  background-size: 256px;
+  background-size: 2816px 1536px;
   image-rendering: pixelated;
-  background-color: #888;
-  border-radius: 4px;
+  background-color: transparent;
 }
-.npc-elderly { background-position: 0px -40px; }
-.npc-woman { background-position: -40px -40px; }
-.npc-child { background-position: -80px -40px; }
+.npc-elderly { background-position: -2148px -256px; }
+.npc-woman { background-position: -2148px -256px; }
+.npc-child { background-image: url('/world_sprites.png'); background-position: -2374px -1286px; }
 
 .npc-shadow {
   position: absolute;
@@ -240,20 +246,20 @@
   left: -100%;
   width: 400px;
   height: 120px;
-  background-image: url('/world_sprites.png');
-  background-position: center bottom; /* Using the bottom UI section of sprite sheet 1 */
-  background-size: cover;
+  background-image: url('/character_sprites.png');
+  background-position: -2194px -785px; /* Adjust to roughly dialogue box / UI element */
+  background-size: 2816px 1536px;
   background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #5c3a21;
+  color: #fff;
   font-family: 'Press Start 2P', 'Playfair Display', serif;
   font-size: 1.5rem;
   font-weight: 700;
   transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   z-index: 999;
-  text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.8);
 }
 .location-title-card.visible {
   left: 50%;
@@ -276,16 +282,15 @@
 .dialogue-box {
   width: 90%;
   height: 180px;
-  background-image: url('/world_sprites.png');
-  background-position: right bottom; /* Aligning to dialogue UI section */
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-image: url('/character_sprites.png');
+  background-position: -1994px -755px; /* Aligning to dialogue UI section */
+  background-size: 2816px 1536px;
   background-color: transparent;
   padding: 30px 50px;
   position: relative;
   font-family: 'Press Start 2P', 'Montserrat', sans-serif;
-  color: #3e2723;
-  text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+  color: #fff;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.8);
 }
 
 .dialogue-name {
