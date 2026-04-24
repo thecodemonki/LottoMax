@@ -1,5 +1,5 @@
 export const TILE_SIZE = 40;
-export const MOVEMENT_SPEED = 720;
+export const MOVEMENT_SPEED = 1000;
 
 export const TILE_TYPES = {
   VOID: 0,
