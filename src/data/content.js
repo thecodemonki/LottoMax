@@ -104,7 +104,7 @@ export const experienceData = [
     company: "AtlasHaus Design",
     role: "Software Engineer Intern",
     location: "Remote - Ottawa, ON",
-    period: "November 2025 – Present",
+    period: "November 2025 – April 2026",
     description: "Engineering custom Shopify solutions and optimizing e-commerce performance.",
     achievements: [
       "Engineered custom Shopify product pages using Liquid templates and JavaScript, implementing dynamic FAQ accordions and SEO-optimized structured data markup",
@@ -146,7 +146,7 @@ export const experienceData = [
     company: "Team Canada | Badminton",
     role: "Junior National Team",
     location: "Oakville, ON",
-    period: "September 2020 – Present",
+    period: "September 2020 – June 2025",
     description: "Competing at national level while managing athletic and academic commitments.",
     achievements: [
       "Ranked #2 Under 17 in Canada",
