@@ -506,15 +506,34 @@ body {
   text-decoration: none;
   border-radius: 10px;
   font-weight: 600;
+  border: 1px solid transparent;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contact-btn:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  background: #3498db;
-  color: white;
+}
+
+.contact-btn-email:hover {
+  background: rgba(234, 67, 53, 0.1);
+  border-color: #ea4335;
+  box-shadow: 0 8px 25px rgba(234, 67, 53, 0.4);
+  color: #fff;
+}
+
+.contact-btn-github:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.contact-btn-linkedin:hover {
+  background: rgba(10, 102, 194, 0.1);
+  border-color: #0a66c2;
+  box-shadow: 0 8px 25px rgba(10, 102, 194, 0.4);
+  color: #fff;
 }
 
 .footer {
