@@ -19,6 +19,56 @@ const ScrollExpandMedia = ({
   const [touchStartY, setTouchStartY] = useState(0);
 
   const sectionRef = useRef(null);
+  const planetsRef = useRef([]);
+
+  // Orbit state tracking
+  const planetsData = useRef([
+    { id: 'work', speed: 6, rx: 240, ry: 100, angle: 0, isHovered: false },
+    { id: 'resume', speed: 4, rx: 160, ry: 60, angle: Math.PI * 0.8, isHovered: false },
+    { id: 'mansion', speed: 8, rx: 320, ry: 140, angle: Math.PI * 1.5, isHovered: false }
+  ]);
+
+  // Orbit Animation Loop
+  useEffect(() => {
+    let reqId;
+    let lastTime = performance.now();
+
+    const animate = (time) => {
+      const dt = time - lastTime;
+      lastTime = time;
+
+      const scaleFactor = window.innerWidth < 640 ? 0.5 : 1;
+
+      planetsRef.current.forEach((el, index) => {
+        if (!el) return;
+        const data = planetsData.current[index];
+        
+        let angleIncrement = (dt / (data.speed * 1000)) * Math.PI * 2;
+        if (data.isHovered) {
+          angleIncrement *= 0.15; // Slow down drastically on hover
+        }
+        
+        data.angle += angleIncrement;
+        
+        const x = Math.cos(data.angle) * (data.rx * scaleFactor);
+        const y = Math.sin(data.angle) * (data.ry * scaleFactor);
+        const depth = Math.sin(data.angle); 
+        
+        const scale = 0.85 + (depth * 0.25);
+        const opacity = 0.5 + (depth * 0.5); // 0.0 at back, 1.0 at front
+        const zIndex = depth > 0 ? 30 : 10;
+        
+        el.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${scale})`;
+        el.style.opacity = opacity;
+        el.style.zIndex = zIndex;
+      });
+      
+      reqId = requestAnimationFrame(animate);
+    };
+
+    reqId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(reqId);
+  }, []);
 
   useEffect(() => {
     setScrollProgress(0);
@@ -147,24 +197,44 @@ const ScrollExpandMedia = ({
           }}
         >
             {/* Work (Jupiter) */}
-            <a href="#projects" className="absolute -top-[20px] -left-[140px] sm:-top-[20px] sm:-left-[240px] group flex items-center justify-center w-24 h-24 sm:w-32 sm:h-32 rounded-full transition-transform duration-500 hover:scale-110">
-              <div className="absolute inset-0 rounded-full shadow-[0_0_30px_rgba(217,119,6,0.6)] group-hover:shadow-[0_0_50px_rgba(217,119,6,0.9)] transition-shadow duration-500 z-0"></div>
+            <a 
+              href="#projects" 
+              ref={el => planetsRef.current[0] = el}
+              onMouseEnter={() => planetsData.current[0].isHovered = true}
+              onMouseLeave={() => planetsData.current[0].isHovered = false}
+              className="absolute group flex items-center justify-center w-24 h-24 sm:w-32 sm:h-32 rounded-full transition-[box-shadow] duration-500 hover:brightness-125"
+            >
+              <div className="absolute inset-0 rounded-full shadow-[0_0_30px_rgba(217,119,6,0.6)] group-hover:shadow-[0_0_60px_rgba(217,119,6,1)] transition-shadow duration-500 z-0"></div>
               <div className="absolute inset-0 rounded-full z-10 bg-[length:150%_auto] bg-center" style={{ backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg")', backgroundColor: '#b45309' }}></div>
               <div className="absolute inset-0 rounded-full shadow-[inset_-16px_-16px_30px_rgba(0,0,0,0.9),inset_4px_4px_10px_rgba(255,255,255,0.3)] z-20 pointer-events-none"></div>
               <span className="z-30 text-white tracking-widest uppercase text-xs sm:text-sm font-black bg-black/60 px-2 py-1 rounded-md backdrop-blur-[2px] group-hover:bg-black/90 transition-colors">Work</span>
             </a>
 
             {/* Resume (Neptune) */}
-            <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer" className="absolute top-[20px] left-[100px] sm:top-[40px] sm:left-[160px] group flex items-center justify-center w-20 h-20 sm:w-28 sm:h-28 rounded-full transition-transform duration-500 hover:scale-110">
-              <div className="absolute inset-0 rounded-full shadow-[0_0_30px_rgba(14,165,233,0.6)] group-hover:shadow-[0_0_50px_rgba(14,165,233,0.9)] transition-shadow duration-500 z-0"></div>
+            <a 
+              href="/Official_MaxwellPeng_Resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              ref={el => planetsRef.current[1] = el}
+              onMouseEnter={() => planetsData.current[1].isHovered = true}
+              onMouseLeave={() => planetsData.current[1].isHovered = false}
+              className="absolute group flex items-center justify-center w-20 h-20 sm:w-28 sm:h-28 rounded-full transition-[box-shadow] duration-500 hover:brightness-125"
+            >
+              <div className="absolute inset-0 rounded-full shadow-[0_0_30px_rgba(14,165,233,0.6)] group-hover:shadow-[0_0_60px_rgba(14,165,233,1)] transition-shadow duration-500 z-0"></div>
               <div className="absolute inset-0 rounded-full z-10 bg-[length:150%_auto] bg-center" style={{ backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg")', backgroundColor: '#0284c7' }}></div>
               <div className="absolute inset-0 rounded-full shadow-[inset_-12px_-12px_24px_rgba(0,0,0,0.9),inset_3px_3px_8px_rgba(255,255,255,0.3)] z-20 pointer-events-none"></div>
               <span className="z-30 text-white tracking-widest uppercase text-xs sm:text-sm font-black bg-black/60 px-2 py-1 rounded-md backdrop-blur-[2px] group-hover:bg-black/90 transition-colors">Resume</span>
             </a>
 
             {/* Mansion (Mars) */}
-            <a href="/mansion" className="absolute -top-[130px] left-[10px] sm:-top-[180px] sm:left-[20px] group flex items-center justify-center w-16 h-16 sm:w-24 sm:h-24 rounded-full transition-transform duration-500 hover:scale-110">
-              <div className="absolute inset-0 rounded-full shadow-[0_0_30px_rgba(225,29,72,0.6)] group-hover:shadow-[0_0_50px_rgba(225,29,72,0.9)] transition-shadow duration-500 z-0"></div>
+            <a 
+              href="/mansion" 
+              ref={el => planetsRef.current[2] = el}
+              onMouseEnter={() => planetsData.current[2].isHovered = true}
+              onMouseLeave={() => planetsData.current[2].isHovered = false}
+              className="absolute group flex items-center justify-center w-16 h-16 sm:w-24 sm:h-24 rounded-full transition-[box-shadow] duration-500 hover:brightness-125"
+            >
+              <div className="absolute inset-0 rounded-full shadow-[0_0_30px_rgba(225,29,72,0.6)] group-hover:shadow-[0_0_60px_rgba(225,29,72,1)] transition-shadow duration-500 z-0"></div>
               <div className="absolute inset-0 rounded-full z-10 bg-[length:150%_auto] bg-center" style={{ backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg")', backgroundColor: '#be123c' }}></div>
               <div className="absolute inset-0 rounded-full shadow-[inset_-12px_-12px_24px_rgba(0,0,0,0.9),inset_3px_3px_8px_rgba(255,255,255,0.3)] z-20 pointer-events-none"></div>
               <span className="z-30 text-white tracking-widest uppercase text-[10px] sm:text-xs font-black bg-black/60 px-2 py-1 rounded-md backdrop-blur-[2px] group-hover:bg-black/90 transition-colors">Mansion</span>
