@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { useEffect, useState, useRef } from 'react';
 import '../styles/Home.css';
 import { experienceData, projectsData } from '../data/content';
 import ScrollExpandMedia from '../components/ui/scroll-expansion-hero';
@@ -7,12 +8,54 @@ import { GlowCard } from '../components/ui/spotlight-card';
 import Stars from '../components/Stars';
 import { Footer } from '../components/ui/footer-section';
 
-function Home() {
+function Home({ setShowAudio }) {
+  const [navVisible, setNavVisible] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    // Hide audio on initial load
+    if (setShowAudio) setShowAudio(false);
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const heroThreshold = window.innerHeight * 0.8;
+      
+      const pastHero = currentScrollY > heroThreshold;
+      
+      if (setShowAudio) {
+        setShowAudio(pastHero);
+      }
+
+      if (pastHero) {
+        if (currentScrollY < lastScrollY.current) {
+          setNavVisible(true);
+        } else {
+          setNavVisible(false);
+        }
+      } else {
+        setNavVisible(false);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [setShowAudio]);
+
   return (
-    <div className="portfolio-container">
+    <motion.div 
+      className="portfolio-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+    >
       <Stars />
       {/* Navigation */}
-      <nav className="navbar">
+      <nav 
+        className={`navbar transition-transform duration-500 ease-in-out ${navVisible ? 'translate-y-0' : '-translate-y-full'}`}
+      >
         <div className="nav-brand">Maxwell Peng</div>
         <div className="nav-links">
           <a href="#experience">Experience</a>
@@ -243,7 +286,7 @@ function Home() {
       {/* New Footer Component Integration */}
       <Footer />
       </ScrollExpandMedia>
-    </div>
+    </motion.div>
   );
 }
 

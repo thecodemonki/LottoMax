@@ -10,7 +10,7 @@ function formatTime(sec) {
   return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-export default function AudioPlayer() {
+export default function AudioPlayer({ isVisible = false }) {
   const [muted, setMuted] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -73,7 +73,7 @@ export default function AudioPlayer() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-[min(100vw-2rem,29rem)] select-none">
+    <div className={`fixed bottom-6 right-6 z-50 w-[min(100vw-2rem,29rem)] select-none transition-all duration-700 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
       <audio ref={audioRef} src={TRACK.src} loop preload="metadata" />
 
       <div

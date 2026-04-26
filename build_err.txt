@@ -1,0 +1,29 @@
+
+> lottomax-mansion-portfolio@1.0.0 build
+> vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 2463 modules transformed.
+x Build failed in 1.80s
+error during build:
+src/components/ui/footer-section.jsx (3:9): "FacebookIcon" is not exported by "node_modules/lucide-react/dist/esm/lucide-react.mjs", imported by "src/components/ui/footer-section.jsx".
+file: /Users/max/LottoMax/src/components/ui/footer-section.jsx:3:9
+
+1: import React from 'react';
+2: import { motion, useReducedMotion } from 'motion/react';
+3: import { FacebookIcon, FrameIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
+            ^
+4: 
+5: const footerLinks = [
+
+    at getRollupError (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/node-entry.js:17022:16)
+    at Module.traceVariable (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/node-entry.js:17478:29)
+    at ModuleScope.findVariable (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/node-entry.js:15141:39)
+    at Identifier.bind (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/node-entry.js:5462:40)
+    at Property.bind (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/node-entry.js:2829:23)
+    at ObjectExpression.bind (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)
+    at ArrayExpression.bind (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)
+    at Property.bind (file:///Users/max/LottoMax/node_modules/rollup/dist/es/shared/node-entry.js:2829:23)
