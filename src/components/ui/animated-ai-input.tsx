@@ -96,7 +96,7 @@ const OPENAI_ICON = (
 );
 
 export function AI_Prompt({ onSend }) {
-    const [value, setValue] = useState("Visit Maxwell's Mansion");
+    const [value, setValue] = useState("");
     const { textareaRef, adjustHeight } = useAutoResizeTextarea({
         minHeight: 72,
         maxHeight: 300,
@@ -119,29 +119,135 @@ export function AI_Prompt({ onSend }) {
     };
 
     return (
-        <div className="w-full max-w-xl mx-auto">
-            <div className="bg-white/10 dark:bg-white/10 rounded-full p-2 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] flex items-center">
-                <input
-                    id="ai-input-15"
-                    value={value}
-                    readOnly
-                    className="flex-1 bg-transparent border-none text-white text-center text-lg outline-none px-6 pointer-events-none"
-                />
-                
-                <button
-                    type="button"
-                    className={cn(
-                        "rounded-full p-3 shrink-0 ml-2",
-                        "transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-orange-500 cursor-pointer hover:scale-105",
-                        "bg-gradient-to-br from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 shadow-lg shadow-orange-500/30"
-                    )}
-                    aria-label="Send message"
-                    onClick={() => {
-                        if (onSend) onSend(value);
-                    }}
-                >
-                    <ArrowRight className="w-5 h-5 text-white" />
-                </button>
+        <div className="w-full max-w-2xl py-4 mx-auto">
+            <div className="bg-white/10 dark:bg-white/10 rounded-2xl p-1.5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+                <div className="relative">
+                    <div className="relative flex flex-col">
+                        <div
+                            className="overflow-y-auto"
+                            style={{ maxHeight: "400px" }}
+                        >
+                            <Textarea
+                                id="ai-input-15"
+                                value={value}
+                                placeholder={"Visit Maxwell's Mansion"}
+                                className={cn(
+                                    "w-full rounded-xl rounded-b-none px-4 py-6 bg-transparent border-none text-white placeholder:text-white/50 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-left",
+                                    "min-h-[72px]"
+                                )}
+                                ref={textareaRef}
+                                onKeyDown={handleKeyDown}
+                                onChange={(e) => {
+                                    setValue(e.target.value);
+                                    adjustHeight();
+                                }}
+                            />
+                        </div>
+
+                        <div className="h-14 bg-transparent rounded-b-xl flex items-center">
+                            <div className="absolute left-3 right-3 bottom-3 flex items-center justify-between w-[calc(100%-24px)]">
+                                <div className="flex items-center gap-2">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button
+                                                variant="ghost"
+                                                className="flex items-center gap-1 h-8 pl-1 pr-2 text-xs rounded-md text-white hover:bg-white/10 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-blue-500"
+                                            >
+                                                <AnimatePresence mode="wait">
+                                                    <motion.div
+                                                        key={selectedModel}
+                                                        initial={{
+                                                            opacity: 0,
+                                                            y: -5,
+                                                        }}
+                                                        animate={{
+                                                            opacity: 1,
+                                                            y: 0,
+                                                        }}
+                                                        exit={{
+                                                            opacity: 0,
+                                                            y: 5,
+                                                        }}
+                                                        transition={{
+                                                            duration: 0.15,
+                                                        }}
+                                                        className="flex items-center gap-1"
+                                                    >
+                                                        {
+                                                            MODEL_ICONS[
+                                                                selectedModel
+                                                            ]
+                                                        }
+                                                        {selectedModel}
+                                                        <ChevronDown className="w-3 h-3 opacity-50" />
+                                                    </motion.div>
+                                                </AnimatePresence>
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent
+                                            className={cn(
+                                                "min-w-[10rem]",
+                                                "border-white/10",
+                                                "bg-gradient-to-b from-neutral-900 via-neutral-900 to-neutral-800 text-white"
+                                            )}
+                                        >
+                                            {AI_MODELS.map((model) => (
+                                                <DropdownMenuItem
+                                                    key={model}
+                                                    onSelect={() =>
+                                                        setSelectedModel(model)
+                                                    }
+                                                    className="flex items-center justify-between gap-2"
+                                                >
+                                                    <div className="flex items-center gap-2">
+                                                        {MODEL_ICONS[model] || (
+                                                            <Bot className="w-4 h-4 opacity-50" />
+                                                        )}
+                                                        <span>{model}</span>
+                                                    </div>
+                                                    {selectedModel ===
+                                                        model && (
+                                                        <Check className="w-4 h-4 text-blue-500" />
+                                                    )}
+                                                </DropdownMenuItem>
+                                            ))}
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                    <div className="h-4 w-px bg-white/20 mx-0.5" />
+                                    <label
+                                        className={cn(
+                                            "rounded-lg p-2 bg-transparent cursor-pointer",
+                                            "hover:bg-white/10 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-blue-500",
+                                            "text-white/60 hover:text-white"
+                                        )}
+                                        aria-label="Attach file"
+                                    >
+                                        <input type="file" className="hidden" />
+                                        <Paperclip className="w-4 h-4 transition-colors" />
+                                    </label>
+                                </div>
+                                <button
+                                    type="button"
+                                    className={cn(
+                                        "rounded-full p-2.5",
+                                        "transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-orange-500",
+                                        "bg-gradient-to-br from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 shadow-lg shadow-orange-500/30 cursor-pointer"
+                                    )}
+                                    aria-label="Send message"
+                                    onClick={() => {
+                                        if (onSend) onSend(value.trim() || "Visit Maxwell's Mansion");
+                                    }}
+                                >
+                                    <ArrowRight
+                                        className={cn(
+                                            "w-4 h-4 text-white transition-opacity duration-200 opacity-100"
+                                        )}
+                                    />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
