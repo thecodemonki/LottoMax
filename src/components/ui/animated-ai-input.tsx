@@ -132,9 +132,10 @@ export function AI_Prompt({ onSend }) {
                                 value={value}
                                 placeholder={"Planet Max"}
                                 className={cn(
-                                    "w-full rounded-xl rounded-b-none pl-9 pr-4 pt-5 pb-2 bg-transparent border-none text-white placeholder:text-white/50 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-left",
+                                    "w-full rounded-xl rounded-b-none bg-transparent border-none text-white placeholder:text-white/50 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-left",
                                     "min-h-[72px]"
                                 )}
+                                style={{ padding: '12px 16px' }}
                                 ref={textareaRef}
                                 onKeyDown={handleKeyDown}
                                 onChange={(e) => {
