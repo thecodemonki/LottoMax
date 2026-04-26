@@ -112,9 +112,9 @@ export function AI_Prompt({ onSend }) {
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.key === "Enter" && !e.shiftKey && value.trim()) {
+        if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
-            if (onSend) onSend(value);
+            if (onSend) onSend(value.trim() || "Planet Max");
         }
     };
 
@@ -130,9 +130,9 @@ export function AI_Prompt({ onSend }) {
                             <Textarea
                                 id="ai-input-15"
                                 value={value}
-                                placeholder={"Visit Maxwell's Mansion"}
+                                placeholder={"Planet Max"}
                                 className={cn(
-                                    "w-full rounded-xl rounded-b-none px-4 py-6 bg-transparent border-none text-white placeholder:text-white/50 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-left",
+                                    "w-full rounded-xl rounded-b-none px-4 py-6 bg-transparent border-none text-white placeholder:text-white/50 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-center",
                                     "min-h-[72px]"
                                 )}
                                 ref={textareaRef}
@@ -235,7 +235,7 @@ export function AI_Prompt({ onSend }) {
                                     )}
                                     aria-label="Send message"
                                     onClick={() => {
-                                        if (onSend) onSend(value.trim() || "Visit Maxwell's Mansion");
+                                        if (onSend) onSend(value.trim() || "Planet Max");
                                     }}
                                 >
                                     <ArrowRight
