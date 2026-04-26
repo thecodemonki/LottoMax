@@ -49,7 +49,7 @@ export default function EntryPage({ onEnter }) {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="pointer-events-none"
         >
-          <LiquidButton size="xl">
+          <LiquidButton size="xl" className="text-white text-lg font-medium tracking-wide">
             Where would you like to go?
           </LiquidButton>
         </motion.div>

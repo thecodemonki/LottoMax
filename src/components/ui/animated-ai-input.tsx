@@ -101,76 +101,14 @@ export function AI_Prompt({ onSend }) {
         minHeight: 72,
         maxHeight: 300,
     });
-    const [selectedModel, setSelectedModel] = useState("GPT-6-7- Max");
+    const [selectedModel, setSelectedModel] = useState("Planet Max");
 
     const AI_MODELS = [
-        "GPT-6-7- Max",
-        "o3-mini",
-        "Gemini 2.5 Flash",
-        "Claude 3.5 Sonnet",
-        "GPT-4-1 Mini",
-        "GPT-4-1",
+        "Planet Max",
     ];
 
     const MODEL_ICONS: Record<string, React.ReactNode> = {
-        "o3-mini": OPENAI_ICON,
-        "Gemini 2.5 Flash": (
-            <svg
-                height="1em"
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <title>Gemini</title>
-                <defs>
-                    <linearGradient
-                        id="lobe-icons-gemini-fill"
-                        x1="0%"
-                        x2="68.73%"
-                        y1="100%"
-                        y2="30.395%"
-                    >
-                        <stop offset="0%" stopColor="#1C7DFF" />
-                        <stop offset="52.021%" stopColor="#1C69FF" />
-                        <stop offset="100%" stopColor="#F0DCD6" />
-                    </linearGradient>
-                </defs>
-                <path
-                    d="M12 24A14.304 14.304 0 000 12 14.304 14.304 0 0012 0a14.305 14.305 0 0012 12 14.305 14.305 0 00-12 12"
-                    fill="url(#lobe-icons-gemini-fill)"
-                    fillRule="nonzero"
-                />
-            </svg>
-        ),
-        "Claude 3.5 Sonnet": (
-            <>
-                <svg
-                    fill="#000"
-                    fillRule="evenodd"
-                    className="w-4 h-4 dark:hidden block"
-                    viewBox="0 0 24 24"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Anthropic Icon Light</title>
-                    <path d="M13.827 3.52h3.603L24 20h-3.603l-6.57-16.48zm-7.258 0h3.767L16.906 20h-3.674l-1.343-3.461H5.017l-1.344 3.46H0L6.57 3.522zm4.132 9.959L8.453 7.687 6.205 13.48H10.7z" />
-                </svg>
-                <svg
-                    fill="#fff"
-                    fillRule="evenodd"
-                    className="w-4 h-4 hidden dark:block"
-                    viewBox="0 0 24 24"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <title>Anthropic Icon Dark</title>
-                    <path d="M13.827 3.52h3.603L24 20h-3.603l-6.57-16.48zm-7.258 0h3.767L16.906 20h-3.674l-1.343-3.461H5.017l-1.344 3.46H0L6.57 3.522zm4.132 9.959L8.453 7.687 6.205 13.48H10.7z" />
-                </svg>
-            </>
-        ),
-        "GPT-4-1 Mini": OPENAI_ICON,
-        "GPT-4-1": OPENAI_ICON,
-        "GPT-6-7- Max": OPENAI_ICON,
+        "Planet Max": OPENAI_ICON,
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -181,7 +119,7 @@ export function AI_Prompt({ onSend }) {
     };
 
     return (
-        <div className="w-full max-w-2xl py-4 mx-auto">
+        <div className="w-full max-w-2xl mx-auto">
             <div className="bg-white/10 dark:bg-white/10 rounded-2xl p-1.5 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                 <div className="relative">
                     <div className="relative flex flex-col">
@@ -194,7 +132,7 @@ export function AI_Prompt({ onSend }) {
                                 value={value}
                                 placeholder={"Visit Maxwell's Mansion"}
                                 className={cn(
-                                    "w-full rounded-xl rounded-b-none px-4 py-3 bg-transparent border-none text-white placeholder:text-white/70 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-center",
+                                    "w-full rounded-xl rounded-b-none px-4 py-3 bg-transparent border-none text-white placeholder:text-white/70 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-left",
                                     "min-h-[72px]"
                                 )}
                                 ref={textareaRef}
