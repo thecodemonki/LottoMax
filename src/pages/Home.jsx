@@ -6,7 +6,6 @@ import { experienceData, projectsData } from '../data/content';
 import ScrollExpandMedia from '../components/ui/scroll-expansion-hero';
 import { GlowCard } from '../components/ui/spotlight-card';
 import Stars from '../components/Stars';
-import { Footer } from '../components/ui/footer-section';
 
 function Home({ setShowAudio }) {
   const [navVisible, setNavVisible] = useState(false);
@@ -264,27 +263,6 @@ function Home({ setShowAudio }) {
         </motion.div>
       </section>
 
-      {/* Footer */}
-      <motion.footer 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.8 }} // Fades in last
-        className="footer"
-      >
-        <div className="footer-content">
-          <p>&copy; 2026 Maxwell Peng. Built with Larp</p>
-          <div className="footer-links">
-            <a href="/Official_MaxwellPeng_Resume.pdf" target="_blank" rel="noopener noreferrer">📄 Resume</a>
-            <Link to="/mansion" className="footer-mansion">
-              🏛️ Explore My Mansion (Interactive Mode)
-            </Link>
-          </div>
-        </div>
-      </motion.footer>
-
-      {/* New Footer Component Integration */}
-      <Footer />
       </ScrollExpandMedia>
     </motion.div>
   );
