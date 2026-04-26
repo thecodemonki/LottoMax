@@ -45,7 +45,7 @@ export default function GeneratingPage({ onComplete }) {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center gap-6 w-full px-4">
-        <AILoader size={180} text="GENERATING" />
+        <AILoader size={180} text="" />
         
         <motion.div
           initial={{ opacity: 0 }}

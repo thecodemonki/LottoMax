@@ -101,9 +101,10 @@ export function AI_Prompt({ onSend }) {
         minHeight: 72,
         maxHeight: 300,
     });
-    const [selectedModel, setSelectedModel] = useState("GPT-4-1 Mini");
+    const [selectedModel, setSelectedModel] = useState("GPT-6-7- Max");
 
     const AI_MODELS = [
+        "GPT-6-7- Max",
         "o3-mini",
         "Gemini 2.5 Flash",
         "Claude 3.5 Sonnet",
@@ -169,6 +170,7 @@ export function AI_Prompt({ onSend }) {
         ),
         "GPT-4-1 Mini": OPENAI_ICON,
         "GPT-4-1": OPENAI_ICON,
+        "GPT-6-7- Max": OPENAI_ICON,
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -180,7 +182,7 @@ export function AI_Prompt({ onSend }) {
 
     return (
         <div className="w-full max-w-2xl py-4 mx-auto">
-            <div className="bg-black/5 dark:bg-white/5 rounded-2xl p-1.5 backdrop-blur-md border border-white/10">
+            <div className="bg-white/10 dark:bg-white/10 rounded-2xl p-1.5 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                 <div className="relative">
                     <div className="relative flex flex-col">
                         <div
@@ -192,7 +194,7 @@ export function AI_Prompt({ onSend }) {
                                 value={value}
                                 placeholder={"Visit Maxwell's Mansion"}
                                 className={cn(
-                                    "w-full rounded-xl rounded-b-none px-4 py-3 bg-transparent border-none text-white placeholder:text-white/70 resize-none focus-visible:ring-0 focus-visible:ring-offset-0",
+                                    "w-full rounded-xl rounded-b-none px-4 py-3 bg-transparent border-none text-white placeholder:text-white/70 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-center",
                                     "min-h-[72px]"
                                 )}
                                 ref={textareaRef}

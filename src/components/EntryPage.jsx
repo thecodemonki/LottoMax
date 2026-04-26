@@ -47,9 +47,10 @@ export default function EntryPage({ onEnter }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
+          className="pointer-events-none"
         >
-          <LiquidButton size="xl" onClick={onEnter}>
-            Initialize Portfolio
+          <LiquidButton size="xl">
+            Where would you like to go?
           </LiquidButton>
         </motion.div>
 
