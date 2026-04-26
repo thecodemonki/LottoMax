@@ -42,16 +42,16 @@ export default function EntryPage({ onEnter }) {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center gap-12 w-full max-w-3xl px-4">
+      <div className="relative z-20 flex flex-col items-center justify-center gap-4 w-full max-w-2xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           className="pointer-events-none"
         >
-          <LiquidButton size="xl" className="text-white text-lg font-medium tracking-wide">
+          <h1 className="text-white text-3xl md:text-4xl font-semibold tracking-wide drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] text-center">
             Where would you like to go?
-          </LiquidButton>
+          </h1>
         </motion.div>
 
         <motion.div 
