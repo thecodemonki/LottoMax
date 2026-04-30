@@ -163,8 +163,8 @@
 }
 .dir-down .player-sprite { background-position: -40px 0px; transform: scaleX(1); }
 .dir-up .player-sprite { background-position: -40px -80px; transform: scaleX(1); }
-.dir-left .player-sprite { background-position: -40px -40px; transform: scaleX(1); }
-.dir-right .player-sprite { background-position: -40px -40px; transform: scaleX(-1); }
+.dir-left .player-sprite { background-position: -40px -40px; transform: scaleX(-1); }
+.dir-right .player-sprite { background-position: -40px -40px; transform: scaleX(1); }
 
 .moving .player-sprite {
   animation: walkBounce 0.25s infinite alternate ease-in-out;

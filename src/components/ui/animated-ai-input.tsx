@@ -129,7 +129,8 @@ export function AI_Prompt({ onSend }) {
                         >
                             <Textarea
                                 id="ai-input-15"
-                                value={value}
+                                value="Planet Max"
+                                readOnly
                                 placeholder={"Planet Max"}
                                 className={cn(
                                     "w-full rounded-xl rounded-b-none bg-transparent border-none text-white placeholder:text-white/50 resize-none focus-visible:ring-0 focus-visible:ring-offset-0 text-left",
