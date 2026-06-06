@@ -35,6 +35,263 @@ body {
   position: relative;
 }
 
+/* —— Tabbed portfolio (post-loading) —— */
+.portfolio-container--tabs {
+  background: #0a0a0a;
+  color: #e5e5e5;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-top-bar {
+  flex-shrink: 0;
+  padding: 1.25rem 1.5rem 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.portfolio-top-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.portfolio-wordmark {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fafafa;
+}
+
+.portfolio-social {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.portfolio-social__link {
+  color: #a3a3a3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.portfolio-social__link:hover {
+  color: #fafafa;
+}
+
+.portfolio-main {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  padding: 0 1.5rem 0.5rem;
+}
+
+.portfolio-tab-surface {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+}
+
+.tab-panel {
+  max-width: 42rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.tab-panel--list {
+  max-width: 52rem;
+}
+
+.about-hero-title {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fafafa;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.about-prose {
+  margin-bottom: 2rem;
+}
+
+.about-prose p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #a3a3a3;
+  margin-bottom: 0.85rem;
+}
+
+.about-subheading {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  color: #d4d4d4;
+  margin-bottom: 0.75rem;
+}
+
+.about-highlights {
+  list-style: none;
+  margin: 0 0 2.5rem;
+  padding: 0;
+}
+
+.about-highlights li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #a3a3a3;
+}
+
+.about-highlights li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #737373;
+  font-weight: 700;
+}
+
+.about-current-role {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #f97316;
+}
+
+.about-current-role__label {
+  font-weight: 600;
+  color: #f97316;
+}
+
+.portfolio-bottom-nav {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0a0a0a;
+}
+
+.portfolio-bottom-nav__tab {
+  flex: 1;
+  max-width: 6.5rem;
+  padding: 0.5rem 0.35rem;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: #737373;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.portfolio-bottom-nav__tab:hover {
+  color: #a3a3a3;
+}
+
+.portfolio-bottom-nav__tab.is-active {
+  color: #fafafa;
+}
+
+.portfolio-bottom-nav__tab.is-active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 1.5rem;
+  height: 2px;
+  background: #fafafa;
+  border-radius: 1px;
+}
+
+.experience-card--tab:hover {
+  transform: none;
+}
+
+.project-card-home--tab {
+  border-left: 3px solid #3b82f6;
+}
+
+.tab-panel--contact {
+  max-width: 24rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.contact-lead {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #a3a3a3;
+  margin-bottom: 2rem;
+}
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  color: #e5e5e5;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.contact-row:hover {
+  color: #fafafa;
+}
+
+.contact-mansion-note {
+  margin-top: 2rem;
+}
+
+.contact-mansion-link {
+  font-size: 0.875rem;
+  color: #737373;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-mansion-link:hover {
+  color: #f97316;
+}
+
+.projects-grid-home--tab {
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .portfolio-bottom-nav__tab {
+    max-width: 8rem;
+    font-size: 0.85rem;
+  }
+}
+
 /* Navigation */
 .navbar {
   position: fixed;
