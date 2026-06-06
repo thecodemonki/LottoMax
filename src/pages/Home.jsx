@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 import '../styles/Home.css';
@@ -179,11 +178,6 @@ function ContactPanel() {
           <span>LinkedIn</span>
         </a>
       </div>
-      <p className="contact-mansion-note">
-        <Link to="/mansion" className="contact-mansion-link">
-          Interactive mansion tour →
-        </Link>
-      </p>
     </div>
   );
 }

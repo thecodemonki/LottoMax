@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Home from './pages/Home';
-import MansionGame from './pages/MansionGame';
 import AudioPlayer from './components/AudioPlayer';
 import EntryPage from './components/EntryPage';
 import GeneratingPage from './components/GeneratingPage';
@@ -23,7 +22,6 @@ function App() {
         {appState === 'home' && (
           <Routes key="routes">
             <Route path="/" element={<Home setShowAudio={setShowAudio} />} />
-            <Route path="/mansion" element={<MansionGame />} />
           </Routes>
         )}
       </AnimatePresence>

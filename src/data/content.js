@@ -1,65 +1,8 @@
-export const mansionData = {
-  pool: {
-    title: "The Pool",
-    emoji: "🏊‍♂️",
-    description: "Swimming is my sanctuary for fitness and mental clarity. Competing at a national level has taught me discipline, perseverance, and the importance of consistent effort toward long-term goals.",
-    details: [
-      "500+ kilometers swam annually",
-      "Regional competitive swimmer",
-      "Morning routine: focused lap sessions",
-      "Meditation in motion - where I do my best thinking"
-    ]
-  },
-  badminton: {
-    title: "Badminton Court",
-    emoji: "🏸",
-    description: "As Team Canada's Junior National Team member and #2 Under 17 in Canada, badminton has shaped my competitive spirit and strategic thinking. Fast-paced, strategic, and incredibly rewarding.",
-    details: [
-      "Team Canada | Junior National Team",
-      "Ranked #2 Under 17 in Canada",
-      "Represented Canada at 2023 XXVI Yonex PanAm Championship",
-      "YONEX Sponsorship Representative - distributed $7,000+ in equipment"
-    ]
-  },
-  chess: {
-    title: "Chess Room",
-    emoji: "♟️",
-    description: "The quiet battlefield where strategy reigns supreme. Chess trains me to think several moves ahead - a skill that translates directly to software architecture and problem-solving in development.",
-    details: [
-      "Current rating: 1936 ELO",
-      "Favorite opening: Sicilian Defense",
-      "Daily tactical puzzle practice",
-      "Pattern recognition master"
-    ]
-  },
-  kitchen: {
-    title: "Gourmet Kitchen",
-    emoji: "👨‍🍳",
-    description: "Cooking is my creative outlet and a way to explore different cultures. From experimenting with fusion recipes to perfecting classics, the kitchen is where precision meets creativity.",
-    details: [
-      "Specialty: Cultural fusion dishes",
-      "Exploring authentic recipes from around the world",
-      "Weekend projects: Advanced techniques",
-      "Food as a lens for understanding cultures"
-    ]
-  },
-  trading: {
-    title: "Trading Office",
-    emoji: "📈",
-    description: "My passion for penny stocks and market analysis. I love studying market patterns, understanding business fundamentals, and making calculated investment decisions. This interest fuels my curiosity about fintech and data analytics.",
-    details: [
-      "Focus: Penny stocks and market microstructure",
-      "Interest in venture capital and tech startups",
-      "Trading philosophy: Research-driven decisions",
-      "Tools: Market analytics and charting platforms"
-    ]
-  }
-};
-
 export const aboutData = {
   name: "Maxwell Peng",
   title: "Full Stack Developer & Problem Solver",
-  description: "Welcome to the mansion tour. If you're here for vibes: badminton, chess, and whatever rabbit hole I'm obsessed with this month. Each room is a different slice of my brain.",
+  description:
+    "CS student at Western, building full-stack products and shipping real software. Into badminton, chess, markets, and whatever rabbit hole I'm obsessed with this month.",
   location: "London, ON | Originally from Oakville, ON",
   email: "mpeng57@uwo.ca",
   github: "https://github.com/thecodemonki",
@@ -200,15 +143,16 @@ export const projectsData = [
   },
   {
     id: 4,
-    title: "Dream Mansion Portfolio",
-    description: "Interactive dual-mode portfolio website combining a professional showcase with an immersive 2D exploration game. Features custom AI-generated assets and smooth routing between modes.",
+    title: "Personal portfolio site",
+    description:
+      "This site — animated entry flow, generative loading moment, and a minimal dark tabbed portfolio built with React, Vite, and motion for transitions.",
     tech: ["React", "Vite", "React Router", "Framer Motion", "CSS"],
-    link: "#",
+    link: "https://github.com/thecodemonki/LottoMax",
     color: "#d4af37",
     highlights: [
-      "Dual-mode experience: Portfolio + Interactive game",
-      "Custom AI-generated assets for each room",
-      "Responsive design with smooth animations"
+      "Entry + loading experience with starfield background",
+      "Tabbed about, experience, projects, and contact with fade transitions",
+      "Responsive layout and accessible navigation"
     ]
   },
   {

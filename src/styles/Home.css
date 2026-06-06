@@ -60,10 +60,11 @@ body {
 }
 
 .portfolio-wordmark {
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: 1.2rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-style: italic;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: #fafafa;
 }
 
@@ -266,21 +267,6 @@ body {
   color: #fafafa;
 }
 
-.contact-mansion-note {
-  margin-top: 2rem;
-}
-
-.contact-mansion-link {
-  font-size: 0.875rem;
-  color: #737373;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.contact-mansion-link:hover {
-  color: #f97316;
-}
-
 .projects-grid-home--tab {
   gap: 1.25rem;
 }
@@ -329,20 +315,6 @@ body {
 
 .nav-links a:hover {
   color: #60a5fa;
-}
-
-.nav-mansion {
-  background: linear-gradient(135deg, #d4af37 0%, #b8902e 100%);
-  color: white !important;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-
-.nav-mansion:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 /* Hero Section */
@@ -829,14 +801,6 @@ body {
 
 .footer-links a:hover {
   opacity: 1;
-}
-
-.footer-mansion {
-  color: #d4af37 !important;
-}
-
-.footer-mansion:hover {
-  color: #ffcc00 !important;
 }
 
 /* Responsive */
