@@ -40,10 +40,10 @@ function IconMail({ size = 18 }) {
 
 const TABS = [
   { id: 'about', label: 'about' },
+  { id: 'photos', label: 'photos' },
   { id: 'experience', label: 'experience' },
   { id: 'projects', label: 'projects' },
   { id: 'contact', label: 'contact' },
-  { id: 'photos', label: 'photos' },
 ];
 
 const tabContentVariants = {
@@ -258,6 +258,18 @@ function Home({ setShowAudio }) {
               <AboutPanel />
             </motion.div>
           )}
+          {activeTab === 'photos' && (
+            <motion.div
+              key="photos"
+              className="portfolio-tab-surface"
+              variants={tabContentVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <PhotosPanel />
+            </motion.div>
+          )}
           {activeTab === 'experience' && (
             <motion.div
               key="experience"
@@ -292,18 +304,6 @@ function Home({ setShowAudio }) {
               exit="exit"
             >
               <ContactPanel />
-            </motion.div>
-          )}
-          {activeTab === 'photos' && (
-            <motion.div
-              key="photos"
-              className="portfolio-tab-surface"
-              variants={tabContentVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <PhotosPanel />
             </motion.div>
           )}
         </AnimatePresence>
