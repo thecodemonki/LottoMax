@@ -13,6 +13,8 @@ html {
   overflow-y: auto !important;
   overflow-x: hidden;
   height: 100%;
+  background-color: #0a0a0a;
+  color-scheme: dark;
 }
 
 body {
@@ -20,6 +22,13 @@ body {
   overflow-x: hidden;
   height: auto !important;
   min-height: 100vh;
+  background-color: #0a0a0a;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: #0a0a0a;
 }
 
 .portfolio-container {
@@ -48,7 +57,7 @@ body {
 
 .portfolio-top-bar {
   flex-shrink: 0;
-  padding: 1.25rem 1.5rem 0.5rem;
+  padding: calc(1.25rem + env(safe-area-inset-top, 0px)) 1.5rem 0.5rem;
   display: flex;
   justify-content: flex-end;
 }
