@@ -143,20 +143,6 @@ export const projectsData = [
   },
   {
     id: 4,
-    title: "Personal portfolio site",
-    description:
-      "This site — animated entry flow, generative loading moment, and a minimal dark tabbed portfolio built with React, Vite, and motion for transitions.",
-    tech: ["React", "Vite", "React Router", "Framer Motion", "CSS"],
-    link: "https://github.com/thecodemonki/LottoMax",
-    color: "#d4af37",
-    highlights: [
-      "Entry + loading experience with starfield background",
-      "Tabbed about, experience, projects, and contact with fade transitions",
-      "Responsive layout and accessible navigation"
-    ]
-  },
-  {
-    id: 5,
     title: "StockTok",
     description: "Full stack mobile app (React Native + Expo) to dynamically price TikTok videos using custom valuation formulas based on real-time metrics. Includes full trading, portfolio, and social capabilities.",
     tech: ["React Native", "Expo", "Python", "FastAPI", "Supabase", "Railway"],
@@ -171,6 +157,9 @@ export const projectsData = [
     ]
   }
 ];
+
+/** Photo gallery rows: `{ id?, caption }` — map renders a square placeholder + caption per item. */
+export const photosData = [];
 
 export const interestsData = [
   "Penny Stocks & Trading",

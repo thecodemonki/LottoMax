@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 import '../styles/Home.css';
-import { experienceData, projectsData, educationData, aboutData } from '../data/content';
+import { experienceData, projectsData, educationData, aboutData, photosData } from '../data/content';
 
 function IconGithub({ size = 18 }) {
   return (
@@ -43,6 +43,7 @@ const TABS = [
   { id: 'experience', label: 'experience' },
   { id: 'projects', label: 'projects' },
   { id: 'contact', label: 'contact' },
+  { id: 'photos', label: 'photos' },
 ];
 
 const tabContentVariants = {
@@ -152,6 +153,21 @@ function ProjectsPanel() {
               </a>
             )}
           </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PhotosPanel() {
+  return (
+    <div className="tab-panel tab-panel--photos">
+      <div className="photos-grid">
+        {photosData.map((photo, index) => (
+          <article key={photo.id ?? index} className="photos-grid__item">
+            <div className="photos-grid__placeholder" aria-hidden />
+            <p className="photos-grid__caption">{photo.caption ?? '\u00a0'}</p>
+          </article>
         ))}
       </div>
     </div>
@@ -276,6 +292,18 @@ function Home({ setShowAudio }) {
               exit="exit"
             >
               <ContactPanel />
+            </motion.div>
+          )}
+          {activeTab === 'photos' && (
+            <motion.div
+              key="photos"
+              className="portfolio-tab-surface"
+              variants={tabContentVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <PhotosPanel />
             </motion.div>
           )}
         </AnimatePresence>

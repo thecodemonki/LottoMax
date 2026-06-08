@@ -222,8 +222,8 @@ body {
 
 .portfolio-bottom-nav__tab {
   flex: 1;
-  max-width: 6.5rem;
-  padding: 0.5rem 0.35rem;
+  max-width: 5.5rem;
+  padding: 0.5rem 0.25rem;
   border: none;
   background: transparent;
   font-family: inherit;
@@ -332,6 +332,54 @@ body {
   }
 }
 
+.tab-panel--photos {
+  max-width: min(100%, 72rem);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.photos-grid__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.photos-grid__placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.photos-grid__caption {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #525252;
+  min-height: 1.4em;
+}
+
+@media (min-width: 640px) {
+  .photos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .photos-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .tab-panel--contact {
   max-width: 400px;
   width: 100%;
@@ -374,7 +422,7 @@ body {
 
 @media (min-width: 640px) {
   .portfolio-bottom-nav__tab {
-    max-width: 8rem;
+    max-width: 7rem;
     font-size: 0.85rem;
   }
 }
