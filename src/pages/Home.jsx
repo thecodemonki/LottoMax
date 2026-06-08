@@ -89,7 +89,7 @@ function AboutPanel() {
 function ExperiencePanel() {
   return (
     <div className="tab-panel tab-panel--list">
-      <div className="experience-timeline">
+      <div className="experience-timeline experience-timeline--tab">
         {experienceData.map((exp) => (
           <div key={exp.id} className="experience-card experience-card--tab">
             <div className="exp-header">

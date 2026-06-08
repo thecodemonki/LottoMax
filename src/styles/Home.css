@@ -125,7 +125,17 @@ body {
 }
 
 .tab-panel--list {
-  max-width: 52rem;
+  max-width: min(100%, 72rem);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-panel.tab-panel--about {
+  max-width: 650px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-hero-title {
@@ -244,15 +254,83 @@ body {
   transform: none;
 }
 
+.experience-timeline.experience-timeline--tab {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .experience-timeline.experience-timeline--tab {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.experience-card--tab .exp-header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.experience-card--tab .exp-meta {
+  text-align: left;
+}
+
+.projects-grid-home.projects-grid-home--tab {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
 .project-card-home--tab {
   border-left: 3px solid #3b82f6;
+  padding: 1.25rem;
+}
+
+.project-card-home--tab .project-header h3 {
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.project-card-home--tab p {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+.project-card-home--tab .project-highlights li {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  margin-bottom: 0.35rem;
+}
+
+.project-card-home--tab .project-link-home {
+  font-size: 0.8125rem;
+}
+
+.project-card-home--tab .project-tech {
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.project-card-home--tab .tech-badge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+}
+
+@media (min-width: 640px) {
+  .projects-grid-home.projects-grid-home--tab {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .tab-panel--contact {
-  max-width: 24rem;
-  margin-left: 0;
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
   margin-right: auto;
-  text-align: left;
+  text-align: center;
 }
 
 .contact-lead {
@@ -260,16 +338,19 @@ body {
   line-height: 1.65;
   color: #525252;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .contact-actions {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.25rem;
 }
 
 .contact-row {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 0;
@@ -282,10 +363,6 @@ body {
 
 .contact-row:hover {
   color: #000000;
-}
-
-.projects-grid-home--tab {
-  gap: 1.25rem;
 }
 
 @media (min-width: 640px) {
