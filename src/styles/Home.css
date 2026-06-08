@@ -46,10 +46,15 @@ body {
 
 /* —— Tabbed portfolio (post-loading) —— */
 .portfolio-container--tabs {
-  background: #ffffff;
-  color: #0a0a0a;
+  background-color: #ffffff;
+  background-image: url('../assets/background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
   min-height: 100dvh;
   height: 100dvh;
+  color: #0a0a0a;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -115,7 +120,7 @@ body {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 0.5rem;
-  background: #ffffff;
+  background: transparent;
 }
 
 .tab-panel {
@@ -209,8 +214,10 @@ body {
   align-items: stretch;
   gap: 0.25rem;
   padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid #e5e5e5;
-  background: #ffffff;
+  border-top: 1px solid rgba(229, 229, 229, 0.85);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .portfolio-bottom-nav__tab {
