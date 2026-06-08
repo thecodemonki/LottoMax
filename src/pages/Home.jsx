@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 import '../styles/Home.css';
-import { experienceData, projectsData, educationData, aboutData, photosData } from '../data/content';
+import { experienceData, projectsData, aboutData, photosData } from '../data/content';
 
 function IconGithub({ size = 18 }) {
   return (
@@ -54,30 +54,28 @@ const tabContentVariants = {
 
 function AboutPanel() {
   const current = experienceData[0];
-  const highlights = [
-    `Engineering at Autumn — provider onboarding and pre-fill for grief counselors (Next.js, Prisma, Inngest).`,
-    `Projects Director at Western Founders Network — workshops, hackathons, and Demo Day for 700+ members.`,
-    `Interview Royale — real-time multiplayer interview practice with WebSockets and OpenAI evaluation.`,
-    `Team Canada Junior National Team (badminton), PanAm competitor and #2 U17 in Canada.`,
-  ];
 
   return (
     <div className="tab-panel tab-panel--about">
-      <h1 className="about-hero-title">Maxwell Peng</h1>
+      <h1 className="about-hero-title">{aboutData.name}</h1>
       <div className="about-prose">
-        <p>
-          {educationData.graduation} from {educationData.school}, working toward a {educationData.degree.toLowerCase()}.
-        </p>
-        <p>
-          I care about full-stack product work, startups, and building things people actually use — from polished onboarding flows to real-time systems.
-        </p>
+        <p>{aboutData.aboutTagline}</p>
+        <p>{aboutData.aboutBio}</p>
       </div>
-      <h2 className="about-subheading">Some stuff I did:</h2>
+      <h2 className="about-subheading">some stuff i did:</h2>
       <ul className="about-highlights">
-        {highlights.map((line, i) => (
+        {aboutData.aboutHighlights.map((line, i) => (
           <li key={i}>{line}</li>
         ))}
       </ul>
+      <h2 className="about-subheading">{aboutData.tryNextLabel}</h2>
+      <div className="about-prose about-prose--snippet">
+        <p>{aboutData.tryNext}</p>
+      </div>
+      <h2 className="about-subheading">{aboutData.intoLabel}</h2>
+      <div className="about-prose about-prose--snippet">
+        <p>{aboutData.into}</p>
+      </div>
       <p className="about-current-role">
         <span className="about-current-role__label">Currently</span>
         {' — '}

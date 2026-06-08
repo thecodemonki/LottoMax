@@ -2,12 +2,30 @@ export const aboutData = {
   name: "Maxwell Peng",
   title: "Full Stack Developer & Problem Solver",
   description:
-    "CS student at Western, building full-stack products and shipping real software. Into badminton, chess, markets, and whatever rabbit hole I'm obsessed with this month.",
+    "I love to build! Anything from Chrome extensions, web apps, iOS, blockchain, to research and whatever else I can get my hands on.",
   location: "London, ON | Originally from Oakville, ON",
   email: "mpeng57@uwo.ca",
   github: "https://github.com/thecodemonki",
   linkedin: "https://www.linkedin.com/in/maxwell-peng-070116246/",
-  phone: "(647) 562-2398"
+  phone: "(647) 562-2398",
+  /** About tab — first line under the name */
+  aboutTagline: "Computer Science at Western University, expected 2029.",
+  /** About tab — intro paragraph */
+  aboutBio:
+    "I love to build! Anything from Chrome extensions, web apps, iOS, blockchain, to research and whatever else I can get my hands on.",
+  aboutHighlights: [
+    "Interned at Autumn — engineered provider onboarding flows and a LinkedIn scrape-to-prefill system for grief counselors across Canada",
+    "Projects Director at Western Founders Network — workshops, hackathons, and Demo Day for 700+ members",
+    "Team Canada Junior National Team — badminton, PanAm competitor, #2 U17 in Canada",
+    "IB graduate from White Oaks Secondary",
+    "Spent a couple months doing UGC content creation",
+  ],
+  tryNextLabel: "would love to try next:",
+  tryNext:
+    "Blockchain · Machine Learning · Golf · Skiing · Food challenge",
+  intoLabel: "into:",
+  into:
+    "Poker · Stock market · Racket sports · Competitive swimming (8 years) · Hackathons · Food",
 };
 
 export const educationData = {
