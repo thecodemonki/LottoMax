@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import '../styles/Home.css';
 import { experienceData, projectsData, aboutData } from '../data/content';
 
@@ -52,35 +52,62 @@ const tabContentVariants = {
   exit: { opacity: 0, transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } },
 };
 
+/** Renders `a · b · c` with breaks only between phrases so separators are not orphaned. */
+function AboutDotLine({ text }) {
+  const parts = text.split(' · ').map((p) => p.trim()).filter(Boolean);
+  return (
+    <p className="about-dot-line">
+      {parts.map((part, i) => (
+        <Fragment key={`${i}-${part}`}>
+          {i > 0 && <span className="about-dot-line__sep"> · </span>}
+          <span className="about-dot-line__chunk">{part}</span>
+        </Fragment>
+      ))}
+    </p>
+  );
+}
+
 function AboutPanel() {
   const current = experienceData[0];
 
   return (
     <div className="tab-panel tab-panel--about">
-      <h1 className="about-hero-title">{aboutData.name}</h1>
-      <div className="about-prose">
-        <p>{aboutData.aboutTagline}</p>
-        <p>{aboutData.aboutBio}</p>
+      <div className="about-content">
+        <h1 className="about-hero-title">{aboutData.name}</h1>
+        <div className="about-section about-section--intro">
+          <div className="about-prose">
+            <p>{aboutData.aboutTagline}</p>
+            <p>{aboutData.aboutBio}</p>
+          </div>
+        </div>
+        <div className="about-section">
+          <h2 className="about-subheading">some stuff i did:</h2>
+          <ul className="about-highlights">
+            {aboutData.aboutHighlights.map((line, i) => (
+              <li key={i}>{line}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="about-section">
+          <h2 className="about-subheading">{aboutData.tryNextLabel}</h2>
+          <div className="about-prose about-prose--snippet">
+            <AboutDotLine text={aboutData.tryNext} />
+          </div>
+        </div>
+        <div className="about-section">
+          <h2 className="about-subheading">{aboutData.intoLabel}</h2>
+          <div className="about-prose about-prose--snippet">
+            <AboutDotLine text={aboutData.into} />
+          </div>
+        </div>
+        <div className="about-section">
+          <p className="about-current-role">
+            <span className="about-current-role__label">Currently</span>
+            {' — '}
+            {current.role} at {current.company}
+          </p>
+        </div>
       </div>
-      <h2 className="about-subheading">some stuff i did:</h2>
-      <ul className="about-highlights">
-        {aboutData.aboutHighlights.map((line, i) => (
-          <li key={i}>{line}</li>
-        ))}
-      </ul>
-      <h2 className="about-subheading">{aboutData.tryNextLabel}</h2>
-      <div className="about-prose about-prose--snippet">
-        <p>{aboutData.tryNext}</p>
-      </div>
-      <h2 className="about-subheading">{aboutData.intoLabel}</h2>
-      <div className="about-prose about-prose--snippet">
-        <p>{aboutData.into}</p>
-      </div>
-      <p className="about-current-role">
-        <span className="about-current-role__label">Currently</span>
-        {' — '}
-        {current.role} at {current.company}
-      </p>
     </div>
   );
 }

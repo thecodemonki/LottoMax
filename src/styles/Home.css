@@ -137,12 +137,29 @@ body {
 }
 
 .tab-panel.tab-panel--about {
-  max-width: 650px;
+  box-sizing: border-box;
   width: 100%;
-  margin-left: 0;
-  margin-right: auto;
-  padding-left: 0;
-  padding-right: 0;
+  max-width: none;
+  margin: 0;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+.about-content {
+  max-width: 600px;
+  width: 100%;
+}
+
+.about-content > .about-hero-title {
+  margin-bottom: 24px;
+}
+
+.about-section {
+  margin-bottom: 24px;
+}
+
+.about-section:last-child {
+  margin-bottom: 0;
 }
 
 .about-hero-title {
@@ -152,11 +169,10 @@ body {
   letter-spacing: -0.03em;
   color: #0a0a0a;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
 }
 
-.about-prose {
-  margin-bottom: 2rem;
+.tab-panel--about .about-prose {
+  margin-bottom: 0;
 }
 
 .about-prose p {
@@ -166,15 +182,25 @@ body {
   margin-bottom: 0.85rem;
 }
 
+.tab-panel--about .about-section--intro .about-prose p:last-child {
+  margin-bottom: 0;
+}
+
 .about-prose.about-prose--snippet {
   margin-bottom: 0;
-  max-width: 650px;
+  max-width: none;
   width: 100%;
 }
 
-.about-prose.about-prose--snippet p {
-  margin-bottom: 0;
-  text-wrap: pretty;
+.about-dot-line {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #525252;
+}
+
+.about-dot-line__chunk {
+  white-space: nowrap;
 }
 
 .about-subheading {
@@ -183,13 +209,8 @@ body {
   text-transform: lowercase;
   letter-spacing: 0.02em;
   color: #0a0a0a;
-  margin-bottom: 0.75rem;
-  margin-top: 2.5rem;
-}
-
-.tab-panel--about > .about-prose + .about-subheading {
   margin-top: 0;
-  padding-top: 0.35rem;
+  margin-bottom: 0.75rem;
 }
 
 .about-highlights {
@@ -215,13 +236,16 @@ body {
   font-weight: 700;
 }
 
+.about-prose.about-prose--snippet .about-dot-line {
+  margin-bottom: 0;
+}
+
 .about-current-role {
   font-size: 0.95rem;
   line-height: 1.5;
   color: #f97316;
-  margin-top: 2.5rem;
+  margin-top: 0;
   margin-bottom: 0;
-  padding-bottom: 0.25rem;
 }
 
 .about-current-role__label {
