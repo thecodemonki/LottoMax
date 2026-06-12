@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 import '../styles/Home.css';
-import { experienceData, projectsData, aboutData, photosByYear, photosYearOrder } from '../data/content';
+import { experienceData, projectsData, aboutData } from '../data/content';
 
 function IconGithub({ size = 18 }) {
   return (
@@ -158,35 +158,9 @@ function ProjectsPanel() {
 }
 
 function PhotosPanel() {
-  const [photoYear, setPhotoYear] = useState(photosYearOrder[0]);
-  const photosForYear = photosByYear[photoYear] ?? [];
-
   return (
     <div className="tab-panel tab-panel--photos">
-      <div className="photos-year-toggle" role="group" aria-label="Photo gallery year">
-        {photosYearOrder.map((year) => {
-          const isActive = photoYear === year;
-          return (
-            <button
-              key={year}
-              type="button"
-              className={`photos-year-toggle__option ${isActive ? 'is-active' : ''}`}
-              onClick={() => setPhotoYear(year)}
-              aria-pressed={isActive}
-            >
-              {year}
-            </button>
-          );
-        })}
-      </div>
-      <div className="photos-grid">
-        {photosForYear.map((photo, index) => (
-          <article key={photo.id ?? `${photoYear}-${index}`} className="photos-grid__item">
-            <div className="photos-grid__placeholder" aria-hidden />
-            <p className="photos-grid__caption">{photo.caption ?? '\u00a0'}</p>
-          </article>
-        ))}
-      </div>
+      <p className="photos-coming-soon">coming soon.</p>
     </div>
   );
 }
