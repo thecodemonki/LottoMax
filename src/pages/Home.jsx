@@ -241,15 +241,33 @@ function PhotosPanel() {
 
 function ResumePanel() {
   return (
-    <div className="tab-panel tab-panel--resume">
+    <div className="tab-panel tab-panel--list tab-panel--resume">
       <div className="resume-card about-block about-block--card">
-        <p className="resume-lead">my resume — updated regularly.</p>
-        <div className="resume-actions">
-          <a href={RESUME_URL} className="resume-link" target="_blank" rel="noopener noreferrer">
-            View Resume →
+        <div className="resume-toolbar">
+          <a
+            href={RESUME_URL}
+            className="resume-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download ↓
           </a>
-          <a href={RESUME_URL} className="resume-link resume-link--download" download>
-            Download Resume ↓
+        </div>
+        <div className="resume-embed-wrap">
+          <iframe
+            src={`${RESUME_URL}#view=FitH`}
+            title="Maxwell Peng Resume"
+            className="resume-embed"
+          />
+        </div>
+        <div className="resume-mobile-fallback">
+          <a
+            href={RESUME_URL}
+            className="resume-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Resume →
           </a>
         </div>
       </div>
