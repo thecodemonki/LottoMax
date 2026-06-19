@@ -13,6 +13,8 @@ export const aboutData = {
   /** About tab — intro paragraph */
   aboutBio:
     "I love to build! Anything from Chrome extensions, web apps, iOS, blockchain, to research and whatever else I can get my hands on.",
+  aboutOpenTo:
+    "Open to internships, collaborations, and good conversations about product, startups, or chess openings.",
   aboutHighlights: [
     "Interned at Autumn — engineered provider onboarding flows and a LinkedIn scrape-to-prefill system for grief counselors across Canada",
     "Projects Director at Western Founders Network — workshops, hackathons, and Demo Day for 700+ members",

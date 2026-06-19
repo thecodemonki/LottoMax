@@ -44,8 +44,10 @@ const TABS = [
   { id: 'photos', label: 'photos' },
   { id: 'experience', label: 'experience' },
   { id: 'projects', label: 'projects' },
-  { id: 'contact', label: 'contact' },
+  { id: 'resume', label: 'resume' },
 ];
+
+const RESUME_URL = '/resume.pdf';
 
 const tabContentVariants = {
   initial: { opacity: 0 },
@@ -80,6 +82,7 @@ function AboutPanel() {
             <p>{aboutData.aboutTagline}</p>
             <p>{aboutData.aboutBio}</p>
           </div>
+          <p className="about-open-to">{aboutData.aboutOpenTo}</p>
           <p className="about-current-role">
             <span className="about-current-role__label">Currently</span>
             {' — '}
@@ -236,25 +239,19 @@ function PhotosPanel() {
   );
 }
 
-function ContactPanel() {
+function ResumePanel() {
   return (
-    <div className="tab-panel tab-panel--contact">
-      <p className="contact-lead">
-        Open to internships, collaborations, and good conversations about product, startups, or chess openings.
-      </p>
-      <div className="contact-actions">
-        <a href={`mailto:${aboutData.email}`} className="contact-row">
-          <IconMail size={20} />
-          <span>{aboutData.email}</span>
-        </a>
-        <a href={aboutData.github} className="contact-row" target="_blank" rel="noopener noreferrer">
-          <IconGithub size={20} />
-          <span>GitHub</span>
-        </a>
-        <a href={aboutData.linkedin} className="contact-row" target="_blank" rel="noopener noreferrer">
-          <IconLinkedIn size={20} />
-          <span>LinkedIn</span>
-        </a>
+    <div className="tab-panel tab-panel--resume">
+      <div className="resume-card about-block about-block--card">
+        <p className="resume-lead">my resume — updated regularly.</p>
+        <div className="resume-actions">
+          <a href={RESUME_URL} className="resume-link" target="_blank" rel="noopener noreferrer">
+            View Resume →
+          </a>
+          <a href={RESUME_URL} className="resume-link resume-link--download" download>
+            Download Resume ↓
+          </a>
+        </div>
       </div>
     </div>
   );
@@ -356,16 +353,16 @@ function Home({ setShowAudio }) {
               <ProjectsPanel />
             </motion.div>
           )}
-          {activeTab === 'contact' && (
+          {activeTab === 'resume' && (
             <motion.div
-              key="contact"
+              key="resume"
               className="portfolio-tab-surface"
               variants={tabContentVariants}
               initial="initial"
               animate="animate"
               exit="exit"
             >
-              <ContactPanel />
+              <ResumePanel />
             </motion.div>
           )}
         </AnimatePresence>
