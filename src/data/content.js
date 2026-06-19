@@ -178,10 +178,10 @@ export const projectsData = [
   }
 ];
 
-/** Years shown in the Photos tab (newest first). Each key must exist on `photosByYear`. */
+/** Years shown in the Gallery tab (newest first). Each key must exist on `photosByYear`. */
 export const photosYearOrder = [2026, 2025];
 
-/** Per-year rows: `{ id?, caption, src? }[]` — `src` optional; without it, a grey placeholder is shown. */
+/** Per-year gallery rows: `{ id?, caption, src? }[]` — `src` optional; without it, a grey placeholder is shown. */
 export const photosByYear = {
   2026: [],
   2025: [],

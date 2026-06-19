@@ -2,7 +2,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
 import '../styles/Home.css';
-import { experienceData, projectsData, aboutData } from '../data/content';
+import {
+  experienceData,
+  projectsData,
+  aboutData,
+  photosByYear,
+  photosYearOrder,
+} from '../data/content';
 
 function IconGithub({ size = 18 }) {
   return (
@@ -41,7 +47,7 @@ function IconMail({ size = 18 }) {
 
 const TABS = [
   { id: 'about', label: 'about' },
-  { id: 'photos', label: 'photos' },
+  { id: 'gallery', label: 'gallery' },
   { id: 'experience', label: 'experience' },
   { id: 'projects', label: 'projects' },
   { id: 'resume', label: 'resume' },
@@ -231,10 +237,60 @@ function ProjectsPanel() {
   );
 }
 
-function PhotosPanel() {
+function GalleryPanel() {
+  const [selectedYear, setSelectedYear] = useState(photosYearOrder[0]);
+
+  const photos = photosByYear[selectedYear] ?? [];
+
   return (
-    <div className="tab-panel tab-panel--photos">
-      <p className="photos-coming-soon">coming soon.</p>
+    <div className="tab-panel tab-panel--list tab-panel--gallery">
+      <h2 className="gallery-heading">gallery</h2>
+      <div className="gallery-year-toggle" role="tablist" aria-label="Gallery year">
+        {photosYearOrder.map((year) => (
+          <button
+            key={year}
+            type="button"
+            role="tab"
+            aria-selected={selectedYear === year}
+            className={`gallery-year-pill${selectedYear === year ? ' is-active' : ''}`}
+            onClick={() => setSelectedYear(year)}
+          >
+            {year}
+          </button>
+        ))}
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedYear}
+          className="gallery-grid"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {photos.length === 0 ? (
+            <p className="gallery-empty">no photos for {selectedYear} yet.</p>
+          ) : (
+            photos.map((photo, i) => (
+              <figure key={photo.id ?? i} className="gallery-item">
+                {photo.src ? (
+                  <img
+                    src={photo.src}
+                    alt={photo.caption ?? ''}
+                    className="gallery-item__img"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="gallery-item__placeholder" aria-hidden />
+                )}
+                {photo.caption && (
+                  <figcaption className="gallery-item__caption">{photo.caption}</figcaption>
+                )}
+              </figure>
+            ))
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
@@ -335,16 +391,16 @@ function Home({ setShowAudio }) {
               <AboutPanel />
             </motion.div>
           )}
-          {activeTab === 'photos' && (
+          {activeTab === 'gallery' && (
             <motion.div
-              key="photos"
+              key="gallery"
               className="portfolio-tab-surface"
               variants={tabContentVariants}
               initial="initial"
               animate="animate"
               exit="exit"
             >
-              <PhotosPanel />
+              <GalleryPanel />
             </motion.div>
           )}
           {activeTab === 'experience' && (
