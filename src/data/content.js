@@ -179,29 +179,44 @@ export const projectsData = [
   {
     id: 5,
     title: "AgentMax",
-    description: "TODO: description",
-    tech: ["TODO"],
+    description:
+      "Six AI agents that team up to run M&A due diligence and hand you a scored investment memo in under 60 seconds.",
+    tech: ["LangGraph", "GPT-4o", "FastAPI", "Railway"],
     link: "#",
     color: "#f97316",
-    highlights: ["TODO: bullet 1", "TODO: bullet 2", "TODO: bullet 3"]
+    highlights: [
+      "Real agent-to-agent collaboration through @mentions and structured messages, every handoff flowing through a shared room",
+      "The legal agent flags deal-breakers and escalates to you automatically, no manual trigger needed",
+      "A deals dashboard with verdict filtering and side-by-side radar comparison across 5 risk dimensions"
+    ]
   },
   {
     id: 6,
     title: "Dice AI",
-    description: "TODO: description",
-    tech: ["TODO"],
-    link: "#",
+    description:
+      "A tax tool for content creators that plugs into Twitch, YouTube, Stripe, and Patreon and tells you what you actually owe, in real time.",
+    tech: ["Next.js", "Fastify", "TypeScript", "Postgres"],
+    link: "https://creatordice.com",
     color: "#8b5cf6",
-    highlights: ["TODO: bullet 1", "TODO: bullet 2", "TODO: bullet 3"]
+    highlights: [
+      "Calculates Canadian income tax, CPP, and GST/HST live as your income comes in",
+      "Anthropic AI explains your taxes in plain English instead of accountant-speak",
+      "Built the whole thing solo, from auth and billing to the tax math"
+    ]
   },
   {
     id: 7,
     title: "RacketSense",
-    description: "TODO: description",
-    tech: ["TODO"],
+    description:
+      "Upload a badminton clip and a computer vision pipeline breaks down every shot you hit, then tells you things about your game you never noticed.",
+    tech: ["Python", "MediaPipe", "scikit-learn", "Next.js"],
     link: "#",
     color: "#06b6d4",
-    highlights: ["TODO: bullet 1", "TODO: bullet 2", "TODO: bullet 3"]
+    highlights: [
+      "Pose estimation tracks your body frame by frame to catch every swing from raw video",
+      "A Random Forest classifier sorts shots into 6 types from 9 biomechanical features per swing",
+      "Markov chain analysis finds your habits, like which shot you always play after a smash"
+    ]
   }
 ];
 
