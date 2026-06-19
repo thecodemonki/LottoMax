@@ -175,6 +175,33 @@ export const projectsData = [
       "Developed a sell system supporting partial liquidation across multiple investment tranches with transaction fees",
       "Built a global auth context and social groups feature for leaderboards and cooperative play"
     ]
+  },
+  {
+    id: 5,
+    title: "AgentMax",
+    description: "TODO: description",
+    tech: ["TODO"],
+    link: "#",
+    color: "#f97316",
+    highlights: ["TODO: bullet 1", "TODO: bullet 2", "TODO: bullet 3"]
+  },
+  {
+    id: 6,
+    title: "Dice AI",
+    description: "TODO: description",
+    tech: ["TODO"],
+    link: "#",
+    color: "#8b5cf6",
+    highlights: ["TODO: bullet 1", "TODO: bullet 2", "TODO: bullet 3"]
+  },
+  {
+    id: 7,
+    title: "RacketSense",
+    description: "TODO: description",
+    tech: ["TODO"],
+    link: "#",
+    color: "#06b6d4",
+    highlights: ["TODO: bullet 1", "TODO: bullet 2", "TODO: bullet 3"]
   }
 ];
 

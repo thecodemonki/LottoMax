@@ -225,8 +225,12 @@ function ProjectsPanel() {
                 </span>
               ))}
             </div>
-            {project.link && project.link !== '#' && (
-              <a href={project.link} className="project-link-home" target="_blank" rel="noopener noreferrer">
+            {project.link && (
+              <a
+                href={project.link}
+                className="project-link-home"
+                {...(project.link !== '#' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
                 View project →
               </a>
             )}
