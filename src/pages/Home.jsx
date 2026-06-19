@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
+import { ChevronDown } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
 import '../styles/Home.css';
 import { experienceData, projectsData, aboutData } from '../data/content';
@@ -113,36 +114,77 @@ function AboutPanel() {
 }
 
 function ExperiencePanel() {
+  const [expandedId, setExpandedId] = useState(null);
+
+  const toggleExperience = (id) => {
+    setExpandedId((prev) => (prev === id ? null : id));
+  };
+
   return (
     <div className="tab-panel tab-panel--list">
       <div className="experience-timeline experience-timeline--tab">
-        {experienceData.map((exp) => (
-          <div key={exp.id} className="experience-card experience-card--tab">
-            <div className="exp-header">
-              <div>
-                <h3 className="exp-role">{exp.role}</h3>
-                <h4 className="exp-company">{exp.company}</h4>
-              </div>
-              <div className="exp-meta">
-                <div className="exp-period">{exp.period}</div>
-                <div className="exp-location">{exp.location}</div>
-              </div>
-            </div>
-            <p className="exp-description">{exp.description}</p>
-            <ul className="exp-achievements">
-              {exp.achievements.map((achievement, i) => (
-                <li key={i}>{achievement}</li>
-              ))}
-            </ul>
-            <div className="exp-tech">
-              {exp.tech.map((tech) => (
-                <span key={tech} className="tech-badge">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
+        {experienceData.map((exp) => {
+          const isExpanded = expandedId === exp.id;
+          const panelId = `exp-panel-${exp.id}`;
+
+          return (
+            <article
+              key={exp.id}
+              className={`experience-card experience-card--tab${isExpanded ? ' is-expanded' : ''}`}
+            >
+              <button
+                type="button"
+                className="exp-trigger"
+                onClick={() => toggleExperience(exp.id)}
+                aria-expanded={isExpanded}
+                aria-controls={panelId}
+              >
+                <div className="exp-header">
+                  <div className="exp-header__main">
+                    <h3 className="exp-role">{exp.role}</h3>
+                    <h4 className="exp-company">{exp.company}</h4>
+                  </div>
+                  <div className="exp-meta">
+                    <div className="exp-period">{exp.period}</div>
+                    <div className="exp-location">{exp.location}</div>
+                  </div>
+                  <ChevronDown
+                    className="exp-chevron"
+                    size={18}
+                    aria-hidden
+                  />
+                </div>
+              </button>
+              <motion.div
+                id={panelId}
+                initial={false}
+                animate={{
+                  height: isExpanded ? 'auto' : 0,
+                  opacity: isExpanded ? 1 : 0,
+                }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                style={{ overflow: 'hidden' }}
+                aria-hidden={!isExpanded}
+              >
+                <div className="exp-body">
+                  <p className="exp-description">{exp.description}</p>
+                  <ul className="exp-achievements">
+                    {exp.achievements.map((achievement, i) => (
+                      <li key={i}>{achievement}</li>
+                    ))}
+                  </ul>
+                  <div className="exp-tech">
+                    {exp.tech.map((tech) => (
+                      <span key={tech} className="tech-badge">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </article>
+          );
+        })}
       </div>
     </div>
   );
