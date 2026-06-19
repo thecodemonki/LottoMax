@@ -73,40 +73,42 @@ function AboutPanel() {
 
   return (
     <div className="tab-panel tab-panel--about">
-      <div className="about-content">
-        <h1 className="about-hero-title">{aboutData.name}</h1>
-        <div className="about-section about-section--intro">
+      <div className="about-islands">
+        <header className="about-block about-block--intro">
+          <h1 className="about-hero-title">{aboutData.name}</h1>
           <div className="about-prose">
             <p>{aboutData.aboutTagline}</p>
             <p>{aboutData.aboutBio}</p>
           </div>
-        </div>
-        <div className="about-section">
+          <p className="about-current-role">
+            <span className="about-current-role__label">Currently</span>
+            {' — '}
+            {current.role} at {current.company}
+          </p>
+        </header>
+
+        <section className="about-block about-block--card about-block--highlights">
           <h2 className="about-subheading">some stuff i did:</h2>
           <ul className="about-highlights">
             {aboutData.aboutHighlights.map((line, i) => (
               <li key={i}>{line}</li>
             ))}
           </ul>
-        </div>
-        <div className="about-section">
-          <h2 className="about-subheading">{aboutData.tryNextLabel}</h2>
-          <div className="about-prose about-prose--snippet">
-            <AboutDotLine text={aboutData.tryNext} />
-          </div>
-        </div>
-        <div className="about-section">
-          <h2 className="about-subheading">{aboutData.intoLabel}</h2>
-          <div className="about-prose about-prose--snippet">
-            <AboutDotLine text={aboutData.into} />
-          </div>
-        </div>
-        <div className="about-section">
-          <p className="about-current-role">
-            <span className="about-current-role__label">Currently</span>
-            {' — '}
-            {current.role} at {current.company}
-          </p>
+        </section>
+
+        <div className="about-islands__pair">
+          <section className="about-block about-block--card">
+            <h2 className="about-subheading">{aboutData.tryNextLabel}</h2>
+            <div className="about-prose about-prose--snippet">
+              <AboutDotLine text={aboutData.tryNext} />
+            </div>
+          </section>
+          <section className="about-block about-block--card">
+            <h2 className="about-subheading">{aboutData.intoLabel}</h2>
+            <div className="about-prose about-prose--snippet">
+              <AboutDotLine text={aboutData.into} />
+            </div>
+          </section>
         </div>
       </div>
     </div>
