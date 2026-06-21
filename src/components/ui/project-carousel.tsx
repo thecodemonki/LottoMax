@@ -11,6 +11,7 @@ import {
   ExpandableCard,
   ExpandableTag,
 } from '@/components/ui/expandable-card';
+import { cn } from '@/lib/utils';
 
 export interface ProjectCarouselItem {
   id: number;
@@ -144,7 +145,6 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
             aria-hidden
           />
           {projects.map((project, index) => {
-            const rotation = index % 2 === 0 ? -1.5 : 1.5;
             const previewTags = project.tech.slice(0, 4);
             const isFocused = focusedIndex === index;
 
@@ -159,7 +159,10 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
                   opacity: isFocused ? 1 : 0.5,
                 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="project-carousel__card"
+                className={cn(
+                  'project-carousel__card',
+                  isFocused && 'is-focused',
+                )}
               >
                 {!isFocused ? (
                   <div
@@ -174,15 +177,27 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
                   accentColor={project.color}
                   image={project.image}
                   link={project.link}
-                  whileHover={
-                    isFocused ? { rotate: rotation, scale: 1.02 } : undefined
-                  }
-                  collapsedClassName="h-[22rem] w-[18.75rem] shrink-0 p-5"
+                  accentGradient
+                  showExpandAffordance
+                  collapsedTitleClassName="project-carousel-card__title"
+                  collapsedDescriptionClassName="project-carousel-card__description"
+                  collapsedClassName="project-carousel-card h-[22rem] w-[18.75rem] shrink-0 p-5"
                   collapsedContent={
-                    <div className="flex flex-wrap gap-1.5">
-                      {previewTags.map((tag) => (
-                        <ExpandableTag key={tag} label={tag} />
-                      ))}
+                    <div className="project-carousel-card__footer flex flex-col gap-2.5">
+                      <div className="project-carousel-card__tags flex flex-wrap gap-1.5">
+                        {previewTags.map((tag) => (
+                          <ExpandableTag
+                            key={tag}
+                            label={tag}
+                            accentColor={project.color}
+                          />
+                        ))}
+                      </div>
+                      {project.highlights?.[0] ? (
+                        <p className="project-carousel-card__teaser line-clamp-2">
+                          {project.highlights[0]}
+                        </p>
+                      ) : null}
                     </div>
                   }
                 >
@@ -195,7 +210,11 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
                   ) : null}
                   <div className="project-tech mt-4 flex flex-wrap gap-2">
                     {project.tech.map((tag) => (
-                      <ExpandableTag key={tag} label={tag} />
+                      <ExpandableTag
+                        key={tag}
+                        label={tag}
+                        accentColor={project.color}
+                      />
                     ))}
                   </div>
                 </ExpandableCard>

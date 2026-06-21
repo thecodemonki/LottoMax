@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from 'react';
 import { AnimatePresence, motion, type HTMLMotionProps } from 'framer-motion';
-import { X } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 import { cn } from '@/lib/utils';
 
@@ -50,9 +50,22 @@ export function ExpandableCardGroup({ children }: { children: ReactNode }) {
   );
 }
 
-export function ExpandableTag({ label }: { label: string }) {
+export function ExpandableTag({
+  label,
+  accentColor,
+}: {
+  label: string;
+  accentColor?: string;
+}) {
+  const backgroundColor = accentColor
+    ? `color-mix(in srgb, ${accentColor} 14%, #f5f5f5)`
+    : '#e5e5e5';
+
   return (
-    <span className="tech-badge rounded-md bg-[#e5e5e5] px-2 py-1 text-xs font-medium text-[#525252]">
+    <span
+      className="tech-badge inline-flex h-6 items-center rounded-md px-2.5 text-[0.7rem] font-medium leading-none text-[#525252]"
+      style={{ backgroundColor }}
+    >
       {label}
     </span>
   );
@@ -89,6 +102,10 @@ export interface ExpandableCardProps {
   children?: ReactNode;
   className?: string;
   collapsedClassName?: string;
+  collapsedTitleClassName?: string;
+  collapsedDescriptionClassName?: string;
+  accentGradient?: boolean;
+  showExpandAffordance?: boolean;
   whileHover?: HTMLMotionProps<'button'>['whileHover'];
 }
 
@@ -103,6 +120,10 @@ export function ExpandableCard({
   children,
   className,
   collapsedClassName,
+  collapsedTitleClassName,
+  collapsedDescriptionClassName,
+  accentGradient = false,
+  showExpandAffordance = false,
   whileHover,
 }: ExpandableCardProps) {
   const { activeId, setActiveId } = useExpandableCardGroup();
@@ -137,6 +158,12 @@ export function ExpandableCard({
   const descLayoutId = `desc-${id}`;
   const imageLayoutId = `image-${id}`;
 
+  const collapsedBackgroundStyle = accentGradient
+    ? {
+        backgroundImage: `linear-gradient(180deg, color-mix(in srgb, ${accentColor} 10%, #f5f5f5) 0%, #f5f5f5 52%)`,
+      }
+    : undefined;
+
   return (
     <>
       <motion.button
@@ -145,6 +172,7 @@ export function ExpandableCard({
         onClick={() => setActiveId(id)}
         whileHover={whileHover}
         transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+        style={collapsedBackgroundStyle}
         className={cn(
           'expandable-card relative flex cursor-pointer flex-col text-left',
           'rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] shadow-sm',
@@ -166,18 +194,32 @@ export function ExpandableCard({
         )}
         <motion.h3
           layoutId={titleLayoutId}
-          className="text-lg font-bold leading-tight text-[#0a0a0a]"
+          className={cn(
+            'text-lg font-bold leading-tight text-[#0a0a0a]',
+            collapsedTitleClassName,
+          )}
         >
           {title}
         </motion.h3>
         <motion.p
           layoutId={descLayoutId}
-          className="mt-2 line-clamp-2 text-sm leading-snug text-[#525252]"
+          className={cn(
+            'mt-2 line-clamp-2 text-sm leading-snug text-[#525252]',
+            collapsedDescriptionClassName,
+          )}
         >
           {description}
         </motion.p>
         {collapsedContent ? (
           <div className="mt-auto pt-4">{collapsedContent}</div>
+        ) : null}
+        {showExpandAffordance ? (
+          <span
+            className="pointer-events-none absolute bottom-4 right-4 z-[1] rounded-full p-1 text-[#525252]"
+            aria-hidden
+          >
+            <Plus size={18} />
+          </span>
         ) : null}
       </motion.button>
 
