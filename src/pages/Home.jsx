@@ -8,7 +8,10 @@ import {
   aboutData,
   photosByYear,
   photosYearOrder,
+  featuredCarouselProjects,
+  carouselProjectTitles,
 } from '../data/content';
+import { ProjectCarousel } from '@/components/ui/project-carousel';
 
 function IconGithub({ size = 18 }) {
   return (
@@ -202,10 +205,17 @@ function ExperiencePanel() {
 }
 
 function ProjectsPanel() {
+  const gridProjects = projectsData.filter(
+    (project) => !carouselProjectTitles.includes(project.title),
+  );
+
   return (
     <div className="tab-panel tab-panel--list">
+      <section className="projects-carousel-section">
+        <ProjectCarousel projects={featuredCarouselProjects} />
+      </section>
       <div className="projects-grid-home projects-grid-home--tab">
-        {projectsData.map((project) => (
+        {gridProjects.map((project) => (
           <div key={project.id} className="project-card-home project-card-home--tab">
             <div className="project-header" style={{ borderLeftColor: project.color }}>
               <h3>{project.title}</h3>

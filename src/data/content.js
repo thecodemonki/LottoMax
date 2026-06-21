@@ -234,6 +234,56 @@ export const projectsData = [
   }
 ];
 
+export const featuredCarouselProjects = [
+  {
+    title: "AgentMax",
+    tagline: "M&A due diligence with six collaborating AI agents",
+    description:
+      "Six AI agents that team up to run M&A due diligence and hand you a scored investment memo in under 60 seconds.",
+    tags: ["LangGraph", "GPT-4o", "FastAPI", "Railway"],
+    link: "#",
+    color: "#f97316",
+  },
+  {
+    title: "RacketSense",
+    tagline: "Computer vision breakdown of every badminton shot",
+    description:
+      "Upload a badminton clip and a computer vision pipeline breaks down every shot you hit, then tells you things about your game you never noticed.",
+    tags: ["Python", "MediaPipe", "scikit-learn", "Next.js"],
+    link: "#",
+    color: "#06b6d4",
+  },
+  {
+    title: "Dice AI",
+    tagline: "Live Canadian tax estimates for creators",
+    description:
+      "A tax tool for content creators that plugs into Twitch, YouTube, Stripe, and Patreon and tells you what you actually owe, in real time.",
+    tags: ["Next.js", "Fastify", "TypeScript", "Postgres"],
+    link: "https://creatordice.com",
+    color: "#8b5cf6",
+  },
+  {
+    title: "Defrost",
+    tagline: "Portfolio-matched cold outreach in your voice",
+    description:
+      "Paste a company's About page or screenshot it, and Defrost figures out which of your projects is most relevant, then drafts a cold email or coffee chat prep in your voice.",
+    tags: ["Next.js", "TypeScript", "Cohere API"],
+    link: "https://defrost-olive.vercel.app",
+    color: "#ec4899",
+  },
+  {
+    title: "Interview Royale",
+    tagline: "Multiplayer interview practice with live AI scoring",
+    description:
+      "Real-time multiplayer interview practice platform supporting 10+ concurrent users with WebSocket-based communication, live video/audio streaming at 15 FPS, and OpenAI-powered answer evaluation using STAR method criteria.",
+    tags: ["TypeScript", "Python", "FastAPI", "WebSocket", "OpenAI API"],
+    link: "https://interviewroyale.com/",
+    color: "#667eea",
+  },
+];
+
+export const carouselProjectTitles = featuredCarouselProjects.map((project) => project.title);
+
 /** Years shown in the Gallery tab (oldest to newest, left to right). Each key must exist on `photosByYear`. */
 export const photosYearOrder = [2025, 2026];
 

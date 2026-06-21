@@ -431,6 +431,12 @@ body {
   }
 }
 
+.projects-carousel-section {
+  margin-bottom: 2rem;
+  width: 100%;
+  overflow: hidden;
+}
+
 .projects-grid-home.projects-grid-home--tab {
   display: grid;
   grid-template-columns: 1fr;
