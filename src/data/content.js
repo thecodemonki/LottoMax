@@ -217,6 +217,20 @@ export const projectsData = [
       "A Random Forest classifier sorts shots into 6 types from 9 biomechanical features per swing",
       "Markov chain analysis finds your habits, like which shot you always play after a smash"
     ]
+  },
+  {
+    id: 8,
+    title: "Defrost",
+    description:
+      "Paste a company's About page or screenshot it, and Defrost figures out which of your projects is most relevant, then drafts a cold email or coffee chat prep in your voice.",
+    tech: ["Next.js", "TypeScript", "Cohere API"],
+    link: "https://defrost-olive.vercel.app",
+    color: "#ec4899",
+    highlights: [
+      "Semantic matching engine using Cohere Embed v4 to automatically pick the most relevant portfolio project for each company",
+      "Screenshot-to-text OCR via command-a-vision, so you can paste a screenshot instead of copying text by hand",
+      "Few-shot prompting trained on real outreach examples to generate drafts that sound like you, not generic AI output"
+    ]
   }
 ];
 
