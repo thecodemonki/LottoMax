@@ -336,8 +336,11 @@ export function ExpandableCard({
               layoutId={cardLayoutId}
               onClick={(event) => event.stopPropagation()}
               className={cn(
-                'expandable-card__modal relative flex max-h-[min(90vh,40rem)] w-full max-w-lg flex-col',
-                'overflow-y-auto overflow-x-hidden rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] p-0 shadow-lg',
+                'expandable-card__modal relative flex w-full flex-col',
+                'overflow-x-hidden rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] p-0 shadow-lg',
+                useProjectHero
+                  ? 'expandable-card__modal--project'
+                  : 'max-h-[min(90vh,40rem)] max-w-lg overflow-y-auto',
               )}
             >
               <button
@@ -349,9 +352,21 @@ export function ExpandableCard({
                 <X size={18} />
               </button>
 
-              <div className="expandable-card__modal-hero">{expandedHero}</div>
+              <div
+                className={cn(
+                  'expandable-card__modal-hero',
+                  useProjectHero && 'expandable-card__modal-hero--project',
+                )}
+              >
+                {expandedHero}
+              </div>
 
-              <div className="expandable-card__modal-content">
+              <div
+                className={cn(
+                  'expandable-card__modal-content',
+                  useProjectHero && 'expandable-card__modal-content--project',
+                )}
+              >
                 <motion.h3
                   layoutId={titleLayoutId}
                   className="expandable-card__modal-title pr-10"
@@ -364,6 +379,10 @@ export function ExpandableCard({
                 >
                   {description}
                 </motion.p>
+
+                {children ? (
+                  <div className="expandable-card__modal-body">{children}</div>
+                ) : null}
 
                 {link ? (
                   <a
@@ -380,10 +399,6 @@ export function ExpandableCard({
                   >
                     View project →
                   </a>
-                ) : null}
-
-                {children ? (
-                  <div className="expandable-card__modal-body">{children}</div>
                 ) : null}
               </div>
             </motion.div>

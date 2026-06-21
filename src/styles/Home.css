@@ -565,6 +565,55 @@ body {
   margin: 0;
 }
 
+.expandable-card__modal--project {
+  width: 100%;
+  max-width: 650px;
+  min-height: 720px;
+  max-height: min(90vh, 750px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.expandable-card__modal-hero--project {
+  flex-shrink: 0;
+  height: 220px;
+  border-radius: 1.5rem 1.5rem 0 0;
+  overflow: hidden;
+}
+
+.expandable-card__modal-hero--project .expandable-card__hero--expanded {
+  height: 100%;
+}
+
+.expandable-card__modal-content--project {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem 2rem 2rem;
+}
+
+.expandable-card__modal-content--project .expandable-card__modal-desc {
+  margin: 0;
+}
+
+.expandable-card__modal-content--project .expandable-card__modal-body {
+  margin-top: 0;
+  gap: 1.25rem;
+}
+
+.expandable-card__modal-content--project .expandable-card__modal-link {
+  margin: 0;
+}
+
+.expandable-card__modal-content--project .project-highlights li {
+  padding-left: 1.5rem;
+  line-height: 1.6;
+}
+
 .project-carousel-card__title {
   margin: 0;
   font-size: 1.25rem;
