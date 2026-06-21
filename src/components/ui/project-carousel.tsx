@@ -177,11 +177,12 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
                   accentColor={project.color}
                   image={project.image}
                   link={project.link}
-                  accentGradient
+                  heroStyle="project-hero"
+                  accentGradient={!project.image}
                   showExpandAffordance
                   collapsedTitleClassName="project-carousel-card__title"
                   collapsedDescriptionClassName="project-carousel-card__description"
-                  collapsedClassName="project-carousel-card h-[22rem] w-[18.75rem] shrink-0 p-5"
+                  collapsedClassName="project-carousel-card h-[26rem] w-[18.75rem] shrink-0"
                   onCollapsedClick={(_, expand) => {
                     if (isFocused) {
                       expand();

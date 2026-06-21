@@ -128,6 +128,7 @@ export const projectsData = [
     tech: ["TypeScript", "Python", "FastAPI", "WebSocket", "OpenAI API"],
     link: "https://interviewroyale.com/",
     color: "#667eea",
+    image: "/projects/interview-royale.png",
     highlights: [
       "RESTful API endpoints with sub-100ms latency",
       "Proximity-based spatial audio with distance attenuation",
@@ -141,6 +142,7 @@ export const projectsData = [
     tech: ["JavaScript", "React", "HTML", "CSS", "Vite", "React Router"],
     link: "https://github.com/yourusername/wfn-projects",
     color: "#4a90e2",
+    image: "/projects/wfn.png",
     highlights: [
       "Reusable React components and structured routing",
       "Collaborative development through GitHub branches",
@@ -155,6 +157,7 @@ export const projectsData = [
     link: "https://chromewebstore.google.com/detail/dayflow/pfoklgkdgoebldeobkgjcfencpjjlokp",
     githubRepo: "https://github.com/thecodemonki/DayFlow",
     color: "#2ecc71",
+    image: "/projects/dayflow.png",
     highlights: [
       "Reduces distractions by 40-60% for users",
       "Data-driven habit insights and streak-based motivation",
@@ -184,6 +187,7 @@ export const projectsData = [
     tech: ["LangGraph", "GPT-4o", "FastAPI", "Railway"],
     link: "#",
     color: "#f97316",
+    image: "/projects/agentmax.png",
     highlights: [
       "Real agent-to-agent collaboration through @mentions and structured messages, every handoff flowing through a shared room",
       "The legal agent flags deal-breakers and escalates to you automatically, no manual trigger needed",
@@ -198,6 +202,7 @@ export const projectsData = [
     tech: ["Next.js", "Fastify", "TypeScript", "Postgres"],
     link: "https://creatordice.com",
     color: "#8b5cf6",
+    image: "/projects/dice-ai.png",
     highlights: [
       "Calculates Canadian income tax, CPP, and GST/HST live as your income comes in",
       "Anthropic AI explains your taxes in plain English instead of accountant-speak",
@@ -226,6 +231,7 @@ export const projectsData = [
     tech: ["Next.js", "TypeScript", "Cohere API"],
     link: "https://defrost-olive.vercel.app",
     color: "#ec4899",
+    image: "/projects/defrost.png",
     highlights: [
       "Semantic matching engine using Cohere Embed v4 to automatically pick the most relevant portfolio project for each company",
       "Screenshot-to-text OCR via command-a-vision, so you can paste a screenshot instead of copying text by hand",

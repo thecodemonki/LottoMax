@@ -423,7 +423,56 @@ body {
   transition: box-shadow 0.25s ease;
 }
 
+.expandable-card__hero {
+  position: relative;
+  width: 100%;
+  background: #f0f0f0;
+}
+
+.expandable-card__hero--collapsed {
+  height: 10.5rem;
+}
+
+.expandable-card__hero--expanded {
+  height: 14rem;
+}
+
+.expandable-card__hero-img,
+.expandable-card__hero-fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.expandable-card__hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 55%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+  pointer-events: none;
+}
+
+.expandable-card__hero-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 1;
+}
+
+.expandable-card__body {
+  min-width: 0;
+}
+
 .project-carousel-card__title {
+  margin: 0;
   font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -432,6 +481,7 @@ body {
 }
 
 .project-carousel-card__description {
+  margin: 0.5rem 0 0;
   font-size: 0.8125rem;
   line-height: 1.35;
   color: #737373;
@@ -441,7 +491,20 @@ body {
   overflow: hidden;
 }
 
+.project-carousel-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.project-carousel-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
 .project-carousel-card__teaser {
+  margin: 0;
   font-size: 0.75rem;
   line-height: 1.4;
   color: #a3a3a3;

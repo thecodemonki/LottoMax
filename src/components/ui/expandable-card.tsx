@@ -92,6 +92,49 @@ function AccentAnchor({
   );
 }
 
+function CardHero({
+  layoutId,
+  image,
+  accentColor,
+  expanded,
+}: {
+  layoutId: string;
+  image?: string;
+  accentColor: string;
+  expanded: boolean;
+}) {
+  return (
+    <motion.div
+      layoutId={layoutId}
+      className={cn(
+        'expandable-card__hero shrink-0 overflow-hidden',
+        expanded ? 'expandable-card__hero--expanded' : 'expandable-card__hero--collapsed',
+      )}
+    >
+      {image ? (
+        <img
+          src={image}
+          alt=""
+          className="expandable-card__hero-img"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div
+          className="expandable-card__hero-fallback"
+          style={{
+            background: `linear-gradient(180deg, ${accentColor} 0%, ${accentColor}cc 100%)`,
+          }}
+        />
+      )}
+      <div
+        className="expandable-card__hero-accent"
+        style={{ backgroundColor: accentColor }}
+      />
+    </motion.div>
+  );
+}
+
 export interface ExpandableCardProps {
   id: ExpandableCardId;
   title: string;
@@ -107,6 +150,7 @@ export interface ExpandableCardProps {
   collapsedDescriptionClassName?: string;
   accentGradient?: boolean;
   showExpandAffordance?: boolean;
+  heroStyle?: 'accent-bar' | 'project-hero';
   whileHover?: HTMLMotionProps<'button'>['whileHover'];
   onCollapsedClick?: (
     event: MouseEvent<HTMLButtonElement>,
@@ -129,6 +173,7 @@ export function ExpandableCard({
   collapsedDescriptionClassName,
   accentGradient = false,
   showExpandAffordance = false,
+  heroStyle = 'accent-bar',
   whileHover,
   onCollapsedClick,
 }: ExpandableCardProps) {
@@ -163,12 +208,52 @@ export function ExpandableCard({
   const titleLayoutId = `title-${id}`;
   const descLayoutId = `desc-${id}`;
   const imageLayoutId = `image-${id}`;
+  const useProjectHero = heroStyle === 'project-hero';
 
-  const collapsedBackgroundStyle = accentGradient
-    ? {
-        backgroundImage: `linear-gradient(180deg, color-mix(in srgb, ${accentColor} 10%, #f5f5f5) 0%, #f5f5f5 52%)`,
-      }
-    : undefined;
+  const collapsedBackgroundStyle =
+    accentGradient && !useProjectHero
+      ? {
+          backgroundImage: `linear-gradient(180deg, color-mix(in srgb, ${accentColor} 10%, #f5f5f5) 0%, #f5f5f5 52%)`,
+        }
+      : undefined;
+
+  const collapsedHero = useProjectHero ? (
+    <CardHero
+      layoutId={imageLayoutId}
+      image={image}
+      accentColor={accentColor}
+      expanded={false}
+    />
+  ) : image ? (
+    <motion.div layoutId={imageLayoutId} className="mb-4">
+      <img
+        src={image}
+        alt=""
+        className="h-24 w-full rounded-lg border border-[#e5e5e5] object-cover"
+      />
+    </motion.div>
+  ) : (
+    <AccentAnchor id={id} accentColor={accentColor} expanded={false} />
+  );
+
+  const expandedHero = useProjectHero ? (
+    <CardHero
+      layoutId={imageLayoutId}
+      image={image}
+      accentColor={accentColor}
+      expanded
+    />
+  ) : image ? (
+    <motion.div layoutId={imageLayoutId} className="mb-4 pr-8">
+      <img
+        src={image}
+        alt=""
+        className="h-40 w-full rounded-xl border border-[#e5e5e5] object-cover"
+      />
+    </motion.div>
+  ) : (
+    <AccentAnchor id={id} accentColor={accentColor} expanded />
+  );
 
   return (
     <>
@@ -189,50 +274,51 @@ export function ExpandableCard({
           'expandable-card relative flex cursor-pointer flex-col text-left',
           'rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] shadow-sm',
           'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3b82f6]',
+          useProjectHero && 'overflow-hidden p-0',
           collapsedClassName,
           className,
         )}
       >
-        {image ? (
-          <motion.div layoutId={imageLayoutId} className="mb-4">
-            <img
-              src={image}
-              alt=""
-              className="h-24 w-full rounded-lg border border-[#e5e5e5] object-cover"
-            />
-          </motion.div>
-        ) : (
-          <AccentAnchor id={id} accentColor={accentColor} expanded={false} />
-        )}
-        <motion.h3
-          layoutId={titleLayoutId}
+        {collapsedHero}
+        <div
           className={cn(
-            'text-lg font-bold leading-tight text-[#0a0a0a]',
-            collapsedTitleClassName,
+            'expandable-card__body flex min-h-0 flex-1 flex-col',
+            useProjectHero ? 'px-5 pb-5 pt-4' : '',
           )}
         >
-          {title}
-        </motion.h3>
-        <motion.p
-          layoutId={descLayoutId}
-          className={cn(
-            'mt-2 line-clamp-2 text-sm leading-snug text-[#525252]',
-            collapsedDescriptionClassName,
-          )}
-        >
-          {description}
-        </motion.p>
-        {collapsedContent ? (
-          <div className="mt-auto pt-4">{collapsedContent}</div>
-        ) : null}
-        {showExpandAffordance ? (
-          <span
-            className="pointer-events-none absolute bottom-4 right-4 z-[1] rounded-full p-1 text-[#525252]"
-            aria-hidden
+          <motion.h3
+            layoutId={titleLayoutId}
+            className={cn(
+              !collapsedTitleClassName && 'text-lg font-bold leading-tight text-[#0a0a0a]',
+              collapsedTitleClassName,
+            )}
           >
-            <Plus size={18} />
-          </span>
-        ) : null}
+            {title}
+          </motion.h3>
+          <motion.p
+            layoutId={descLayoutId}
+            className={cn(
+              !collapsedDescriptionClassName &&
+                'mt-2 line-clamp-2 text-sm leading-snug text-[#525252]',
+              collapsedDescriptionClassName,
+            )}
+          >
+            {description}
+          </motion.p>
+          {collapsedContent ? (
+            <div className={cn('mt-auto', useProjectHero ? 'pt-3' : 'pt-4')}>
+              {collapsedContent}
+            </div>
+          ) : null}
+          {showExpandAffordance ? (
+            <span
+              className="pointer-events-none absolute bottom-4 right-4 z-[1] rounded-full p-1 text-[#525252]"
+              aria-hidden
+            >
+              <Plus size={18} />
+            </span>
+          ) : null}
+        </div>
       </motion.button>
 
       <AnimatePresence>
@@ -251,7 +337,8 @@ export function ExpandableCard({
               onClick={(event) => event.stopPropagation()}
               className={cn(
                 'relative flex max-h-[min(90vh,40rem)] w-full max-w-lg flex-col overflow-y-auto',
-                'rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] p-6 shadow-lg',
+                'rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] shadow-lg',
+                useProjectHero ? 'overflow-hidden p-0' : 'p-6',
               )}
             >
               <button
@@ -263,49 +350,44 @@ export function ExpandableCard({
                 <X size={18} />
               </button>
 
-              {image ? (
-                <motion.div layoutId={imageLayoutId} className="mb-4 pr-8">
-                  <img
-                    src={image}
-                    alt=""
-                    className="h-40 w-full rounded-xl border border-[#e5e5e5] object-cover"
-                  />
-                </motion.div>
-              ) : (
-                <AccentAnchor id={id} accentColor={accentColor} expanded />
-              )}
+              {expandedHero}
 
-              <motion.h3
-                layoutId={titleLayoutId}
-                className="pr-8 text-2xl font-bold text-[#0a0a0a]"
-              >
-                {title}
-              </motion.h3>
-              <motion.p
-                layoutId={descLayoutId}
-                className="mt-2 text-sm font-medium leading-relaxed text-[#525252]"
-              >
-                {description}
-              </motion.p>
-
-              {link ? (
-                <a
-                  href={link}
-                  className="mt-4 inline-flex items-center gap-1 font-semibold text-[#0a0a0a] transition-all hover:translate-x-1 hover:text-black"
-                  {...(link !== '#'
-                    ? { target: '_blank', rel: 'noopener noreferrer' }
-                    : {})}
-                  onClick={(event) => {
-                    if (link === '#') {
-                      event.preventDefault();
-                    }
-                  }}
+              <div className={cn(useProjectHero && 'px-6 pb-6 pt-4')}>
+                <motion.h3
+                  layoutId={titleLayoutId}
+                  className={cn(
+                    'text-2xl font-bold text-[#0a0a0a]',
+                    !useProjectHero && 'pr-8',
+                  )}
                 >
-                  View project →
-                </a>
-              ) : null}
+                  {title}
+                </motion.h3>
+                <motion.p
+                  layoutId={descLayoutId}
+                  className="mt-2 text-sm font-medium leading-relaxed text-[#525252]"
+                >
+                  {description}
+                </motion.p>
 
-              {children ? <div className="mt-4">{children}</div> : null}
+                {link ? (
+                  <a
+                    href={link}
+                    className="mt-4 inline-flex items-center gap-1 font-semibold text-[#0a0a0a] transition-all hover:translate-x-1 hover:text-black"
+                    {...(link !== '#'
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                    onClick={(event) => {
+                      if (link === '#') {
+                        event.preventDefault();
+                      }
+                    }}
+                  >
+                    View project →
+                  </a>
+                ) : null}
+
+                {children ? <div className="mt-4">{children}</div> : null}
+              </div>
             </motion.div>
           </motion.div>
         ) : null}
