@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
 import '../styles/Home.css';
 import {
@@ -8,10 +7,13 @@ import {
   aboutData,
   photosByYear,
   photosYearOrder,
-  featuredCarouselProjects,
-  carouselProjectTitles,
 } from '../data/content';
 import { ProjectCarousel } from '@/components/ui/project-carousel';
+import {
+  ExpandableCard,
+  ExpandableCardGroup,
+  ExpandableTag,
+} from '@/components/ui/expandable-card';
 
 function IconGithub({ size = 18 }) {
   return (
@@ -128,125 +130,52 @@ function AboutPanel() {
 }
 
 function ExperiencePanel() {
-  const [expandedId, setExpandedId] = useState(null);
-
-  const toggleExperience = (id) => {
-    setExpandedId((prev) => (prev === id ? null : id));
-  };
-
   return (
     <div className="tab-panel tab-panel--list">
-      <div className="experience-timeline experience-timeline--tab">
-        {experienceData.map((exp) => {
-          const isExpanded = expandedId === exp.id;
-          const panelId = `exp-panel-${exp.id}`;
-
-          return (
-            <article
+      <ExpandableCardGroup>
+        <div className="experience-expandable-grid">
+          {experienceData.map((exp) => (
+            <ExpandableCard
               key={exp.id}
-              className={`experience-card experience-card--tab${isExpanded ? ' is-expanded' : ''}`}
+              id={exp.id}
+              title={exp.role}
+              description={exp.company}
+              accentColor="#3b82f6"
+              collapsedClassName="expandable-card--experience h-full min-h-[11rem] w-full p-5"
+              collapsedContent={
+                <div className="exp-meta expandable-card__meta">
+                  <div className="exp-period">{exp.period}</div>
+                  <div className="exp-location">{exp.location}</div>
+                </div>
+              }
             >
-              <button
-                type="button"
-                className="exp-trigger"
-                onClick={() => toggleExperience(exp.id)}
-                aria-expanded={isExpanded}
-                aria-controls={panelId}
-              >
-                <div className="exp-header">
-                  <div className="exp-header__main">
-                    <h3 className="exp-role">{exp.role}</h3>
-                    <h4 className="exp-company">{exp.company}</h4>
-                  </div>
-                  <div className="exp-meta">
-                    <div className="exp-period">{exp.period}</div>
-                    <div className="exp-location">{exp.location}</div>
-                  </div>
-                  <ChevronDown
-                    className="exp-chevron"
-                    size={18}
-                    aria-hidden
-                  />
-                </div>
-              </button>
-              <motion.div
-                id={panelId}
-                initial={false}
-                animate={{
-                  height: isExpanded ? 'auto' : 0,
-                  opacity: isExpanded ? 1 : 0,
-                }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                style={{ overflow: 'hidden' }}
-                aria-hidden={!isExpanded}
-              >
-                <div className="exp-body">
-                  <p className="exp-description">{exp.description}</p>
-                  <ul className="exp-achievements">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i}>{achievement}</li>
-                    ))}
-                  </ul>
-                  <div className="exp-tech">
-                    {exp.tech.map((tech) => (
-                      <span key={tech} className="tech-badge">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </article>
-          );
-        })}
-      </div>
+              <p className="exp-description">{exp.description}</p>
+              <ul className="exp-achievements">
+                {exp.achievements.map((achievement, i) => (
+                  <li key={i}>{achievement}</li>
+                ))}
+              </ul>
+              <div className="exp-tech">
+                {exp.tech.map((tech) => (
+                  <ExpandableTag key={tech} label={tech} />
+                ))}
+              </div>
+            </ExpandableCard>
+          ))}
+        </div>
+      </ExpandableCardGroup>
     </div>
   );
 }
 
 function ProjectsPanel() {
-  const gridProjects = projectsData.filter(
-    (project) => !carouselProjectTitles.includes(project.title),
-  );
-
   return (
     <div className="tab-panel tab-panel--list">
       <section className="projects-carousel-section">
-        <ProjectCarousel projects={featuredCarouselProjects} />
+        <ExpandableCardGroup>
+          <ProjectCarousel projects={projectsData} />
+        </ExpandableCardGroup>
       </section>
-      <div className="projects-grid-home projects-grid-home--tab">
-        {gridProjects.map((project) => (
-          <div key={project.id} className="project-card-home project-card-home--tab">
-            <div className="project-header" style={{ borderLeftColor: project.color }}>
-              <h3>{project.title}</h3>
-            </div>
-            <p>{project.description}</p>
-            {project.highlights && (
-              <ul className="project-highlights">
-                {project.highlights.map((highlight, i) => (
-                  <li key={i}>{highlight}</li>
-                ))}
-              </ul>
-            )}
-            <div className="project-tech">
-              {project.tech.map((tech) => (
-                <span key={tech} className="tech-badge">
-                  {tech}
-                </span>
-              ))}
-            </div>
-            {project.link && (
-              <a
-                href={project.link}
-                className="project-link-home"
-                {...(project.link !== '#' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              >
-                View project →
-              </a>
-            )}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
