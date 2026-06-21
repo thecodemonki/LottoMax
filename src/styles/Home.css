@@ -471,6 +471,100 @@ body {
   min-width: 0;
 }
 
+.expandable-card__modal-content {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.expandable-card__modal-hero > * {
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+}
+
+.expandable-card__modal-hero .expandable-card__hero-img,
+.expandable-card__modal-hero .expandable-card__hero-fallback {
+  border-radius: 0;
+}
+
+.expandable-card__modal-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0a0a0a;
+}
+
+.expandable-card__modal-desc {
+  margin: 0.5rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: #525252;
+}
+
+.expandable-card__modal-link {
+  margin-top: 0.75rem;
+}
+
+.expandable-card__modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.expandable-card__modal-body .exp-description {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: #525252;
+}
+
+.expandable-card__modal-body .exp-achievements,
+.expandable-card__modal-body .project-highlights {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.expandable-card__modal-body .exp-achievements li,
+.expandable-card__modal-body .project-highlights li {
+  position: relative;
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #525252;
+}
+
+.expandable-card__modal-body .exp-achievements li + li,
+.expandable-card__modal-body .project-highlights li + li {
+  margin-top: 0.5rem;
+}
+
+.expandable-card__modal-body .exp-achievements li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #0a0a0a;
+  font-weight: 700;
+}
+
+.expandable-card__modal-body .project-highlights li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+.expandable-card__modal-body .exp-tech,
+.expandable-card__modal-body .project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 0;
+}
+
 .project-carousel-card__title {
   margin: 0;
   font-size: 1.25rem;

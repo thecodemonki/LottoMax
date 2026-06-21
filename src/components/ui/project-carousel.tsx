@@ -216,7 +216,7 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
                       ))}
                     </ul>
                   ) : null}
-                  <div className="project-tech mt-4 flex flex-wrap gap-2">
+                  <div className="project-tech flex flex-wrap gap-2">
                     {project.tech.map((tag) => (
                       <ExpandableTag
                         key={tag}

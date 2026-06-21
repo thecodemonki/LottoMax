@@ -336,9 +336,8 @@ export function ExpandableCard({
               layoutId={cardLayoutId}
               onClick={(event) => event.stopPropagation()}
               className={cn(
-                'relative flex max-h-[min(90vh,40rem)] w-full max-w-lg flex-col overflow-y-auto',
-                'rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] shadow-lg',
-                useProjectHero ? 'overflow-hidden p-0' : 'p-6',
+                'expandable-card__modal relative flex max-h-[min(90vh,40rem)] w-full max-w-lg flex-col',
+                'overflow-y-auto overflow-x-hidden rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] p-0 shadow-lg',
               )}
             >
               <button
@@ -350,21 +349,18 @@ export function ExpandableCard({
                 <X size={18} />
               </button>
 
-              {expandedHero}
+              <div className="expandable-card__modal-hero">{expandedHero}</div>
 
-              <div className={cn(useProjectHero && 'px-6 pb-6 pt-4')}>
+              <div className="expandable-card__modal-content">
                 <motion.h3
                   layoutId={titleLayoutId}
-                  className={cn(
-                    'text-2xl font-bold text-[#0a0a0a]',
-                    !useProjectHero && 'pr-8',
-                  )}
+                  className="expandable-card__modal-title pr-10"
                 >
                   {title}
                 </motion.h3>
                 <motion.p
                   layoutId={descLayoutId}
-                  className="mt-2 text-sm font-medium leading-relaxed text-[#525252]"
+                  className="expandable-card__modal-desc"
                 >
                   {description}
                 </motion.p>
@@ -372,7 +368,7 @@ export function ExpandableCard({
                 {link ? (
                   <a
                     href={link}
-                    className="mt-4 inline-flex items-center gap-1 font-semibold text-[#0a0a0a] transition-all hover:translate-x-1 hover:text-black"
+                    className="expandable-card__modal-link inline-flex items-center gap-1 font-semibold text-[#0a0a0a] transition-all hover:translate-x-1 hover:text-black"
                     {...(link !== '#'
                       ? { target: '_blank', rel: 'noopener noreferrer' }
                       : {})}
@@ -386,7 +382,9 @@ export function ExpandableCard({
                   </a>
                 ) : null}
 
-                {children ? <div className="mt-4">{children}</div> : null}
+                {children ? (
+                  <div className="expandable-card__modal-body">{children}</div>
+                ) : null}
               </div>
             </motion.div>
           </motion.div>
