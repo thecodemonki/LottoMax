@@ -182,6 +182,13 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
                   collapsedTitleClassName="project-carousel-card__title"
                   collapsedDescriptionClassName="project-carousel-card__description"
                   collapsedClassName="project-carousel-card h-[22rem] w-[18.75rem] shrink-0 p-5"
+                  onCollapsedClick={(_, expand) => {
+                    if (isFocused) {
+                      expand();
+                    } else {
+                      scrollToIndex(index);
+                    }
+                  }}
                   collapsedContent={
                     <div className="project-carousel-card__footer flex flex-col gap-2.5">
                       <div className="project-carousel-card__tags flex flex-wrap gap-1.5">

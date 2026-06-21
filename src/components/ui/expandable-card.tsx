@@ -4,6 +4,7 @@ import {
   useEffect,
   useRef,
   useState,
+  type MouseEvent,
   type ReactNode,
 } from 'react';
 import { AnimatePresence, motion, type HTMLMotionProps } from 'framer-motion';
@@ -107,6 +108,10 @@ export interface ExpandableCardProps {
   accentGradient?: boolean;
   showExpandAffordance?: boolean;
   whileHover?: HTMLMotionProps<'button'>['whileHover'];
+  onCollapsedClick?: (
+    event: MouseEvent<HTMLButtonElement>,
+    expand: () => void,
+  ) => void;
 }
 
 export function ExpandableCard({
@@ -125,6 +130,7 @@ export function ExpandableCard({
   accentGradient = false,
   showExpandAffordance = false,
   whileHover,
+  onCollapsedClick,
 }: ExpandableCardProps) {
   const { activeId, setActiveId } = useExpandableCardGroup();
   const isActive = activeId === id;
@@ -169,7 +175,13 @@ export function ExpandableCard({
       <motion.button
         type="button"
         layoutId={cardLayoutId}
-        onClick={() => setActiveId(id)}
+        onClick={(event) => {
+          if (onCollapsedClick) {
+            onCollapsedClick(event, () => setActiveId(id));
+            return;
+          }
+          setActiveId(id);
+        }}
         whileHover={whileHover}
         transition={{ type: 'spring', stiffness: 260, damping: 20 }}
         style={collapsedBackgroundStyle}
