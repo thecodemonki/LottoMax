@@ -371,7 +371,52 @@ body {
 .projects-carousel-section {
   margin-bottom: 2rem;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.project-carousel {
+  width: 100%;
+}
+
+.project-carousel__viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.project-carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.project-carousel__track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 0.75rem;
+  width: max-content;
+  min-width: 100%;
+}
+
+.project-carousel__spacer {
+  flex-shrink: 0;
+}
+
+.project-carousel__card {
+  position: relative;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.project-carousel__controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .projects-carousel-section .project-highlights {

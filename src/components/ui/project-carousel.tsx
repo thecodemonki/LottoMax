@@ -5,6 +5,7 @@ import {
   useState,
   type KeyboardEvent,
 } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   ExpandableCard,
@@ -22,38 +23,102 @@ export interface ProjectCarouselItem {
   image?: string;
 }
 
-const CARD_WIDTH = 300;
-const SCROLL_AMOUNT = CARD_WIDTH + 16;
-
 export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] }) {
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const rafRef = useRef<number | null>(null);
+  const [focusedIndex, setFocusedIndex] = useState(0);
+  const [edgeInset, setEdgeInset] = useState(16);
 
-  const checkScroll = useCallback(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 0);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+  const updateFocusedCard = useCallback(() => {
+    const container = carouselRef.current;
+    if (!container) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return;
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const distance = Math.abs(containerCenter - cardCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setFocusedIndex(closestIndex);
+  }, []);
+
+  const updateLayout = useCallback(() => {
+    const container = carouselRef.current;
+    const firstCard = cardRefs.current[0];
+    if (!container) return;
+
+    const cardWidth = firstCard?.offsetWidth ?? 300;
+    setEdgeInset(Math.max(16, (container.clientWidth - cardWidth) / 2));
+    updateFocusedCard();
+  }, [updateFocusedCard]);
+
+  const scheduleFocusUpdate = useCallback(() => {
+    if (rafRef.current !== null) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      updateLayout();
+    });
+  }, [updateLayout]);
+
+  const scrollToIndex = useCallback((index: number) => {
+    const container = carouselRef.current;
+    const card = cardRefs.current[index];
+    if (!container || !card) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+    const cardCenter = cardRect.left + cardRect.width / 2;
+    const scrollDelta = cardCenter - containerCenter;
+
+    container.scrollTo({
+      left: container.scrollLeft + scrollDelta,
+      behavior: 'smooth',
+    });
   }, []);
 
   useEffect(() => {
-    checkScroll();
-    const el = carouselRef.current;
-    if (!el) return;
-    el.addEventListener('scroll', checkScroll);
-    window.addEventListener('resize', checkScroll);
+    cardRefs.current = cardRefs.current.slice(0, projects.length);
+
+    const frame = requestAnimationFrame(() => {
+      updateLayout();
+    });
+
+    const container = carouselRef.current;
+    if (!container) {
+      return () => cancelAnimationFrame(frame);
+    }
+
+    container.addEventListener('scroll', scheduleFocusUpdate, { passive: true });
+    window.addEventListener('resize', scheduleFocusUpdate);
+
     return () => {
-      el.removeEventListener('scroll', checkScroll);
-      window.removeEventListener('resize', checkScroll);
+      cancelAnimationFrame(frame);
+      container.removeEventListener('scroll', scheduleFocusUpdate);
+      window.removeEventListener('resize', scheduleFocusUpdate);
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
-  }, [checkScroll, projects.length]);
+  }, [projects.length, scheduleFocusUpdate, updateLayout]);
 
   const scroll = (direction: 'left' | 'right') => {
-    carouselRef.current?.scrollBy({
-      left: direction === 'left' ? -SCROLL_AMOUNT : SCROLL_AMOUNT,
-      behavior: 'smooth',
-    });
+    const nextIndex =
+      direction === 'left' ? focusedIndex - 1 : focusedIndex + 1;
+    if (nextIndex >= 0 && nextIndex < projects.length) {
+      scrollToIndex(nextIndex);
+    }
   };
 
   const onCarouselKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -61,55 +126,91 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
     if (event.key === 'ArrowRight') scroll('right');
   };
 
+  const canScrollLeft = focusedIndex > 0;
+  const canScrollRight = focusedIndex < projects.length - 1;
+
   return (
-    <div className="w-full">
+    <div className="project-carousel">
       <div
         ref={carouselRef}
         tabIndex={0}
         onKeyDown={onCarouselKeyDown}
-        className="flex w-full gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="project-carousel__viewport"
       >
-        {projects.map((project, index) => {
-          const rotation = index % 2 === 0 ? -1.5 : 1.5;
-          const previewTags = project.tech.slice(0, 4);
+        <div className="project-carousel__track">
+          <div
+            className="project-carousel__spacer"
+            style={{ width: edgeInset }}
+            aria-hidden
+          />
+          {projects.map((project, index) => {
+            const rotation = index % 2 === 0 ? -1.5 : 1.5;
+            const previewTags = project.tech.slice(0, 4);
+            const isFocused = focusedIndex === index;
 
-          return (
-            <ExpandableCard
-              key={project.id}
-              id={project.id}
-              title={project.title}
-              description={project.description}
-              accentColor={project.color}
-              image={project.image}
-              link={project.link}
-              whileHover={{ rotate: rotation, scale: 1.02 }}
-              collapsedClassName="h-[22rem] w-[18.75rem] shrink-0 p-5"
-              collapsedContent={
-                <div className="flex flex-wrap gap-1.5">
-                  {previewTags.map((tag) => (
-                    <ExpandableTag key={tag} label={tag} />
-                  ))}
-                </div>
-              }
-            >
-              {project.highlights && project.highlights.length > 0 ? (
-                <ul className="project-highlights">
-                  {project.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-              ) : null}
-              <div className="project-tech mt-4 flex flex-wrap gap-2">
-                {project.tech.map((tag) => (
-                  <ExpandableTag key={tag} label={tag} />
-                ))}
-              </div>
-            </ExpandableCard>
-          );
-        })}
+            return (
+              <motion.div
+                key={project.id}
+                ref={(element) => {
+                  cardRefs.current[index] = element;
+                }}
+                animate={{
+                  scale: isFocused ? 1 : 0.92,
+                  opacity: isFocused ? 1 : 0.5,
+                }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="project-carousel__card"
+              >
+                {!isFocused ? (
+                  <div
+                    className="pointer-events-none absolute inset-0 z-10 rounded-3xl bg-black/10"
+                    aria-hidden
+                  />
+                ) : null}
+                <ExpandableCard
+                  id={project.id}
+                  title={project.title}
+                  description={project.description}
+                  accentColor={project.color}
+                  image={project.image}
+                  link={project.link}
+                  whileHover={
+                    isFocused ? { rotate: rotation, scale: 1.02 } : undefined
+                  }
+                  collapsedClassName="h-[22rem] w-[18.75rem] shrink-0 p-5"
+                  collapsedContent={
+                    <div className="flex flex-wrap gap-1.5">
+                      {previewTags.map((tag) => (
+                        <ExpandableTag key={tag} label={tag} />
+                      ))}
+                    </div>
+                  }
+                >
+                  {project.highlights && project.highlights.length > 0 ? (
+                    <ul className="project-highlights">
+                      {project.highlights.map((highlight) => (
+                        <li key={highlight}>{highlight}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  <div className="project-tech mt-4 flex flex-wrap gap-2">
+                    {project.tech.map((tag) => (
+                      <ExpandableTag key={tag} label={tag} />
+                    ))}
+                  </div>
+                </ExpandableCard>
+              </motion.div>
+            );
+          })}
+          <div
+            className="project-carousel__spacer"
+            style={{ width: edgeInset }}
+            aria-hidden
+          />
+        </div>
       </div>
 
-      <div className="mt-2 flex justify-end gap-2">
+      <div className="project-carousel__controls">
         <button
           type="button"
           onClick={() => scroll('left')}
