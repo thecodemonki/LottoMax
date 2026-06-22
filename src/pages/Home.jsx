@@ -150,7 +150,7 @@ function ExperiencePanel() {
               showExpandAffordance
               collapsedClassName={
                 hasImage
-                  ? 'expandable-card--experience experience-card experience-card--has-image h-[20rem] w-full'
+                  ? 'expandable-card--experience experience-card experience-card--has-image w-full'
                   : 'expandable-card--experience experience-card h-[11rem] w-full p-5'
               }
               collapsedContentClassName="experience-card__footer"
