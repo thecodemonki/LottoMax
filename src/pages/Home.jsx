@@ -9,6 +9,7 @@ import {
   photosYearOrder,
 } from '../data/content';
 import { ProjectCarousel } from '@/components/ui/project-carousel';
+import { ExperienceTiltCard } from '@/components/ui/experience-tilt-card';
 import {
   ExpandableCard,
   ExpandableCardGroup,
@@ -138,8 +139,8 @@ function ExperiencePanel() {
             const hasImage = Boolean(exp.image);
 
             return (
+            <ExperienceTiltCard key={exp.id}>
             <ExpandableCard
-              key={exp.id}
               id={exp.id}
               title={exp.role}
               description={exp.company}
@@ -202,6 +203,7 @@ function ExperiencePanel() {
                 ))}
               </div>
             </ExpandableCard>
+            </ExperienceTiltCard>
             );
           })}
         </div>
