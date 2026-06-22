@@ -51,17 +51,20 @@ export const educationData = {
 export const experienceData = [
   {
     id: 0,
-    company: "Autumn",
-    role: "Software-Engineer Intern — Remote",
-    location: "London, ON",
-    period: "March 2025 - Present",
-    color: "#14b8a6",
-    description: "Engineering provider onboarding flow and pre-fill system for grief counselors.",
+    company: "Dice AI",
+    role: "Founder",
+    location: "Oakville, ON",
+    period: "May 2026 – Present",
+    color: "#7c3aed",
+    image: "/experience/dice-ai.png",
+    description:
+      "Built and launched creatordice.com, an AI-powered tax tool for content creators.",
     achievements: [
-      "Engineered a provider onboarding flow (27 screens, 7 steps) in Next.js with Zustand, Prisma/PostgreSQL, and a weighted real-time completion scoring engine for grief counselors to publish SEO-structured profiles on autumn.co",
-      "Built a LinkedIn and website scrape-to-prefill system using Puppeteer with silent failure handling, JWT magic-link resume, and Inngest-scheduled abandonment email sequences to minimize drop-off across a 15–20 minute onboarding flow"
+      "Engineered a Canadian tax engine covering federal and Ontario income brackets, CPP Tier 1 & 2, and GST/HST registration thresholds",
+      "Integrated Anthropic AI to generate plain-English tax explanations personalized to each user's income and jurisdiction",
+      "Built and shipped the full product solo, from auth and billing to OAuth integrations across 6 platforms",
     ],
-    tech: ["Next.js", "Zustand", "Prisma", "PostgreSQL", "Puppeteer", "Inngest", "JWT"]
+    tech: ["Next.js", "Fastify", "TypeScript", "Postgres"],
   },
   {
     id: 1,
@@ -70,59 +73,78 @@ export const experienceData = [
     location: "Remote - Ottawa, ON",
     period: "November 2025 – April 2026",
     color: "#f97316",
+    image: "/experience/atlashaus.png",
     description: "Engineering custom Shopify solutions and optimizing e-commerce performance.",
     achievements: [
       "Engineered custom Shopify product pages using Liquid templates and JavaScript, implementing dynamic FAQ accordions and SEO-optimized structured data markup",
       "Enhanced e-commerce conversion funnel through Google Analytics and heat mapping analysis, optimizing content hierarchy and checkout flow",
-      "Boosted mobile page speeds by 20% through optimized Liquid templates and strategic media lazy-loading"
+      "Boosted mobile page speeds by 20% through optimized Liquid templates and strategic media lazy-loading",
     ],
-    tech: ["Liquid", "JavaScript", "Shopify", "Google Analytics", "SEO"]
+    tech: ["Liquid", "JavaScript", "Shopify", "Google Analytics", "SEO"],
   },
   {
     id: 2,
-    company: "Western Founders Network",
-    role: "Projects Director",
-    location: "London, ON",
-    period: "September 2025 – Present",
-    color: "#4a90e2",
-    description: "Leading technical education and project mentorship for 700+ members.",
-    achievements: [
-      "Led a team of 20+ to design and deliver weekly JavaScript, HTML, and CSS workshops, increasing technical engagement by 35%",
-      "Organized and mentored project teams during hackathons through ideation, technical scoping, and MVP development",
-      "Coordinated annual flagship Project Demo Day where 30+ teams present to industry judges - past teams earned 20+ interviews at IBM, Meta, Shopify, and notable startups"
-    ],
-    tech: ["JavaScript", "React", "Node.js", "Workshop Design", "Team Leadership"]
-  },
-  {
-    id: 3,
     company: "Fae AI",
     role: "Marketing and Growth",
     location: "Remote - New York",
     period: "October 2025 – February 2026",
     color: "#ec4899",
+    image: "/experience/fae-ai.png",
     description: "Led content strategy for pre-seed AI startup, achieving viral growth.",
     achievements: [
       "Led UGC and short-form content strategy across TikTok, Instagram, and YouTube",
       "Grew brand to 19K followers and 1.4M views in under a month through high-performing, trend-driven content",
-      "Achieved 6-8% average engagement rate through relatable AI content (fitness, productivity, emotional support)"
+      "Achieved 6-8% average engagement rate through relatable AI content (fitness, productivity, emotional support)",
     ],
-    tech: ["Social Media Strategy", "Content Creation", "Analytics", "Growth Hacking"]
+    tech: ["Social Media Strategy", "Content Creation", "Analytics", "Growth Hacking"],
+  },
+  {
+    id: 3,
+    company: "Western Founders Network",
+    role: "Projects Director",
+    location: "London, ON",
+    period: "September 2025 – Present",
+    color: "#4a90e2",
+    image: "/experience/wfn.png",
+    description: "Leading technical education and project mentorship for 700+ members.",
+    achievements: [
+      "Led a team of 20+ to design and deliver weekly JavaScript, HTML, and CSS workshops, increasing technical engagement by 35%",
+      "Organized and mentored project teams during hackathons through ideation, technical scoping, and MVP development",
+      "Coordinated annual flagship Project Demo Day where 30+ teams present to industry judges - past teams earned 20+ interviews at IBM, Meta, Shopify, and notable startups",
+    ],
+    tech: ["JavaScript", "React", "Node.js", "Workshop Design", "Team Leadership"],
   },
   {
     id: 4,
+    company: "Autumn",
+    role: "Software-Engineer Intern — Remote",
+    location: "London, ON",
+    period: "March 2025 - Present",
+    color: "#14b8a6",
+    image: "/experience/autumn.png",
+    description: "Engineering provider onboarding flow and pre-fill system for grief counselors.",
+    achievements: [
+      "Engineered a provider onboarding flow (27 screens, 7 steps) in Next.js with Zustand, Prisma/PostgreSQL, and a weighted real-time completion scoring engine for grief counselors to publish SEO-structured profiles on autumn.co",
+      "Built a LinkedIn and website scrape-to-prefill system using Puppeteer with silent failure handling, JWT magic-link resume, and Inngest-scheduled abandonment email sequences to minimize drop-off across a 15–20 minute onboarding flow",
+    ],
+    tech: ["Next.js", "Zustand", "Prisma", "PostgreSQL", "Puppeteer", "Inngest", "JWT"],
+  },
+  {
+    id: 5,
     company: "Team Canada | Badminton",
     role: "Junior National Team",
     location: "Oakville, ON",
     period: "September 2020 – June 2025",
     color: "#dc2626",
+    image: "/experience/team-canada.png",
     description: "Competing at national level while managing athletic and academic commitments.",
     achievements: [
       "Ranked #2 Under 17 in Canada",
       "Represented Canada at 2023 XXVI Yonex PanAm Individual Championship",
-      "Served as YONEX Sponsorship Representative - distributed over $7,000 in equipment, driving 15% increase in athlete engagement"
+      "Served as YONEX Sponsorship Representative - distributed over $7,000 in equipment, driving 15% increase in athlete engagement",
     ],
-    tech: ["Performance Analytics", "Team Collaboration", "Leadership"]
-  }
+    tech: ["Performance Analytics", "Team Collaboration", "Leadership"],
+  },
 ];
 
 export const projectsData = [

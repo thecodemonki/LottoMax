@@ -134,19 +134,29 @@ function ExperiencePanel() {
     <div className="tab-panel tab-panel--list">
       <ExpandableCardGroup>
         <div className="experience-expandable-grid">
-          {experienceData.map((exp) => (
+          {experienceData.map((exp) => {
+            const hasImage = Boolean(exp.image);
+
+            return (
             <ExpandableCard
               key={exp.id}
               id={exp.id}
               title={exp.role}
               description={exp.company}
+              image={exp.image}
               accentColor={exp.color}
-              accentGradient
+              heroStyle={hasImage ? 'card-hero' : 'accent-bar'}
+              accentGradient={!hasImage}
               showExpandAffordance
-              collapsedClassName="expandable-card--experience experience-card h-[11rem] w-full p-5"
+              collapsedClassName={
+                hasImage
+                  ? 'expandable-card--experience experience-card experience-card--has-image h-[21rem] w-full'
+                  : 'expandable-card--experience experience-card h-[11rem] w-full p-5'
+              }
               collapsedContentClassName="experience-card__footer"
               collapsedDescriptionClassName="experience-card__company"
               collapsedTitleAdornment={
+                hasImage ? undefined : (
                 <span
                   className="experience-card__badge"
                   style={{ backgroundColor: exp.color }}
@@ -154,6 +164,7 @@ function ExperiencePanel() {
                 >
                   {exp.company.charAt(0)}
                 </span>
+                )
               }
               collapsedContent={
                 <>
@@ -181,7 +192,8 @@ function ExperiencePanel() {
                 ))}
               </div>
             </ExpandableCard>
-          ))}
+            );
+          })}
         </div>
       </ExpandableCardGroup>
     </div>

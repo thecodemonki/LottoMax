@@ -153,7 +153,7 @@ export interface ExpandableCardProps {
   pinCollapsedContent?: boolean;
   accentGradient?: boolean;
   showExpandAffordance?: boolean;
-  heroStyle?: 'accent-bar' | 'project-hero';
+  heroStyle?: 'accent-bar' | 'project-hero' | 'card-hero';
   whileHover?: HTMLMotionProps<'button'>['whileHover'];
   onCollapsedClick?: (
     event: MouseEvent<HTMLButtonElement>,
@@ -214,16 +214,17 @@ export function ExpandableCard({
   const titleLayoutId = `title-${id}`;
   const descLayoutId = `desc-${id}`;
   const imageLayoutId = `image-${id}`;
+  const useCardHero = heroStyle === 'project-hero' || heroStyle === 'card-hero';
   const useProjectHero = heroStyle === 'project-hero';
 
   const collapsedBackgroundStyle =
-    accentGradient && !useProjectHero
+    accentGradient && !useCardHero
       ? {
           backgroundImage: `linear-gradient(180deg, color-mix(in srgb, ${accentColor} 10%, #f5f5f5) 0%, #f5f5f5 52%)`,
         }
       : undefined;
 
-  const collapsedHero = useProjectHero ? (
+  const collapsedHero = useCardHero ? (
     <CardHero
       layoutId={imageLayoutId}
       image={image}
@@ -242,7 +243,7 @@ export function ExpandableCard({
     <AccentAnchor id={id} accentColor={accentColor} expanded={false} />
   );
 
-  const expandedHero = useProjectHero ? (
+  const expandedHero = useCardHero ? (
     <CardHero
       layoutId={imageLayoutId}
       image={image}
@@ -280,7 +281,7 @@ export function ExpandableCard({
           'expandable-card relative flex cursor-pointer flex-col text-left',
           'rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] shadow-sm',
           'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3b82f6]',
-          useProjectHero && 'overflow-hidden p-0',
+          useCardHero && 'overflow-hidden p-0',
           collapsedClassName,
           className,
         )}
@@ -289,7 +290,7 @@ export function ExpandableCard({
         <div
           className={cn(
             'expandable-card__body flex min-h-0 flex-1 flex-col',
-            useProjectHero ? 'px-5 pb-5 pt-4' : '',
+            useCardHero ? 'px-5 pb-5 pt-4' : '',
           )}
         >
           {collapsedTitleAdornment ? (
