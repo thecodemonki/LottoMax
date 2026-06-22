@@ -145,12 +145,12 @@ function ExperiencePanel() {
               description={exp.company}
               image={exp.image}
               accentColor={exp.color}
-              heroStyle={hasImage ? 'card-hero' : 'accent-bar'}
+              heroStyle={hasImage ? 'experience-banner' : 'accent-bar'}
               accentGradient={!hasImage}
               showExpandAffordance
               collapsedClassName={
                 hasImage
-                  ? 'expandable-card--experience experience-card experience-card--has-image h-[21rem] w-full'
+                  ? 'expandable-card--experience experience-card experience-card--has-image h-[20rem] w-full'
                   : 'expandable-card--experience experience-card h-[11rem] w-full p-5'
               }
               collapsedContentClassName="experience-card__footer"
@@ -177,6 +177,15 @@ function ExperiencePanel() {
                       {exp.achievements[0]}
                     </p>
                   ) : null}
+                  <div className="experience-card__tags">
+                    {exp.tech.slice(0, 4).map((tag) => (
+                      <ExpandableTag
+                        key={tag}
+                        label={tag}
+                        accentColor={exp.color}
+                      />
+                    ))}
+                  </div>
                 </>
               }
             >

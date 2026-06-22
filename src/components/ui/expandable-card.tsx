@@ -97,11 +97,13 @@ function CardHero({
   image,
   accentColor,
   expanded,
+  isExperienceBanner = false,
 }: {
   layoutId: string;
   image?: string;
   accentColor: string;
   expanded: boolean;
+  isExperienceBanner?: boolean;
 }) {
   return (
     <motion.div
@@ -109,6 +111,7 @@ function CardHero({
       className={cn(
         'expandable-card__hero shrink-0 overflow-hidden',
         expanded ? 'expandable-card__hero--expanded' : 'expandable-card__hero--collapsed',
+        isExperienceBanner && 'expandable-card__hero--experience-banner',
       )}
     >
       {image ? (
@@ -153,7 +156,7 @@ export interface ExpandableCardProps {
   pinCollapsedContent?: boolean;
   accentGradient?: boolean;
   showExpandAffordance?: boolean;
-  heroStyle?: 'accent-bar' | 'project-hero' | 'card-hero';
+  heroStyle?: 'accent-bar' | 'project-hero' | 'card-hero' | 'experience-banner';
   whileHover?: HTMLMotionProps<'button'>['whileHover'];
   onCollapsedClick?: (
     event: MouseEvent<HTMLButtonElement>,
@@ -214,8 +217,12 @@ export function ExpandableCard({
   const titleLayoutId = `title-${id}`;
   const descLayoutId = `desc-${id}`;
   const imageLayoutId = `image-${id}`;
-  const useCardHero = heroStyle === 'project-hero' || heroStyle === 'card-hero';
+  const useCardHero =
+    heroStyle === 'project-hero' ||
+    heroStyle === 'card-hero' ||
+    heroStyle === 'experience-banner';
   const useProjectHero = heroStyle === 'project-hero';
+  const isExperienceBanner = heroStyle === 'experience-banner';
 
   const collapsedBackgroundStyle =
     accentGradient && !useCardHero
@@ -230,6 +237,7 @@ export function ExpandableCard({
       image={image}
       accentColor={accentColor}
       expanded={false}
+      isExperienceBanner={isExperienceBanner}
     />
   ) : image ? (
     <motion.div layoutId={imageLayoutId} className="mb-4">
@@ -249,6 +257,7 @@ export function ExpandableCard({
       image={image}
       accentColor={accentColor}
       expanded
+      isExperienceBanner={isExperienceBanner}
     />
   ) : image ? (
     <motion.div layoutId={imageLayoutId} className="mb-4 pr-8">
