@@ -183,6 +183,7 @@ export function ProjectCarousel({ projects }: { projects: ProjectCarouselItem[] 
                   collapsedTitleClassName="project-carousel-card__title"
                   collapsedDescriptionClassName="project-carousel-card__description"
                   collapsedClassName="project-carousel-card h-[26rem] w-[18.75rem] shrink-0"
+                  collapsedContentClassName="project-carousel-card__collapsed-content"
                   onCollapsedClick={(_, expand) => {
                     if (isFocused) {
                       expand();

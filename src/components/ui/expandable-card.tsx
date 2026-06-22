@@ -150,6 +150,7 @@ export interface ExpandableCardProps {
   collapsedDescriptionClassName?: string;
   collapsedTitleAdornment?: ReactNode;
   collapsedContentClassName?: string;
+  pinCollapsedContent?: boolean;
   accentGradient?: boolean;
   showExpandAffordance?: boolean;
   heroStyle?: 'accent-bar' | 'project-hero';
@@ -175,6 +176,7 @@ export function ExpandableCard({
   collapsedDescriptionClassName,
   collapsedTitleAdornment,
   collapsedContentClassName,
+  pinCollapsedContent = false,
   accentGradient = false,
   showExpandAffordance = false,
   heroStyle = 'accent-bar',
@@ -315,7 +317,7 @@ export function ExpandableCard({
           {collapsedContent ? (
             <div
               className={cn(
-                useProjectHero ? 'mt-auto pt-3' : 'pt-3',
+                pinCollapsedContent ? 'mt-auto pt-3' : 'pt-0',
                 collapsedContentClassName,
               )}
             >
