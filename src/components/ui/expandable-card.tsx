@@ -59,13 +59,20 @@ export function ExpandableTag({
   accentColor?: string;
 }) {
   const backgroundColor = accentColor
-    ? `color-mix(in srgb, ${accentColor} 14%, #f5f5f5)`
+    ? `color-mix(in srgb, ${accentColor} 12%, #f5f5f5)`
     : '#e5e5e5';
+
+  const borderColor = accentColor
+    ? `color-mix(in srgb, ${accentColor} 20%, transparent)`
+    : 'transparent';
 
   return (
     <span
-      className="tech-badge inline-flex h-6 items-center rounded-md px-2.5 text-[0.7rem] font-medium leading-none text-[#525252]"
-      style={{ backgroundColor }}
+      className="tech-badge inline-flex h-6 items-center rounded-md px-2.5 text-[0.7rem] font-medium leading-none text-[#525252] transition-all"
+      style={{
+        backgroundColor,
+        border: `1px solid ${borderColor}`,
+      }}
     >
       {label}
     </span>
@@ -84,9 +91,12 @@ function AccentAnchor({
   return (
     <motion.div
       layoutId={`accent-${id}`}
-      className={cn('w-full shrink-0 rounded-lg', expanded ? 'mb-4 h-24' : 'mb-3 h-3')}
+      className={cn('w-full shrink-0', expanded ? 'mb-4 h-20 rounded-xl' : 'mb-2 h-1 rounded-full')}
       style={{
-        background: `linear-gradient(180deg, ${accentColor} 0%, ${accentColor}dd 72%, ${accentColor}55 100%)`,
+        background: expanded
+          ? `linear-gradient(135deg, ${accentColor} 0%, ${accentColor}dd 100%)`
+          : accentColor,
+        opacity: expanded ? 0.15 : 0,
       }}
     />
   );
@@ -227,7 +237,7 @@ export function ExpandableCard({
   const collapsedBackgroundStyle =
     accentGradient && !useCardHero
       ? {
-          backgroundImage: `linear-gradient(180deg, color-mix(in srgb, ${accentColor} 10%, #f5f5f5) 0%, #f5f5f5 52%)`,
+          backgroundImage: `linear-gradient(180deg, color-mix(in srgb, ${accentColor} 8%, #f5f5f5) 0%, #f5f5f5 45%)`,
         }
       : undefined;
 
@@ -285,7 +295,10 @@ export function ExpandableCard({
         }}
         whileHover={whileHover}
         transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-        style={collapsedBackgroundStyle}
+        style={{
+          ...collapsedBackgroundStyle,
+          '--accent-color': accentColor,
+        } as React.CSSProperties}
         className={cn(
           'expandable-card relative flex cursor-pointer flex-col text-left',
           'rounded-3xl border border-[#e5e5e5] bg-[#f5f5f5] shadow-sm',

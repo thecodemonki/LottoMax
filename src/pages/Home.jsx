@@ -151,10 +151,11 @@ function ExperiencePanel() {
               collapsedClassName={
                 hasImage
                   ? 'expandable-card--experience experience-card experience-card--has-image w-full'
-                  : 'expandable-card--experience experience-card h-[11rem] w-full p-5'
+                  : 'expandable-card--experience experience-card w-full'
               }
               collapsedContentClassName="experience-card__footer"
               collapsedDescriptionClassName="experience-card__company"
+              collapsedTitleClassName={hasImage ? undefined : 'text-[1.125rem] font-bold leading-tight text-[#0a0a0a]'}
               collapsedTitleAdornment={
                 hasImage ? undefined : (
                 <span
@@ -173,7 +174,7 @@ function ExperiencePanel() {
                     <div className="exp-location">{exp.location}</div>
                   </div>
                   {exp.achievements[0] ? (
-                    <p className="experience-card__teaser line-clamp-1">
+                    <p className="experience-card__teaser">
                       {exp.achievements[0]}
                     </p>
                   ) : null}

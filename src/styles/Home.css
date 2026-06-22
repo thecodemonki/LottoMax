@@ -355,92 +355,90 @@ body {
   border-radius: 1px;
 }
 
+/* Experience Grid */
 .experience-expandable-grid {
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: 1fr;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
+/* Base Experience Card */
 .expandable-card--experience {
   width: 100%;
+  transition: all 0.2s ease;
 }
 
-.expandable-card__meta {
-  text-align: left;
+.expandable-card--experience:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
 }
 
-.expandable-card--experience .exp-period {
-  font-size: 0.8125rem;
-  color: #737373;
+/* Card without image - uses accent gradient and badge */
+.expandable-card--experience.experience-card {
+  height: auto;
+  min-height: 15rem;
+  padding: 1.5rem;
+  position: relative;
 }
 
-.expandable-card--experience .exp-location {
-  font-size: 0.8125rem;
-  color: #737373;
-  margin-top: 0.15rem;
+/* Subtle accent indicator for cards without images */
+.expandable-card--experience.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-color, #3b82f6);
+  opacity: 0.7;
+  border-radius: 1.5rem 1.5rem 0 0;
 }
 
+/* Card without image - title and badge layout */
+.expandable-card--experience.experience-card .expandable-card__body {
+  gap: 0.875rem;
+}
+
+/* Ensure proper spacing for badge + title layout */
+.expandable-card--experience.experience-card .expandable-card__body > div:first-child {
+  margin-bottom: 0.25rem;
+}
+
+/* Badge for cards without images */
 .experience-card__badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
   flex-shrink: 0;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 700;
   line-height: 1;
   color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.experience-card__company {
-  margin: 0.25rem 0 0;
-  font-size: 0.875rem;
-  line-height: 1.35;
-  color: #525252;
-  flex-shrink: 0;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-}
-
-.experience-card__footer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-.experience-card__teaser {
-  margin: 0;
-  font-size: 0.75rem;
-  line-height: 1.4;
-  color: #a3a3a3;
-  padding-right: 1.75rem;
-}
-
-.expandable-card--experience.experience-card {
-  height: 11rem;
-  min-height: 11rem;
-}
-
+/* Card with company banner image */
 .experience-card--has-image {
-  height: 32rem;
-  min-height: 32rem;
+  height: auto;
+  min-height: 20rem;
 }
 
 .experience-card--has-image
   .expandable-card__hero--experience-banner.expandable-card__hero--collapsed {
-  height: 7rem;
+  height: 5.5rem;
   background: #ffffff;
   border-radius: 1.5rem 1.5rem 0 0;
+  border-bottom: 3px solid;
+  border-bottom-color: var(--accent-color, #3b82f6);
 }
 
 .experience-card--has-image .expandable-card__hero--experience-banner {
   overflow: hidden;
+  position: relative;
 }
 
 .experience-card--has-image
@@ -448,8 +446,10 @@ body {
   .expandable-card__hero-img {
   object-fit: contain;
   object-position: center;
-  padding: 0.625rem 1rem;
+  padding: 0.75rem 1.25rem;
   box-sizing: border-box;
+  max-height: 100%;
+  width: 100%;
 }
 
 .experience-card--has-image .expandable-card__hero--experience-banner::after {
@@ -457,8 +457,10 @@ body {
 }
 
 .expandable-card__hero--experience-banner.expandable-card__hero--expanded {
-  height: 10rem;
+  height: 8rem;
   background: #ffffff;
+  border-bottom: 3px solid;
+  border-bottom-color: var(--accent-color, #3b82f6);
 }
 
 .expandable-card__hero--experience-banner.expandable-card__hero--expanded
@@ -472,11 +474,12 @@ body {
   display: none;
 }
 
+/* Card body styling */
 .experience-card--has-image .expandable-card__body {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.875rem 1.25rem 1.75rem;
+  gap: 0.75rem;
+  padding: 1.5rem 1.5rem 1.75rem;
   flex: 1;
   min-height: 0;
   overflow: hidden;
@@ -488,38 +491,100 @@ body {
   flex-shrink: 0;
 }
 
-.experience-card--has-image .experience-card__footer {
-  margin-top: 0;
-  gap: 0.375rem;
-}
-
+/* Job title - Primary hierarchy */
 .experience-card--has-image .expandable-card__body > h3 {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.3;
+  color: #0a0a0a;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* Company name - Secondary hierarchy */
+.experience-card__company {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: #525252;
+  font-weight: 500;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.experience-card--has-image .experience-card__company {
+  margin-top: 0;
+}
+
+/* Metadata (period, location) - Tertiary hierarchy */
+.expandable-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+}
+
+.expandable-card--experience .exp-period {
+  font-size: 0.8125rem;
+  color: #737373;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.expandable-card--experience .exp-location {
+  font-size: 0.8125rem;
+  color: #a3a3a3;
+  font-weight: 400;
+}
+
+/* Card footer section */
+.experience-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.experience-card--has-image .experience-card__footer {
+  margin-top: auto;
+  gap: 0.625rem;
+  padding-top: 0.5rem;
+}
+
+/* Achievement teaser */
+.experience-card__teaser {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #737373;
+  padding-right: 2rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
 
-.experience-card--has-image .experience-card__company {
-  margin-top: 0.125rem;
-}
-
-.experience-card .exp-meta {
-  text-align: right;
-}
-
+/* Tech tags */
 .experience-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.375rem;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
 .expandable-card--experience .expandable-card__body {
   flex: 1;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 640px) {
