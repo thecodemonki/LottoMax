@@ -136,6 +136,24 @@ body {
   margin-right: auto;
 }
 
+.tab-panel--projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.portfolio-tab-surface:has(.tab-panel--projects) {
+  padding-bottom: 0;
+  overflow-y: hidden;
+}
+
+.tab-panel--projects .projects-carousel-section {
+  margin-bottom: 0;
+}
+
 .tab-panel.tab-panel--about {
   box-sizing: border-box;
   width: 100%;
@@ -421,6 +439,10 @@ body {
 
 .project-carousel-card {
   transition: box-shadow 0.25s ease;
+}
+
+.project-carousel-card .expandable-card__body {
+  padding: 1.5rem;
 }
 
 .expandable-card__hero {

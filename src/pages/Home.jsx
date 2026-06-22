@@ -170,7 +170,7 @@ function ExperiencePanel() {
 
 function ProjectsPanel() {
   return (
-    <div className="tab-panel tab-panel--list">
+    <div className="tab-panel tab-panel--list tab-panel--projects">
       <section className="projects-carousel-section">
         <ExpandableCardGroup>
           <ProjectCarousel projects={projectsData} />
