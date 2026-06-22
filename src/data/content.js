@@ -55,6 +55,7 @@ export const experienceData = [
     role: "Software-Engineer Intern — Remote",
     location: "London, ON",
     period: "March 2025 - Present",
+    color: "#14b8a6",
     description: "Engineering provider onboarding flow and pre-fill system for grief counselors.",
     achievements: [
       "Engineered a provider onboarding flow (27 screens, 7 steps) in Next.js with Zustand, Prisma/PostgreSQL, and a weighted real-time completion scoring engine for grief counselors to publish SEO-structured profiles on autumn.co",
@@ -68,6 +69,7 @@ export const experienceData = [
     role: "Software Engineer Intern",
     location: "Remote - Ottawa, ON",
     period: "November 2025 – April 2026",
+    color: "#f97316",
     description: "Engineering custom Shopify solutions and optimizing e-commerce performance.",
     achievements: [
       "Engineered custom Shopify product pages using Liquid templates and JavaScript, implementing dynamic FAQ accordions and SEO-optimized structured data markup",
@@ -82,6 +84,7 @@ export const experienceData = [
     role: "Projects Director",
     location: "London, ON",
     period: "September 2025 – Present",
+    color: "#4a90e2",
     description: "Leading technical education and project mentorship for 700+ members.",
     achievements: [
       "Led a team of 20+ to design and deliver weekly JavaScript, HTML, and CSS workshops, increasing technical engagement by 35%",
@@ -96,6 +99,7 @@ export const experienceData = [
     role: "Marketing and Growth",
     location: "Remote - New York",
     period: "October 2025 – February 2026",
+    color: "#ec4899",
     description: "Led content strategy for pre-seed AI startup, achieving viral growth.",
     achievements: [
       "Led UGC and short-form content strategy across TikTok, Instagram, and YouTube",
@@ -110,6 +114,7 @@ export const experienceData = [
     role: "Junior National Team",
     location: "Oakville, ON",
     period: "September 2020 – June 2025",
+    color: "#dc2626",
     description: "Competing at national level while managing athletic and academic commitments.",
     achievements: [
       "Ranked #2 Under 17 in Canada",

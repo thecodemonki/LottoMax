@@ -140,13 +140,32 @@ function ExperiencePanel() {
               id={exp.id}
               title={exp.role}
               description={exp.company}
-              accentColor="#3b82f6"
-              collapsedClassName="expandable-card--experience h-full min-h-[11rem] w-full p-5"
+              accentColor={exp.color}
+              accentGradient
+              showExpandAffordance
+              collapsedClassName="expandable-card--experience experience-card h-[11rem] w-full p-5"
+              collapsedContentClassName="experience-card__footer"
+              collapsedTitleAdornment={
+                <span
+                  className="experience-card__badge"
+                  style={{ backgroundColor: exp.color }}
+                  aria-hidden
+                >
+                  {exp.company.charAt(0)}
+                </span>
+              }
               collapsedContent={
-                <div className="exp-meta expandable-card__meta">
-                  <div className="exp-period">{exp.period}</div>
-                  <div className="exp-location">{exp.location}</div>
-                </div>
+                <>
+                  <div className="exp-meta expandable-card__meta">
+                    <div className="exp-period">{exp.period}</div>
+                    <div className="exp-location">{exp.location}</div>
+                  </div>
+                  {exp.achievements[0] ? (
+                    <p className="experience-card__teaser line-clamp-1">
+                      {exp.achievements[0]}
+                    </p>
+                  ) : null}
+                </>
               }
             >
               <p className="exp-description">{exp.description}</p>
@@ -157,7 +176,7 @@ function ExperiencePanel() {
               </ul>
               <div className="exp-tech">
                 {exp.tech.map((tech) => (
-                  <ExpandableTag key={tech} label={tech} />
+                  <ExpandableTag key={tech} label={tech} accentColor={exp.color} />
                 ))}
               </div>
             </ExpandableCard>

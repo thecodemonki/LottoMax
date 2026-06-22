@@ -148,6 +148,8 @@ export interface ExpandableCardProps {
   collapsedClassName?: string;
   collapsedTitleClassName?: string;
   collapsedDescriptionClassName?: string;
+  collapsedTitleAdornment?: ReactNode;
+  collapsedContentClassName?: string;
   accentGradient?: boolean;
   showExpandAffordance?: boolean;
   heroStyle?: 'accent-bar' | 'project-hero';
@@ -171,6 +173,8 @@ export function ExpandableCard({
   collapsedClassName,
   collapsedTitleClassName,
   collapsedDescriptionClassName,
+  collapsedTitleAdornment,
+  collapsedContentClassName,
   accentGradient = false,
   showExpandAffordance = false,
   heroStyle = 'accent-bar',
@@ -286,15 +290,18 @@ export function ExpandableCard({
             useProjectHero ? 'px-5 pb-5 pt-4' : '',
           )}
         >
-          <motion.h3
-            layoutId={titleLayoutId}
-            className={cn(
-              !collapsedTitleClassName && 'text-lg font-bold leading-tight text-[#0a0a0a]',
-              collapsedTitleClassName,
-            )}
-          >
-            {title}
-          </motion.h3>
+          <div className="flex items-start gap-2.5">
+            {collapsedTitleAdornment}
+            <motion.h3
+              layoutId={titleLayoutId}
+              className={cn(
+                !collapsedTitleClassName && 'text-lg font-bold leading-tight text-[#0a0a0a]',
+                collapsedTitleClassName,
+              )}
+            >
+              {title}
+            </motion.h3>
+          </div>
           <motion.p
             layoutId={descLayoutId}
             className={cn(
@@ -306,7 +313,12 @@ export function ExpandableCard({
             {description}
           </motion.p>
           {collapsedContent ? (
-            <div className={cn('mt-auto', useProjectHero ? 'pt-3' : 'pt-4')}>
+            <div
+              className={cn(
+                useProjectHero ? 'mt-auto pt-3' : 'pt-3',
+                collapsedContentClassName,
+              )}
+            >
               {collapsedContent}
             </div>
           ) : null}

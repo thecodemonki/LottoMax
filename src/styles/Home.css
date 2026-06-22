@@ -380,6 +380,45 @@ body {
   margin-top: 0.15rem;
 }
 
+.experience-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+}
+
+.experience-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.experience-card__teaser {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #a3a3a3;
+  padding-right: 1.75rem;
+}
+
+.expandable-card--experience.experience-card {
+  height: 11rem;
+  min-height: 11rem;
+}
+
+.expandable-card--experience .expandable-card__body {
+  flex: 1;
+  min-height: 0;
+}
+
 @media (min-width: 640px) {
   .experience-expandable-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
