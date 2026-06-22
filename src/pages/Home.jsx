@@ -145,6 +145,7 @@ function ExperiencePanel() {
               showExpandAffordance
               collapsedClassName="expandable-card--experience experience-card h-[11rem] w-full p-5"
               collapsedContentClassName="experience-card__footer"
+              collapsedDescriptionClassName="experience-card__company"
               collapsedTitleAdornment={
                 <span
                   className="experience-card__badge"

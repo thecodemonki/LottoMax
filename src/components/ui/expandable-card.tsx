@@ -292,28 +292,56 @@ export function ExpandableCard({
             useProjectHero ? 'px-5 pb-5 pt-4' : '',
           )}
         >
-          <div className="flex items-start gap-2.5">
-            {collapsedTitleAdornment}
-            <motion.h3
-              layoutId={titleLayoutId}
-              className={cn(
-                !collapsedTitleClassName && 'text-lg font-bold leading-tight text-[#0a0a0a]',
-                collapsedTitleClassName,
-              )}
-            >
-              {title}
-            </motion.h3>
-          </div>
-          <motion.p
-            layoutId={descLayoutId}
-            className={cn(
-              !collapsedDescriptionClassName &&
-                'mt-2 line-clamp-2 text-sm leading-snug text-[#525252]',
-              collapsedDescriptionClassName,
-            )}
-          >
-            {description}
-          </motion.p>
+          {collapsedTitleAdornment ? (
+            <div className="flex min-w-0 items-start gap-2.5">
+              {collapsedTitleAdornment}
+              <div className="min-w-0 flex-1">
+                <motion.h3
+                  layoutId={titleLayoutId}
+                  className={cn(
+                    !collapsedTitleClassName &&
+                      'text-lg font-bold leading-tight text-[#0a0a0a]',
+                    collapsedTitleClassName,
+                  )}
+                >
+                  {title}
+                </motion.h3>
+                <motion.p
+                  layoutId={descLayoutId}
+                  className={cn(
+                    !collapsedDescriptionClassName &&
+                      'mt-2 line-clamp-2 text-sm leading-snug text-[#525252]',
+                    collapsedDescriptionClassName,
+                  )}
+                >
+                  {description}
+                </motion.p>
+              </div>
+            </div>
+          ) : (
+            <>
+              <motion.h3
+                layoutId={titleLayoutId}
+                className={cn(
+                  !collapsedTitleClassName &&
+                    'text-lg font-bold leading-tight text-[#0a0a0a]',
+                  collapsedTitleClassName,
+                )}
+              >
+                {title}
+              </motion.h3>
+              <motion.p
+                layoutId={descLayoutId}
+                className={cn(
+                  !collapsedDescriptionClassName &&
+                    'mt-2 line-clamp-2 text-sm leading-snug text-[#525252]',
+                  collapsedDescriptionClassName,
+                )}
+              >
+                {description}
+              </motion.p>
+            </>
+          )}
           {collapsedContent ? (
             <div
               className={cn(

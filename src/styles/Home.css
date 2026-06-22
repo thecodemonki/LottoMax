@@ -394,6 +394,18 @@ body {
   color: #fff;
 }
 
+.experience-card__company {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: #525252;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
 .experience-card__footer {
   display: flex;
   flex-direction: column;
